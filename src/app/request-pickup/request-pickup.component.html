@@ -1,0 +1,73 @@
+<div>
+  <div class="text2"><div class="testme">Request Pickup</div></div>
+  <div class="text1"><div class="text1_inner">Place a request and our agent will come for pickup at your convenience</div></div>
+
+  <form class="example-form" [formGroup]="requestPickupValidations">
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+      <mat-hint>Enter number of bags</mat-hint>
+    </mat-form-field>
+
+    <br/><br/>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Pickup Time</mat-label>
+      <mat-select formControlName="pickupTimeSlot">
+        <mat-option *ngFor="let timeSlot of timeSlots" [value]="timeSlot">
+          {{timeSlot.day}}, {{timeSlot.startTime}} - {{timeSlot.endTime}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br/><br/>
+
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="name" placeholder="Name">
+    </mat-form-field>
+
+    <br/><br/>
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="email" placeholder="Email">
+    </mat-form-field>
+
+    <br/><br/>
+
+    <span>
+      <mat-form-field>
+        <mat-label>Society</mat-label>
+        <mat-select formControlName="society">
+          <mat-option *ngFor="let society of societies" [value]="society.name">
+            {{society.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="flatNumber" type="text" placeholder="Flat Number">
+      </mat-form-field>
+    </span>
+
+    <br/><br/>
+
+    <span>
+      <mat-form-field>
+      <mat-label>Credit Rewards To</mat-label>
+      <mat-select formControlName="creditTo">
+        <mat-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
+          {{paymentType.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="accountId" type="text" placeholder="Account ID">
+      </mat-form-field>
+    </span>
+
+    <br/><br/>
+
+    <div>
+      <button mat-raised-button (click)="redirectToHome()">Cancel</button>
+      <button mat-raised-button color="primary" style="margin-left: 30px" (click)="requestPickup()">Submit</button>
+    </div>
+  </form>
+
+</div>

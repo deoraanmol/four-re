@@ -1,0 +1,48 @@
+<div>
+  <div class="text2"><div class="testme">Get Reward</div></div>
+  <div class="text1"><div class="text1_inner">Place a request and our agent will come for pickup at your convenience</div></div>
+
+  <form class="example-form" [formGroup]="requestPickupValidations">
+
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+    </mat-form-field>
+
+    <br/><br/>
+    <span>
+          <mat-form-field>
+            <mat-label>Credit Rewards To</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
+                {{paymentType.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="noOfBags" type="text" placeholder="Account ID">
+          </mat-form-field>
+        </span>
+
+    <br/><br/>
+
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="noOfBags" type="number" placeholder="Agent PIN">
+    </mat-form-field>
+
+    <br/><br/>
+
+    <span>
+      <mat-checkbox checked="true"></mat-checkbox>
+      <span>By submitting the agent PIN, you confirm to receive &#x20b9; 0 in above account</span>
+    </span>
+
+    <br/><br/>
+
+    <div>
+      <button mat-raised-button (click)="redirectToHome()">Reset</button>
+      <button mat-raised-button color="primary" style="margin-left: 30px" (click)="saveProfile()">Save</button>
+    </div>
+  </form>
+
+
+</div>

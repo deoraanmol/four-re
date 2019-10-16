@@ -1,0 +1,14 @@
+<div>
+  <div class="text2"><div class="testme">Get Started</div></div>
+  <div class="text1"><div class="text1_inner">This will help us in securing your account</div></div>
+
+  <app-login style="padding-left: 0px; width: 350px"></app-login>
+
+  <form class="example-form" [formGroup]="userAddressValidations">
+    <span>
+      <mat-checkbox checked="true"></mat-checkbox>
+      I agree with the <a (click)="openTermsOfUse()" class="link">terms of use</a>
+    </span>
+    <br/><br/>
+  </form>
+</div>

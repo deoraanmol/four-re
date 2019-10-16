@@ -1,11 +1,34 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/home-content',
+    pathMatch: 'full'
+  },
+  { path: 'get-started', loadChildren: './get-started/get-started.module#GetStartedModule' },
+  { path: 'home-content', loadChildren: './home-content/home-content.module#HomeContentModule' },
+  {
+    path: 'request-pickup',
+    loadChildren: './request-pickup/request-pickup.module#RequestPickupModule'
+  },
+  { path: 'rewards-earned', loadChildren: './rewards-earned/rewards-earned.module#RewardsEarnedModule' },
+  { path: 'get-rewards', loadChildren: './get-rewards/get-rewards.module#GetRewardsModule' },
+  {
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule',
+    data: { showHeader: false, showSidebar: false }
+  },
+  {
+    path: 'registration',
+    loadChildren: './registration/registration.module#RegistrationModule',
+    data: { showHeader: false, showSidebar: false }
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,73 @@
+<div>
+  <div class="text2"><div class="testme">Rewards Earned</div></div>
+  <div class="text1"><div class="text1_inner">Security deposits credited your account so far</div></div>
+  <div class="text2"><div class="testme"><p>&#x20b9; 0</p></div></div>
+
+  <mat-tab-group>
+    <mat-tab label="Pickups">
+      <div style="padding-top: 30px">
+        <div class="text2"><div class="testme">Pending Requests</div></div>
+        <div class="text1"><div class="text1_inner">Get your security deposit for your pending pickup request post entering the code shared by the pick up agent</div></div>
+      </div>
+
+
+    </mat-tab>
+
+
+    <mat-tab label="Profile">
+      <div style="padding-top: 30px">
+        <div class="text2"><div class="testme">Profile</div></div>
+        <div class="text1"><div class="text1_inner">Keep your profile updated to quickly request for pickups</div></div>
+        <form class="example-form" [formGroup]="requestPickupValidations">
+
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="noOfBags" type="number" placeholder="Name">
+          </mat-form-field>
+
+          <br/><br/>
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="noOfBags" type="number" placeholder="Email">
+          </mat-form-field>
+
+          <br/><br/>
+
+          <span>
+          <mat-form-field>
+            <mat-label>Society</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let society of societies" [value]="society.name">
+                {{society.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="noOfBags" type="text" placeholder="Flat Number">
+          </mat-form-field>
+        </span>
+
+          <br/><br/>
+          <span>
+          <mat-form-field>
+            <mat-label>Credit Rewards To</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
+                {{paymentType.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="noOfBags" type="text" placeholder="Account ID">
+          </mat-form-field>
+        </span>
+          <br/><br/>
+          <div>
+            <button mat-raised-button (click)="redirectToHome()">Reset</button>
+            <button mat-raised-button color="primary" style="margin-left: 30px" (click)="saveProfile()">Save</button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+</div>

@@ -1,0 +1,9 @@
+:host {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.firebaseui-container {
+  background-color: transparent !important;
+}
