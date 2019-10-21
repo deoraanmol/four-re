@@ -1,73 +1,255 @@
-<div>
-  <div class="text2"><div class="testme">Request Pickup</div></div>
-  <div class="text1"><div class="text1_inner">Place a request and our agent will come for pickup at your convenience</div></div>
-
-  <form class="example-form" [formGroup]="requestPickupValidations">
-    <mat-form-field class="example-full-width">
-      <input matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
-      <mat-hint>Enter number of bags</mat-hint>
-    </mat-form-field>
-
-    <br/><br/>
-
-    <mat-form-field class="example-full-width">
-      <mat-label>Pickup Time</mat-label>
-      <mat-select formControlName="pickupTimeSlot">
-        <mat-option *ngFor="let timeSlot of timeSlots" [value]="timeSlot">
-          {{timeSlot.day}}, {{timeSlot.startTime}} - {{timeSlot.endTime}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <br/><br/>
-
-    <mat-form-field class="example-full-width">
-      <input matInput formControlName="name" placeholder="Name">
-    </mat-form-field>
-
-    <br/><br/>
-    <mat-form-field class="example-full-width">
-      <input matInput formControlName="email" placeholder="Email">
-    </mat-form-field>
-
-    <br/><br/>
-
-    <span>
-      <mat-form-field>
-        <mat-label>Society</mat-label>
-        <mat-select formControlName="society">
-          <mat-option *ngFor="let society of societies" [value]="society.name">
-            {{society.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput formControlName="flatNumber" type="text" placeholder="Flat Number">
-      </mat-form-field>
-    </span>
-
-    <br/><br/>
-
-    <span>
-      <mat-form-field>
-      <mat-label>Credit Rewards To</mat-label>
-      <mat-select formControlName="creditTo">
-        <mat-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
-          {{paymentType.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-      <mat-form-field>
-        <input matInput formControlName="accountId" type="text" placeholder="Account ID">
-      </mat-form-field>
-    </span>
-
-    <br/><br/>
-
-    <div>
-      <button mat-raised-button (click)="redirectToHome()">Cancel</button>
-      <button mat-raised-button color="primary" style="margin-left: 30px" (click)="requestPickup()">Submit</button>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"/>
+<body style="margin: 0;
+ background: rgba(233, 242, 233, 1.0);">
+<input id="anPageName" name="page" type="hidden" value="requestpickup"/>
+<div class="bp2-mobilerequestpickup">
+  <div style="width: 360px; height: 100%; position:relative; margin:auto;">
+    <div class="bp2-headermobilelogin">
+      <img src="/assets/img/mobile-dashboard-pickups-completed-background-2.png" class="bp2-background" />
+      <a href="/home-content">
+        <div class="bp2-logo">
+          <div class="bp2-background1">
+          </div>
+          <div class="bp2-group">
+            <div class="bp2-group2">
+              <img src="/assets/img/mobile-dashboard-pickups-completed-fill-559@2x.png" class="bp2-fill559" />
+              <img src="/assets/img/mobile-dashboard-pickups-pending-fill-557@2x.png" class="bp2-fill557" />
+              <img src="/assets/img/mobile-dashboard-pickups-completed-fill-569@2x.png" class="bp2-fill569" />
+            </div>
+            <img src="/assets/img/mobile-dashboard-pickups-pending-fill-561@2x.png" class="bp2-fill561" />
+            <div class="bp2-group31">
+              <img src="/assets/img/mobile-dashboard-pickups-completed-fill-563@2x.png" class="bp2-fill563" />
+              <img src="/assets/img/mobile-dashboard-pickups-completed-fill-565@2x.png" class="bp2-fill565" />
+              <img src="/assets/img/mobile-authetication-get-otp-fill-567@2x.png" class="bp2-fill567" />
+            </div>
+          </div>
+        </div>
+      </a>
+      <img src="/assets/img/mobile-dashboard-pickups-pending-shape@2x.png" class="bp2-shape" />
+      <div class="bp2-menu">
+        <div class="bp2-iconright">
+          <img src="/assets/img/mobile-request-pickup-icon-right-3@2x.png" class="bp2-iconright1" />
+        </div>
+        <div class="bp2-myaccount">
+          My Account
+        </div>
+      </div>
     </div>
-  </form>
+    <div class="pickup-form-container-mobile">
+      <div class="header-container-mobile">
+        <div class="header-text">
+          Request Pickup
+        </div>
+        <div class="header-hint-mobile">
+          Place a request and our agent will come for pickup at your convenience
+        </div>
+      </div>
+      <form class="pickup-form" [formGroup]="requestPickupValidations">
+        <div class="form-line-mobile">
+          <div class="form-field">
+            <div class="form-label">Number of Bags</div>
+            <input class="form-value" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+          </div>
+          <div class="form-field-mobile">
+            <div class="form-label">Name</div>
+            <input class="form-value" matInput formControlName="name" type="text" placeholder="Enter name">
+          </div>
+        </div>
 
+        <div class="form-line-mobile">
+
+          <div class="form-field-mobile">
+            <div class="form-label">Pickup Time</div>
+            <select formControlName="pickupTimeSlot" class="form-field-dropdown" style="margin-top: 3px">
+              <option *ngFor="let timeSlot of timeSlots" [value]="timeSlot.id">
+                {{timeSlot.day}}, {{timeSlot.startTime}} - {{timeSlot.endTime}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-field-mobile">
+            <div class="form-label">Email</div>
+            <input class="form-value" matInput formControlName="email" type="text" placeholder="Enter email">
+          </div>
+        </div>
+
+        <div class="form-line-mobile">
+          <div class="form-line-multiple-fields">
+            <div class="form-field-mobile custom-short-field-mobile" style="padding-right: 20px">
+              <div class="form-label">Society</div>
+              <select formControlName="society" class="form-field-dropdown half-field-mobile">
+                <option *ngFor="let society of societies" [value]="society.name">
+                  {{society.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-field-mobile custom-short-field-mobile">
+              <div class="form-label">Flat Number</div>
+              <input class="form-value" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+            </div>
+          </div>
+          <div class="form-line-multiple-fields">
+            <div class="form-field-mobile custom-short-field-mobile" style="padding-right: 20px">
+              <div class="form-label">Credit To</div>
+              <select formControlName="creditTo" class="form-field-dropdown half-field-mobile">
+                <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
+                  {{paymentType.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-field-mobile custom-short-field-mobile">
+              <div class="form-label">Account Id</div>
+              <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="footer-container-mobile">
+        <button class="cancel-button"
+                (click)="currentUserService.navToHome()"
+                style="margin-right: 20px !important; margin-left: -4px;">
+          Cancel
+        </button>
+        <button class="submit-button" (click)="requestPickup()" [disabled]="requestPickupValidations.invalid">Submit</button>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="bp1-requestpickup">
+  <div style="width: 1400px; height: 100%; position:relative; margin:auto;">
+    <div class="bp1-headerloggedin">
+      <div class="bp1-background">
+      </div>
+      <div class="bp1-headerbase">
+        <div class="bp1-background1">
+        </div>
+        <div class="bp1-base">
+          <img src="/assets/img/dashboard-pickups-pending-background.png" class="bp1-background2" />
+          <a href="/home-content">
+            <div class="bp1-logo">
+              <div class="bp1-background3">
+              </div>
+              <div class="bp1-group1">
+                <div class="bp1-group21">
+                  <img src="/assets/img/request-pickup-fill-559@2x.png" class="bp1-fill559" />
+                  <img src="/assets/img/request-pickup-fill-557@2x.png" class="bp1-fill557" />
+                  <img src="/assets/img/authetication-get-otp-fill-569@2x.png" class="bp1-fill569" />
+                </div>
+                <img src="/assets/img/dashboard-pickups-pending-fill-561@2x.png" class="bp1-fill561" />
+                <div class="bp1-group3">
+                  <img src="/assets/img/dashboard-pickups-pending-fill-563@2x.png" class="bp1-fill563" />
+                  <img src="/assets/img/authetication-get-otp-fill-565@2x.png" class="bp1-fill565" />
+                  <img src="/assets/img/authetication-get-otp-fill-567@2x.png" class="bp1-fill567" />
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="bp1-menu1">
+          <a href="https://blogs.4re.in" target="_blank">
+            <div class="bp1-blogs">
+              Blogs
+            </div>
+          </a>
+          <div class="bp1-aboutus">
+            About us
+          </div>
+          <div class="bp1-faq">
+            FAQ
+          </div>
+          <div class="bp1-whyreuse">
+            Why reuse?
+          </div>
+          <div class="bp1-howitworks">
+            How it works?
+          </div>
+        </div>
+      </div>
+      <div class="bp1-menu">
+        <div class="bp1-myaccount">
+          <button mat-button [matMenuTriggerFor]="menu">
+            <span class="bp1-myaccount">My Account</span>
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="dropdown">
+            <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <div class="pickup-form-container">
+      <div class="header-container">
+        <div class="header-text">
+          Request Pickup
+        </div>
+        <div class="header-hint">
+          Place a request and our agent will come for pickup at your convenience
+        </div>
+      </div>
+      <form class="pickup-form" [formGroup]="requestPickupValidations">
+        <div class="form-line-multiple-fields">
+          <div class="form-field">
+            <div class="form-label">Number of Bags</div>
+            <input class="form-value" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+          </div>
+          <div class="form-field">
+            <div class="form-label">Pickup Time</div>
+            <select formControlName="pickupTimeSlot"
+                    class="form-field-dropdown" style="margin-top: 3px">
+              <option *ngFor="let timeSlot of timeSlots" [value]="timeSlot.id">
+                {{timeSlot.day}}, {{timeSlot.startTime}} - {{timeSlot.endTime}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-line-multiple-fields">
+          <div class="form-field">
+            <div class="form-label">Name</div>
+            <input class="form-value" matInput formControlName="name" type="text" placeholder="Enter name">
+          </div>
+          <div class="form-field">
+            <div class="form-label">Email</div>
+            <input class="form-value" matInput formControlName="email" type="text" placeholder="Enter email">
+          </div>
+        </div>
+
+        <div class="form-line-multiple-fields">
+          <div class="form-line-multiple-fields">
+            <div class="form-field custom-short-field" style="padding-right: 20px">
+              <div class="form-label">Society</div>
+              <select formControlName="society" class="form-field-dropdown half-field">
+                <option *ngFor="let society of societies" [value]="society.name">
+                  {{society.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-field custom-short-field">
+              <div class="form-label">Flat Number</div>
+              <input class="form-value" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+            </div>
+          </div>
+          <div class="form-line-multiple-fields">
+            <div class="form-field custom-short-field" style="padding-right: 20px">
+              <div class="form-label">Credit To</div>
+              <select formControlName="creditTo" class="form-field-dropdown half-field">
+                <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
+                  {{paymentType.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-field custom-short-field">
+              <div class="form-label">Account Id</div>
+              <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="footer-container">
+        <button class="cancel-button" (click)="currentUserService.navToHome()">Cancel</button>
+        <button class="submit-button" (click)="requestPickup()" [disabled]="requestPickupValidations.invalid">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

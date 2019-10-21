@@ -6,6 +6,7 @@ import { GetStartedComponent } from './get-started.component';
 import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule} from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoginModule} from "../login/login.module";
+import {LayoutModule} from "../layout/layout.module";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {LoginModule} from "../login/login.module";
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
-    LoginModule
+    LoginModule,
+    LayoutModule
   ],
   declarations: [GetStartedComponent]
 })

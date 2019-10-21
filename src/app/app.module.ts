@@ -8,20 +8,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TermsofuseDialogComponent } from './termsofuse-dialog/termsofuse-dialog.component';
-import {MatDialogModule, MatFormFieldModule} from "@angular/material";
-import {FormsModule} from "@angular/forms";
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatFormFieldModule, MatInputModule,
+  MatSelectModule, MatSnackBarModule
+} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { GeneralDialogComponent } from './general-dialog/general-dialog.component';
 import {TimeSlotServiceService} from "./services/time-slot-service.service";
 import {WindowServiceService} from "./services/window-service.service";
 import {UserHttpService} from "./services/user-http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {CurrentUserService} from "./services/current-user.service";
+import { GetdepositDialogComponent } from './getdeposit-dialog/getdeposit-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TermsofuseDialogComponent,
-    GeneralDialogComponent
+    GeneralDialogComponent,
+    GetdepositDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +42,17 @@ import {CurrentUserService} from "./services/current-user.service";
     MatFormFieldModule,
     FormsModule,
     MatDialogModule,
-    HttpClientModule
+    MatInputModule,
+    MatButtonModule,
+    MatChipsModule,
+    HttpClientModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [TimeSlotServiceService, UserHttpService, CurrentUserService],
   bootstrap: [AppComponent],
-  entryComponents: [TermsofuseDialogComponent, GeneralDialogComponent]
+  entryComponents: [TermsofuseDialogComponent, GeneralDialogComponent, GetdepositDialogComponent]
 })
 export class AppModule { }

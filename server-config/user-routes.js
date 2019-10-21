@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var UserModel = require('../models/UserModel');
 var RequestPickupModel = require('../models/RequestPickup')
+var appConfig = require('../server-config/app-config');
 
 /* GET ALL USERS */
 router.get('/', function(req, res, next) {
@@ -29,8 +30,9 @@ router.post('/', function(req, res, next) {
 });
 
 /* UPDATE USER */
-router.put('/:id', function(req, res, next) {
-  UserModel.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+router.put('/update-profile/:userId', function(req, res, next) {
+
+  UserModel.findByIdAndUpdate(req.params.userId, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
@@ -44,8 +46,18 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
+/* GET PENDING REQUESTS */
+router.get('/pending-requests/:userId', function(req, res, next) {
+  RequestPickupModel.find({userId: req.params.userId, status: 'PENDING'},
+    function(err, record) {
+      if(err) return next(err);
+      res.json(record);
+    }).sort({_id:1});
+});
+
 /* STORE REQ PICKUP FOR USER */
 router.post('/request-pickup', function (req, res, next) {
+  var rewardsEarned = req.body.rewardsEarned;
   var user = {
     name: req.body.name,
     society: req.body.society,
@@ -57,17 +69,58 @@ router.post('/request-pickup', function (req, res, next) {
   var reqPickup = {
     noOfBags: req.body.noOfBags,
     userId: req.body.userId.toString(),
-    pickupTimeSlot: req.body.pickupTimeSlot
+    pickupTimeSlot: req.body.pickupTimeSlot,
+    totalValue: (req.body.noOfBags * appConfig.rewardsPerBag),
+    paymentType: req.body.creditTo,
+    accountId: req.body.accountId
   }
-  UserModel.findByIdAndUpdate(req.body.userId, user, function (err, post) {
+  UserModel.findByIdAndUpdate(req.body.userId, user, function (err, updatedUser) {
     if (err) return next(err);
     else {
       RequestPickupModel.create(reqPickup, function (err, post) {
         if (err) return next(err);
-        res.json(post);
+        else {
+          var responseObj = {
+            rewardsEarned: rewardsEarned
+          };
+        }
+        res.json(responseObj);
       });
     }
   });
+})
+
+/* COMPLETE REQUEST PICKUP AND GET DEPOSIT */
+router.post('/request-pickup/complete', function (req, res, next) {
+  var newRewards = 0;
+  console.log("here@#@#@#@#@#: "+JSON.stringify(req.body))
+  UserModel.findById(req.body._id,
+    function(err, user) {
+      if(err) return next(err);
+      else {
+        var oldRewards = user.rewardsEarned;
+        RequestPickupModel.findById(req.body.requestId,
+          function (err, requestPickup) {
+            var requestRewards = requestPickup.totalValue;
+            newRewards = oldRewards + requestRewards;
+            user.rewardsEarned = newRewards;
+            requestPickup.status = "COMPLETED";
+            user.save(); //update the user's rewards
+            requestPickup.save(); //update status
+            res.json(newRewards);
+          });
+      }
+    }).sort({_id:1}).limit(1);
+})
+
+/* CANCEL REQUEST PICKUP */
+router.post('/request-pickup/cancel', function (req, res, next) {
+  RequestPickupModel.findById(req.body._id,
+    function (err, requestPickup) {
+      requestPickup.status = "CANCELLED";
+      requestPickup.save(); //update status
+      res.json(requestPickup)
+    });
 })
 
 module.exports = router;

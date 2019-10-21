@@ -29,13 +29,23 @@ export class TimeSlotServiceService {
       this.prepareTodaysSlots(nextGreaterIndex);
     }
     this.prepareTomorrowSlots();
+    this.injectUniqueId();
     return this.timeSlots;
+  }
+
+  private injectUniqueId() {
+    let i=1;
+    this.timeSlots.forEach(function(eachSlot) {
+      eachSlot.id = i;
+      i++;
+    })
   }
 
   private prepareTodaysSlots(nextGreaterIndex: number) {
     for(let idx=nextGreaterIndex; idx<this.givenSlots.length; idx++) {
       let hour = this.givenSlots[idx];
       let slot = {
+        id: -1,
         day: 'Today',
         startTime: this.hourMappings[hour],
         endTime: this.hourMappings[hour+3]
@@ -47,6 +57,7 @@ export class TimeSlotServiceService {
   private prepareTomorrowSlots() {
     for(let givenSlot of this.givenSlots) {
       let slot = {
+        id: -1,
         day: 'Tomorrow',
         startTime: this.hourMappings[givenSlot],
         endTime: this.hourMappings[givenSlot+3]

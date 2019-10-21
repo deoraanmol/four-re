@@ -1,0 +1,103 @@
+<div class="for-web">
+  <span class="dialog-header">
+    <h1 mat-dialog-title>Get Reward</h1>
+    <div class="header-hint" style="margin-top: -10px;">Place a request and our agent will come for pickup at your convenience</div>
+  </span>
+  <div mat-dialog-content>
+    <div>
+      <form [formGroup]="getDepositForm" style="padding-left: 10px;">
+
+        <div class="form-line">
+          <div class="form-field">
+            <div class="form-label">Number of Bags</div>
+            <input matInput class="form-input-disabled" readonly formControlName="noOfBags" type="number" placeholder="Number of Bags">
+          </div>
+          <div class="form-line-multiple-fields">
+            <div class="form-field custom-short-field" style="padding-right: 20px">
+              <div class="form-label">Credit &#x20b9; 100 To</div>
+              <select formControlName="paymentType" class="form-field-dropdown half-field">
+                <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
+                  {{paymentType.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-field custom-short-field">
+              <div class="form-label">Account Id</div>
+              <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+            </div>
+          </div>
+          <div class="form-field" style="padding-top: 20px">
+            <div class="form-label">Pickup Code</div>
+            <input matInput class="form-input" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
+          </div>
+
+        </div>
+        <br/><br/>
+        <span style="font-size: 13px; padding-top: 15px">
+          <mat-checkbox formControlName="touCheckbox" style="padding-right: 5px"></mat-checkbox>
+          <span>By submitting the agent PIN, you confirm to receive &#x20b9; 100 in above account</span>
+        </span>
+      </form>
+
+
+    </div>
+
+  </div>
+  <div mat-dialog-actions>
+    <button class="cancel-button" (click)="onNoClick()">Cancel</button>
+    <button class="submit-button" [disabled]="getDepositForm.invalid" (click)="completePendingRequest()">Submit</button>
+  </div>
+</div>
+
+<div class="for-mobile">
+  <span class="dialog-header">
+    <h1 mat-dialog-title style="font-size:20px; text-align: left; margin-top: -25px">Get Reward</h1>
+    <div class="header-hint-mobile"
+         style="margin-top: -33px;
+         line-height: 13.0px !important;
+         font-size: 13px; padding-left: 0px !important;">Place a request and our agent will come for pickup at your convenience</div>
+  </span>
+  <div mat-dialog-content>
+    <div>
+      <form [formGroup]="getDepositForm">
+
+        <div class="form-line-mobile">
+          <div class="form-field-mobile">
+            <div class="form-label">Number of Bags</div>
+            <input matInput class="form-input-disabled-mobile" readonly formControlName="noOfBags" type="number" placeholder="Number of Bags">
+          </div>
+          <div class="form-line-multiple-fields-mobile">
+            <div class="form-field-mobile">
+              <div class="form-label">Credit &#x20b9; 100 To</div>
+              <select formControlName="paymentType" class="form-field-dropdown half-field">
+                <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
+                  {{paymentType.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-field-mobile">
+              <div class="form-label">Account Id</div>
+              <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+            </div>
+          </div>
+          <div class="form-field-mobile" style="padding-top: 20px">
+            <div class="form-label">Pickup Code</div>
+            <input matInput class="form-input-mobile" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
+          </div>
+
+        </div>
+        <span style="font-size: 13px; padding-top: 15px">
+          <mat-checkbox formControlName="touCheckbox" style="padding-right: 5px"></mat-checkbox>
+          <span>By submitting the agent PIN, you confirm to receive &#x20b9; 100 in above account</span>
+        </span>
+      </form>
+
+
+    </div>
+
+  </div>
+  <div mat-dialog-actions style="flex-wrap: inherit !important;">
+    <button class="cancel-button" (click)="onNoClick()">Cancel</button>
+    <button class="submit-button" (click)="completePendingRequest()" [disabled]="getDepositForm.invalid">Submit</button>
+  </div>
+</div>

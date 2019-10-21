@@ -36,8 +36,8 @@ export class UserHttpService {
       );
   }
 
-  updateUser(data): Observable<any> {
-    return this.http.put(apiUrl, data, httpOptions)
+  updateUser(data, userId): Observable<any> {
+    return this.http.put(apiUrl+"/update-profile/"+userId, data, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -54,6 +54,27 @@ export class UserHttpService {
 
   storeRequestPickup(data): Observable<any> {
     return this.http.post(apiUrl+'/request-pickup', data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  cancelRequestPickup(data): Observable<any> {
+    return this.http.post(apiUrl+'/request-pickup/cancel', data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  completeRequestPickup(data): Observable<any> {
+    return this.http.post(apiUrl+'/request-pickup/complete', data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getPendingPickups(userId: any): Observable<any> {
+    return this.http.get(apiUrl+'/pending-requests/'+userId, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -79,5 +100,6 @@ export class UserHttpService {
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
   };
+
 
 }

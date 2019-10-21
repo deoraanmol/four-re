@@ -5,14 +5,15 @@ import { RewardsEarnedRoutingModule } from './rewards-earned-routing.module';
 import { RewardsEarnedComponent } from './rewards-earned.component';
 import {
   MatButtonModule,
-  MatCheckboxModule,
-  MatFormFieldModule,
-  MatInputModule,
+  MatCheckboxModule, MatChipsModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule, MatMenuModule,
   MatSelectModule,
   MatTabsModule
-} from "@angular/material";
+} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {TermsofuseDialogComponent} from "../termsofuse-dialog/termsofuse-dialog.component";
+import {GetdepositDialogComponent} from "../getdeposit-dialog/getdeposit-dialog.component";
+import {LoginModule} from '../login/login.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,11 @@ import {TermsofuseDialogComponent} from "../termsofuse-dialog/termsofuse-dialog.
     MatCheckboxModule,
     MatButtonModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    LoginModule,
+    MatMenuModule,
+    MatIconModule
   ],
   declarations: [RewardsEarnedComponent]
 })

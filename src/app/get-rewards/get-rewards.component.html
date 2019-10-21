@@ -1,11 +1,11 @@
 <div>
-  <div class="text2"><div class="testme">Get Reward</div></div>
-  <div class="text1"><div class="text1_inner">Place a request and our agent will come for pickup at your convenience</div></div>
+  <div class="header-text">Get Reward</div>
+  <div class="header-hint">Place a request and our agent will come for pickup at your convenience</div>
 
   <form class="example-form" [formGroup]="requestPickupValidations">
 
     <mat-form-field class="example-full-width">
-      <input matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+      <input matInput disabled formControlName="noOfBags" type="number" placeholder="Number of Bags">
     </mat-form-field>
 
     <br/><br/>

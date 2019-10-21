@@ -9,7 +9,8 @@ var UserSchema = new mongoose.Schema({
   email: String,
   creditTo: String,
   accountId: String,
-  enabled: Boolean
+  enabled: Boolean,
+  rewardsEarned: {type: Number, default: 0}
 });
 
 

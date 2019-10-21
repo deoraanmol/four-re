@@ -28,11 +28,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.firebaseAuth.user.subscribe(result => {
       if(result != null) {
-        let phoneNo = result['user'].phoneNumber
+        debugger
+        let phoneNo = result.phoneNumber;
         this.signUpUser(phoneNo);
+        //todo anmol mock
+        // this.signUpUser("test1");
       } else {
         //todo anmol - put it only when success
-        this.signUpUser("test1");
+        // this.signUpUser("test1");
+        // this.currentUserService.navToLogin();
       }
     });
 
@@ -41,7 +45,6 @@ export class LoginComponent implements OnInit {
   private signUpUser(phoneNumber) {
     this.userHttpService.getUser(phoneNumber)
       .subscribe(res => {
-        debugger
         if(res && res.length > 0) {
           console.log("User already saved, hence not saving again");
           this.navigateToRequestPickup(res[0]);
@@ -56,7 +59,6 @@ export class LoginComponent implements OnInit {
   }
 
   private navigateToRequestPickup(user) {
-    debugger
     this.currentUserService.currentUserData = user;
     this.router.navigate(['/request-pickup']);
   }
@@ -70,5 +72,11 @@ export class LoginComponent implements OnInit {
   }
 
   errorCallback($event: FirebaseUISignInFailure) {
+  }
+
+  testSignOut() {
+    this.firebaseAuth.auth.signOut().then(() => {
+      this.currentUserService.navToLogin();
+    });
   }
 }

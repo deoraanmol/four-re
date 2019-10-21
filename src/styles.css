@@ -3,3 +3,146 @@
 @import '~firebaseui/dist/firebaseui.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.link-btn {
+  cursor: pointer;
+}
+
+
+.header-container {
+  padding-top: 40px;
+}
+
+.header-container-mobile {
+  padding-top: 40px;
+}
+
+.header-text , .mat-dialog-title{
+  background-color: rgba(255,255,255,0.0);
+  height: auto;
+  width: auto;
+  transform: rotate(0deg);
+  font-family: "OpenSans-SemiBold", Helvetica, Arial, serif;
+  font-size: 30.0px;
+  color: rgba(0, 175, 70, 1.0);
+  text-align: center;
+  line-height: 41.0px;
+}
+
+.header-hint {
+  background-color: rgba(255,255,255,0.0);
+  height: auto;
+  padding-top: 10px;
+  width: auto;
+  transform: rotate(0deg);
+  opacity: 0.7;
+  font-family: "OpenSans-Regular", Helvetica, Arial, serif;
+  font-size: 16.0px;
+  color: rgba(0, 0, 0, 1.0);
+  text-align: center;
+  line-height: 22.0px;
+}
+
+.header-hint-mobile {
+  background-color: rgba(255,255,255,0.0);
+  height: auto;
+  padding: 10px;
+  width: auto;
+  transform: rotate(0deg);
+  opacity: 0.7;
+  font-family: "OpenSans-Regular", Helvetica, Arial, serif;
+  font-size: 16.0px;
+  color: rgba(0, 0, 0, 1.0);
+  text-align: left;
+  line-height: 22.0px;
+}
+
+.footer-container {
+  position: absolute;
+  bottom: 20px;
+  height: 42px;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-container-mobile {
+  position: relative;
+  height: 42px;
+  width: 100%;
+  text-align: center;
+  padding-top: 45px;
+  padding-bottom: 20px;
+}
+
+.mat-tab-label {
+  color: black;
+  border: 2px solid rgba(0, 175, 70, 1.0);
+  border-radius: 5px;
+}
+
+.mat-tab-label-active {
+  background-color: rgba(0, 175, 70, 1.0);
+  color: white;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  background: #d2dada;
+  height: 2px;
+}
+
+.submit-button {
+  cursor: pointer;
+  background-color: rgba(0, 175, 70, 1.0);
+  right: 0px;
+  top: 0px;
+  height: 40px;
+  width: 140px;
+  margin: 0;
+  transform: rotate(0deg);
+  transition: all 0.2s ease-in-out;
+  font-family: "OpenSans-SemiBold", Helvetica, Arial, serif;
+  color: white;
+  line-height: 24px;
+  font-size: 18px;
+}
+
+.cancel-button {
+  cursor: pointer;
+  background-color: rgba(255,255,255,0.0);
+  border-color: rgba(0, 175, 70, 1.0);
+  height: 40px;
+  width: 140px;
+  margin: 0;
+  transform: rotate(0deg);
+  transition: all 0.2s ease-in-out;
+  font-family: "OpenSans-SemiBold", Helvetica, Arial, serif;
+  color: rgba(0, 175, 70, 1.0);
+  line-height: 24px;
+  font-size: 18px;
+  margin-right: 25px;
+}
+
+@media (max-width: 599px){
+  .mat-tab-label {
+    min-width: 50% !important;
+  }
+}
+
+.mat-dialog-container {
+  background-color: white !important;
+  color: black;
+}
+
+.success-snackbar {
+  background-color: rgba(0, 175, 70, 1.0);
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
+.mat-checkbox .mat-checkbox-frame {
+  border-color: black;
+}

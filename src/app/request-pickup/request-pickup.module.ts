@@ -7,11 +7,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   MatButtonModule,
   MatCheckboxModule,
-  MatFormFieldModule,
-  MatInputModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule, MatMenuModule,
   MatSelectModule
 } from "@angular/material";
 import {UserHttpService} from "../services/user-http.service";
+import {CurrentUserService} from "../services/current-user.service";
+import {LoginModule} from "../login/login.module";
 
 @NgModule({
   imports: [
@@ -24,10 +26,12 @@ import {UserHttpService} from "../services/user-http.service";
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    LoginModule,
+    MatMenuModule,
+    MatIconModule
   ],
-  declarations: [RequestPickupComponent],
-  providers: [UserHttpService]
+  declarations: [RequestPickupComponent]
 })
 export class RequestPickupModule {}
 
