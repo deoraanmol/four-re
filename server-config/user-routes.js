@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var UserModel = require('../models/UserModel');
-var RequestPickupModel = require('../models/RequestPickup')
+var RequestPickupModel = require('../models/RequestPickup');
+var PickupPinModel = require('../models/PickupPin');
 var appConfig = require('../server-config/app-config');
 
 /* GET ALL USERS */
@@ -81,8 +82,10 @@ router.post('/request-pickup', function (req, res, next) {
         if (err) return next(err);
         else {
           var responseObj = {
-            rewardsEarned: rewardsEarned
+            rewardsEarned: rewardsEarned,
+            reqId: post._id
           };
+          generateReqPIN(post._id.toString());
         }
         res.json(responseObj);
       });
@@ -122,5 +125,21 @@ router.post('/request-pickup/cancel', function (req, res, next) {
       res.json(requestPickup)
     });
 })
+
+
+function generateReqPIN(requestPickupId) {
+  var randomPIN = getRandom4Digit();
+  PickupPinModel.create({
+    reqId: requestPickupId,
+    randomPIN: randomPIN,
+    enabled: true
+  }, function (err, post) {
+    if (err) return next(err);
+  });
+};
+
+function getRandom4Digit() {
+  return Math.floor(1000 + Math.random() * 9000);
+}
 
 module.exports = router;
