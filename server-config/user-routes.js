@@ -102,15 +102,33 @@ router.post('/request-pickup/complete', function (req, res, next) {
       if(err) return next(err);
       else {
         var oldRewards = user.rewardsEarned;
-        RequestPickupModel.findById(req.body.requestId,
-          function (err, requestPickup) {
-            var requestRewards = requestPickup.totalValue;
-            newRewards = oldRewards + requestRewards;
-            user.rewardsEarned = newRewards;
-            requestPickup.status = "COMPLETED";
-            user.save(); //update the user's rewards
-            requestPickup.save(); //update status
-            res.json(newRewards);
+        PickupPinModel.findOne({"requestId": req.body.requestId, randomPIN: req.body.pinCode, enabled: true},
+          function (err, pinObject) {
+            if(pinObject != null) {
+              RequestPickupModel.findById(req.body.requestId,
+                function (err, requestPickup) {
+                  requestPickup.noOfBags = req.body.noOfBags;
+                  requestPickup.totalValue = calculateTotalValue(req.body.noOfBags);
+                  var requestRewards = requestPickup.totalValue;
+                  newRewards = oldRewards + requestRewards;
+
+                  user.rewardsEarned = newRewards;
+
+                  pinObject.enabled = false;
+
+                  requestPickup.pinCode = pinObject.randomPIN;
+                  requestPickup.status = "COMPLETED";
+
+                  user.save(); //update the user's rewards
+                  requestPickup.save(); //update status
+                  pinObject.save();
+                  res.json(newRewards);
+                });
+            } else {
+              res.json({
+                "error":"Agent PIN Code is invalid"
+              });
+            }
           });
       }
     }).sort({_id:1}).limit(1);
@@ -130,7 +148,7 @@ router.post('/request-pickup/cancel', function (req, res, next) {
 function generateReqPIN(requestPickupId) {
   var randomPIN = getRandom4Digit();
   PickupPinModel.create({
-    reqId: requestPickupId,
+    requestId: requestPickupId,
     randomPIN: randomPIN,
     enabled: true
   }, function (err, post) {
@@ -140,6 +158,10 @@ function generateReqPIN(requestPickupId) {
 
 function getRandom4Digit() {
   return Math.floor(1000 + Math.random() * 9000);
+}
+
+function calculateTotalValue(noOfBags) {
+  return noOfBags * (appConfig.rewardsPerBag);
 }
 
 module.exports = router;

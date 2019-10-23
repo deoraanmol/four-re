@@ -13,7 +13,7 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDialogModule,
-  MatFormFieldModule, MatInputModule,
+  MatFormFieldModule, MatIconModule, MatInputModule,
   MatSelectModule, MatSnackBarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -24,13 +24,15 @@ import {UserHttpService} from "./services/user-http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {CurrentUserService} from "./services/current-user.service";
 import { GetdepositDialogComponent } from './getdeposit-dialog/getdeposit-dialog.component';
+import { MobileMenuDialogComponent } from './mobile-menu-dialog/mobile-menu-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TermsofuseDialogComponent,
     GeneralDialogComponent,
-    GetdepositDialogComponent
+    GetdepositDialogComponent,
+    MobileMenuDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,10 +51,11 @@ import { GetdepositDialogComponent } from './getdeposit-dialog/getdeposit-dialog
     MatCheckboxModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
   providers: [TimeSlotServiceService, UserHttpService, CurrentUserService],
   bootstrap: [AppComponent],
-  entryComponents: [TermsofuseDialogComponent, GeneralDialogComponent, GetdepositDialogComponent]
+  entryComponents: [TermsofuseDialogComponent, GeneralDialogComponent, GetdepositDialogComponent, MobileMenuDialogComponent]
 })
 export class AppModule { }

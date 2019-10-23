@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 
 
 var PickupPinSchema = new mongoose.Schema({
-  requestPickupId: String,
   randomPIN: Number,
-  enabled: Boolean
+  enabled: Boolean,
+  requestId: String
 });
 
 

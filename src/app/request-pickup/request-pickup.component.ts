@@ -10,7 +10,8 @@ import {Observable} from "rxjs";
 import {UserHttpService} from "../services/user-http.service";
 import {tap} from "rxjs/operators";
 import {AngularFireAuth} from "@angular/fire/auth";
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {MobileMenuDialogComponent} from '../mobile-menu-dialog/mobile-menu-dialog.component';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class RequestPickupComponent implements OnInit {
               private angularFireAuth: AngularFireAuth,
               private currentUserService: CurrentUserService,
               private userhttpService: UserHttpService,
-              private snackar: MatSnackBar) { }
+              private snackar: MatSnackBar,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.currentUserService.refreshUserData(this.angularFireAuth);
@@ -120,6 +122,18 @@ export class RequestPickupComponent implements OnInit {
 
   signOutFromRP() {
     this.currentUserService.signOutUser(this.angularFireAuth);
+  }
+
+  openMobileMenuDialog() {
+    const dialogRef = this.dialog.open(MobileMenuDialogComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+      data: {
+
+      }
+    });
   }
 
   private getTimeSlotString() {
