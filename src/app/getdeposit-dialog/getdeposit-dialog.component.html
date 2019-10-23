@@ -10,7 +10,7 @@
         <div class="form-line">
           <div class="form-field">
             <div class="form-label">Number of Bags</div>
-            <input matInput class="form-input-disabled" readonly formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <input matInput class="form-input-disabled" formControlName="noOfBags" type="number" placeholder="Number of Bags">
           </div>
           <div class="form-line-multiple-fields">
             <div class="form-field custom-short-field" style="padding-right: 20px">
@@ -29,6 +29,7 @@
           <div class="form-field" style="padding-top: 20px">
             <div class="form-label">Pickup Code</div>
             <input matInput class="form-input" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
+            <span class="error-hint" *ngIf="invalidPIN">Pickup Code is invalid</span>
           </div>
 
         </div>
@@ -64,7 +65,7 @@
         <div class="form-line-mobile">
           <div class="form-field-mobile">
             <div class="form-label">Number of Bags</div>
-            <input matInput class="form-input-disabled-mobile" readonly formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <input matInput class="form-input-disabled-mobile" formControlName="noOfBags" type="number" placeholder="Number of Bags">
           </div>
           <div class="form-line-multiple-fields-mobile">
             <div class="form-field-mobile">
@@ -83,6 +84,7 @@
           <div class="form-field-mobile" style="padding-top: 20px">
             <div class="form-label">Pickup Code</div>
             <input matInput class="form-input-mobile" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
+            <span class="error-hint" *ngIf="invalidPIN">Pickup Code is invalid</span>
           </div>
 
         </div>

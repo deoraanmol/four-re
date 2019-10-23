@@ -13,6 +13,11 @@
   margin-left: 23px;
 }
 
+.dropdown-mobile {
+  margin-left: 73px;
+  width: 50px;
+}
+
 .mat-menu-content {
   background-color: white !important;
   width: 140px;
@@ -29,6 +34,7 @@
 .rewards-earned-form-container {
   margin-left: 13%;
   height: 575px;
+  overflow-y: scroll;
   width: 940px;
   background-color: white;
   border-radius: 10px;
@@ -44,6 +50,7 @@
   margin-top: 100px;
   margin-left: 10px;
   position: relative;
+  overflow-y: scroll;
 }
 
 .parent-re-custom-header {
@@ -885,12 +892,7 @@ div {
 }
 .bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-menu .bp2-myaccount {
   background-color    : rgba(255,255,255,0.0);
-  top                 : 0px;
-  height              : auto;
-  width               : 81px;
-  position            : absolute;
-  margin              : 0;
-  left                : 0px;
+  margin-top:           -10px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);

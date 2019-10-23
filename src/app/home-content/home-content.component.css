@@ -4021,7 +4021,7 @@ div {
   transition          : all 0.2s ease-in-out;
 }
 .bp2-mobilehome .bp2-headermobilelogout .bp2-logo:hover {
-  transform           : scale(1.1);
+  /*transform           : scale(1.1);*/
 }
 .bp2-mobilehome .bp2-headermobilelogout .bp2-logo .bp2-background1 {
   background-color    : rgba(255,255,255,0.0);

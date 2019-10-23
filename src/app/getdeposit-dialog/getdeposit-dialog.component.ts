@@ -40,8 +40,10 @@ export class GetdepositDialogComponent implements OnInit {
   paymentTypes: PaymentTypes[] = [
     {name: 'PayTM'}
   ];
+  invalidPIN = false;
 
   ngOnInit() {
+    this.invalidPIN = false;
     this.getDepositForm = this.formBuilder.group({
       noOfBags: ['', Validators.required],
       paymentType: ['', Validators.required],
@@ -81,10 +83,17 @@ export class GetdepositDialogComponent implements OnInit {
   completePendingRequest() {
     this.userHttpService.completeRequestPickup({
       _id: this.data.userId,
-      requestId: this.data.requestId
+      requestId: this.data.requestId,
+      pinCode: this.getDepositForm.controls.pickupCode.value,
+      noOfBags: this.getDepositForm.controls.noOfBags.value
     }).subscribe(res => {
-      this.onNoClick();
-      this.currentUserService.openSnackbar(this.snackbar, "Request was successfully submitted", "Ok");
+      if(res.error) {
+        this.invalidPIN = true;
+      } else {
+        this.invalidPIN = false;
+        this.onNoClick();
+        this.currentUserService.openSnackbar(this.snackbar, "Request was successfully submitted", "Ok");
+      }
     });
 
   }

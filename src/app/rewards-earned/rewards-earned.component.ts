@@ -13,6 +13,7 @@ import {UserProfile} from "../interfaces/user-profile";
 import {GetRewardsComponent} from "../get-rewards/get-rewards.component";
 import {GetdepositDialogComponent} from "../getdeposit-dialog/getdeposit-dialog.component";
 import {AngularFireAuth} from '@angular/fire/auth';
+import {MobileMenuDialogComponent} from '../mobile-menu-dialog/mobile-menu-dialog.component';
 
 @Component({
   selector: 'app-rewards-earned',
@@ -167,6 +168,18 @@ export class RewardsEarnedComponent implements OnInit {
           ' successfully cancelled', 'Ok');
         this.currentUserService.refreshUserData(this.angularFireAuth);
       });
+  }
+
+  openMobileMenuDialog() {
+    const dialogRef = this.dialog.open(MobileMenuDialogComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+      data: {
+
+      }
+    });
   }
 }
 
