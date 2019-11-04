@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.request-filter-dropdown {
+  margin-top: 3px;
+  height: 30px;
+  font-size: 16px;
+  width: 300px;
+}
+
+
+.mat-table {
+  background: white;
+}
+
+.mat-cell, .mat-header-cell {
+  color: black;
+}
+
+table, th , td  {
+  border: 1px solid grey !important;
+  border-collapse: collapse !important;
+  padding: 5px !important;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1 !important;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff !important;
+}

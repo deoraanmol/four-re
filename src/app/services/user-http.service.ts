@@ -80,6 +80,13 @@ export class UserHttpService {
       );
   }
 
+  getRequestPins(status: string): Observable<any> {
+    return this.http.get(apiUrl+'/requests/'+status, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
 
   private extractData(res: Response) {
     let body = res;

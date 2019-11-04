@@ -8,6 +8,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'get-started', loadChildren: './get-started/get-started.module#GetStartedModule' },
+  { path: 'request-pins', loadChildren: './request-pins/request-pins.module#RequestPinsModule' },
   { path: 'home-content', loadChildren: './home-content/home-content.module#HomeContentModule' },
   {
     path: 'request-pickup',

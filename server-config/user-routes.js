@@ -67,14 +67,19 @@ router.post('/request-pickup', function (req, res, next) {
     creditTo: req.body.creditTo,
     accountId: req.body.accountId
   };
+  var reqPickupTimes = getTimesForNewRequest(req.body.pickupTimeSlot);
   var reqPickup = {
     noOfBags: req.body.noOfBags,
     userId: req.body.userId.toString(),
+    fkUserId: req.body.userId,
     pickupTimeSlot: req.body.pickupTimeSlot,
     totalValue: (req.body.noOfBags * appConfig.rewardsPerBag),
     paymentType: req.body.creditTo,
-    accountId: req.body.accountId
+    accountId: req.body.accountId,
+    startTime: reqPickupTimes.startTime,
+    endTime: reqPickupTimes.endTime,
   }
+
   UserModel.findByIdAndUpdate(req.body.userId, user, function (err, updatedUser) {
     if (err) return next(err);
     else {
@@ -85,18 +90,17 @@ router.post('/request-pickup', function (req, res, next) {
             rewardsEarned: rewardsEarned,
             reqId: post._id
           };
-          generateReqPIN(post._id.toString());
+          generateReqPIN(post._id.toString(), post);
         }
         res.json(responseObj);
       });
     }
   });
-})
+});
 
 /* COMPLETE REQUEST PICKUP AND GET DEPOSIT */
 router.post('/request-pickup/complete', function (req, res, next) {
   var newRewards = 0;
-  console.log("here@#@#@#@#@#: "+JSON.stringify(req.body))
   UserModel.findById(req.body._id,
     function(err, user) {
       if(err) return next(err);
@@ -145,7 +149,43 @@ router.post('/request-pickup/cancel', function (req, res, next) {
 })
 
 
-function generateReqPIN(requestPickupId) {
+router.get('/requests/:status', function(req, res, next) {
+  var condition = {status: req.params.status};
+  if(req.params.status === "ALL" || !(req.params.status)) {
+    condition = {};
+  }
+  var sortCondition = {startTime: -1};
+  if(req.params.status === "PENDING") {sortCondition = {startTime : 1};}
+  var $userLookup = {from: "usermodels", localField: "fkUserId", foreignField: "_id", as: "user"};
+  var $pickupPinLookup = {from: "pickuppinmodels", localField: "fkPickupPinId", foreignField: "_id", as: "pickupPin"};
+  RequestPickupModel.aggregate([{$match: condition}, {$lookup: $userLookup}, {$lookup: $pickupPinLookup}],
+    function(err, records) {
+      if(err) return next(err);
+      var responseArr = [];
+      var responseObj = {};
+      for(var i=0; i<records.length; i++) {
+        responseObj = {
+          requestId: records[i]._id,
+          noOfBags: records[i].noOfBags,
+          startDate: records[i].startTime,
+          endDate: records[i].endTime,
+          pinCode: records[i].pickupPin ? records[i].pickupPin[0].randomPIN : null,
+          status: records[i].status,
+          totalValue: records[i].totalValue,
+          accountId: records[i].accountId,
+          mobileNumber: records[i].user ? records[i].user[0].phoneNumber : null,
+          name: records[i].user ? records[i].user[0].name : null,
+          society: records[i].user ? records[i].user[0].society : null,
+          flatNo: records[i].user ? records[i].user[0].flatNumber : null,
+          email: records[i].user ? records[i].user[0].email : null,
+        }
+        responseArr.push(responseObj);
+      }
+      res.json(responseArr);
+    }).sort(sortCondition);
+});
+
+function generateReqPIN(requestPickupId, reqPickupObj) {
   var randomPIN = getRandom4Digit();
   PickupPinModel.create({
     requestId: requestPickupId,
@@ -153,6 +193,8 @@ function generateReqPIN(requestPickupId) {
     enabled: true
   }, function (err, post) {
     if (err) return next(err);
+    reqPickupObj.fkPickupPinId = post._id;
+    reqPickupObj.save();
   });
 };
 
@@ -162,6 +204,30 @@ function getRandom4Digit() {
 
 function calculateTotalValue(noOfBags) {
   return noOfBags * (appConfig.rewardsPerBag);
+}
+
+function getTimesForNewRequest(pickupTimeSlot) {
+  var slotArr = pickupTimeSlot.split(",");
+  var timeStr = slotArr[1].trim();
+  var startTimeStr = timeStr.trim().split("-")[0].trim();
+  var endTimeStr = timeStr.trim().split("-")[1].trim();
+  var startTimeHrs = Number.parseInt(startTimeStr.split(":")[0]);
+  var startTimeMins = Number.parseInt(startTimeStr.split(":")[1]);
+  var endTimeHrs = Number.parseInt(endTimeStr.split(":")[0]);
+  var endTimeMins = Number.parseInt(endTimeStr.split(":")[1]);
+  if(startTimeStr.indexOf("PM") > -1) {
+    startTimeHrs = startTimeHrs + 12;
+  }
+  if(endTimeStr.indexOf("PM") > -1) {
+    endTimeHrs = endTimeHrs + 12;
+  }
+  var currentDate = new Date();
+  if(slotArr[0] === "Tomorrow") {
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  var startDate = new Date(currentDate.setHours(startTimeHrs, startTimeMins, 0));
+  var endDate = new Date(currentDate.setHours(endTimeHrs, endTimeMins, 0));
+ return {startTime: startDate, endTime: endDate};
 }
 
 module.exports = router;
