@@ -35,7 +35,7 @@
 .rewards-earned-form-container {
   z-index: 0;
   margin-left: 13%;
-  height: 575px;
+  height: 600px;
   overflow-y: scroll;
   width: 940px;
   background-color: white;
@@ -90,7 +90,17 @@
   margin-right: 30px;
 }
 
+.completed-request-box {
+  background: #F4F6FC;
+  border: 1px solid #e4eef5;
+}
+
 .pending-request-box .pending-request-money {
+  display: flex;
+  justify-content: space-between;
+}
+
+.completed-request-box .pending-request-money {
   display: flex;
   justify-content: space-between;
 }

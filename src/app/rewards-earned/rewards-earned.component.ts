@@ -8,7 +8,7 @@ import {Society} from "../interfaces/Society";
 import {PaymentTypes} from "../interfaces/payment-types";
 import {CurrentUserService} from "../services/current-user.service";
 import {UserHttpService} from "../services/user-http.service";
-import {PendingPickups} from "../interfaces/PendingPickups";
+import {CompletedPickups, PendingPickups} from '../interfaces/PendingPickups';
 import {UserProfile} from "../interfaces/user-profile";
 import {GetRewardsComponent} from "../get-rewards/get-rewards.component";
 import {GetdepositDialogComponent} from "../getdeposit-dialog/getdeposit-dialog.component";
@@ -26,6 +26,7 @@ export class RewardsEarnedComponent implements OnInit {
   societies: Society[] =[];
   paymentTypes: PaymentTypes[] = []
   pendingPickups: PendingPickups[] = [];
+  completedPickups: CompletedPickups[] = [];
   fetchedUser: UserProfile;
   rewardsEarned: Number = 0;
   activeTab:string = null;
@@ -77,6 +78,7 @@ export class RewardsEarnedComponent implements OnInit {
   afterUserRefreshed() {
     this.currentUserService.userRefreshed.subscribe(refreshedUser => {
       this.getPendingRequests(refreshedUser['_id']);
+      this.getCompletedRequests(refreshedUser['_id']);
       this.getUserProfile();
     });
   }
@@ -96,6 +98,20 @@ export class RewardsEarnedComponent implements OnInit {
         .subscribe(res => {
           this.pendingPickups = res;
         });
+    }
+  }
+
+  getCompletedRequests(_id) {
+    if(_id) {
+      this.currentUserService.currentUserData['_id'] = _id;
+      if(this.currentUserService.currentUserData
+        && this.currentUserService.currentUserData['_id']) {
+        this.userHttpService
+          .getCompletedPickups(this.currentUserService.currentUserData['_id'])
+          .subscribe(res => {
+            this.completedPickups = res;
+          });
+      }
     }
   }
 
@@ -225,6 +241,10 @@ export class RewardsEarnedComponent implements OnInit {
 
   takeHomeAt(anchorId: string) {
     this.router.navigate(["/home"], {state: {anchorId: anchorId}});
+  }
+
+  navToReqPickup() {
+    this.router.navigate(['/pickup']);
   }
 }
 
