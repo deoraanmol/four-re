@@ -74,7 +74,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-rectangle {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .header-bp1-rectangle {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 533px;
@@ -98,7 +98,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button {
   background-color    : rgba(255,255,255,0.0);
   top                 : 260px;
   height              : 42px;
@@ -111,10 +111,10 @@ div {
   transform           : rotate(0deg);
   transition          : all 0.2s ease-in-out;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button:hover {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button:hover {
   box-shadow          : 0px 0px 10px 2px rgba(0,0,0,0.2);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button .bp1-rectangle1 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button .header-bp1-rectangle1 {
   background-color    : rgba(0, 175, 70, 1.0);
   top                 : 0px;
   height              : 42px;
@@ -126,7 +126,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button .bp1-text3 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button .header-bp1-text3 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 9px;
   height              : 24px;
@@ -138,7 +138,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button .bp1-text3 .bp1-u21b3u270fufe0fvalue {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button .header-bp1-text3 .bp1-u21b3u270fufe0fvalue {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -155,7 +155,7 @@ div {
   text-align          : center;
   line-height         : 24.0px;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button1 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 260px;
   height              : 42px;
@@ -167,7 +167,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button1 .bp1-text3 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button1 .header-bp1-text3 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 42px;
@@ -180,7 +180,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button1 .bp1-text3 .bp1-base {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button1 .header-bp1-text3 .bp1-base {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 42px;
@@ -196,7 +196,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-button1 .bp1-text3 .bp1-u21b3u270fufe0fvalue {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-button1 .header-bp1-text3 .bp1-u21b3u270fufe0fvalue {
   background-color    : rgba(255,255,255,0.0);
   top                 : 9px;
   height              : auto;
@@ -213,7 +213,7 @@ div {
   text-align          : center;
   line-height         : 24.0px;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-text2 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-text2 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 183px;
   height              : 19px;
@@ -225,7 +225,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-text2 .bp1-u21b3u270fufe0fvalue {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-text2 .bp1-u21b3u270fufe0fvalue {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -242,7 +242,7 @@ div {
   text-align          : left;
   line-height         : 19.0px;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-text2 .bp1-u21b3u270fufe0fvalue1 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .header-bp1-text2 .bp1-u21b3u270fufe0fvalue1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -365,7 +365,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputsimple .bp1-input .bp1-text3 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputsimple .bp1-input .header-bp1-text3 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 33px;
   height              : 19px;
@@ -377,7 +377,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputsimple .bp1-input .bp1-text3 .bp1-textenterotp {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputsimple .bp1-input .header-bp1-text3 .header-bp1-textenterotp {
   background-color    : rgba(255,255,255,0.0);
   top                 : -7px;
   height              : 30px;
@@ -398,7 +398,7 @@ div {
   resize              : none;
   padding             : 0;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputsimple .bp1-input .bp1-text3 .bp1-textenterotp::placeholder {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputsimple .bp1-input .header-bp1-text3 .header-bp1-textenterotp::placeholder {
   color               : rgba(0, 0, 0, 0.6);
 }
 .bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputsimple .bp1-input .bp1-label {
@@ -519,7 +519,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .bp1-input .bp1-group1 .bp1-text4 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .bp1-input .bp1-group1 .header-bp1-text4 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 9px;
   height              : 19px;
@@ -571,7 +571,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .bp1-input .bp1-country .bp1-text4 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .bp1-input .bp1-country .header-bp1-text4 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 9px;
   height              : 19px;
@@ -612,7 +612,7 @@ div {
   text-align          : left;
   line-height         : 19.0px;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .bp1-textentermobilenumber {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .header-bp1-textentermobilenumber {
   background-color    : rgba(255,255,255,0.0);
   top                 : 27px;
   height              : 30px;
@@ -633,7 +633,7 @@ div {
   resize              : none;
   padding             : 0;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .bp1-textentermobilenumber::placeholder {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .header-bp1-textentermobilenumber::placeholder {
   color               : rgba(0, 0, 0, 0.6);
 }
 .bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-inputmobile .bp1-u21b3u270fufe0fvalue {
@@ -654,7 +654,7 @@ div {
   text-align          : left;
   line-height         : 19.0px;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-text3 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .header-bp1-text3 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 67px;
   height              : 19px;
@@ -666,7 +666,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .bp1-text3 .bp1-u21b3u270fufe0fvalue {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-group .bp1-inputmobilegetotp .header-bp1-text3 .bp1-u21b3u270fufe0fvalue {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -683,7 +683,7 @@ div {
   text-align          : right;
   line-height         : 19.0px;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-text {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .header-bp1-text {
   background-color    : rgba(255,255,255,0.0);
   top                 : 95px;
   height              : 22px;
@@ -695,7 +695,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-text .bp1-u21b3u270fufe0fvalue {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .header-bp1-text .bp1-u21b3u270fufe0fvalue {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -713,7 +713,7 @@ div {
   text-align          : left;
   line-height         : 22.0px;
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-text1 {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .header-bp1-text1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 46px;
   height              : 41px;
@@ -725,7 +725,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .bp1-text1 .bp1-u21b3u270fufe0fvalue {
+.bp1-autheticationgetotp .bp1-group3 .bp1-group2 .bp1-group4 .header-bp1-text1 .bp1-u21b3u270fufe0fvalue {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -742,21 +742,20 @@ div {
   text-align          : left;
   line-height         : 41.0px;
 }
-.bp1-autheticationgetotp .bp1-headerlogout {
+.bp1-autheticationgetotp .header-bp1-headerlogout {
   box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
   width               : 1400px;
-  position            : absolute;
+  position            : fixed;
   margin              : 0;
-  left                : 0px;
   overflow            : hidden;
-  -ms-transform       : rotate(0deg); /* IE 9 */
-  -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
-  transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-background {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-background {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
@@ -768,7 +767,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 79px;
@@ -781,7 +780,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-background1 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-background1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 79px;
@@ -793,7 +792,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
@@ -806,7 +805,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-background2 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-background2 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
@@ -818,7 +817,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo {
   background-color    : rgba(255,255,255,0.0);
   top                 : 19px;
   height              : 47px;
@@ -832,10 +831,10 @@ div {
   transform           : rotate(0deg);
   transition          : all 0.2s ease-in-out;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo:hover {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo:hover {
   transform           : scale(1.1);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-background3 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-background3 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 47px;
@@ -847,7 +846,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 47px;
@@ -859,7 +858,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 8px;
   height              : 31px;
@@ -871,7 +870,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill559 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill559 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 30px;
@@ -883,7 +882,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill557 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill557 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 30px;
@@ -895,7 +894,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill569 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill569 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 30px;
@@ -907,7 +906,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-fill561 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-fill561 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 47px;
@@ -919,7 +918,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group31 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group31 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 8px;
   height              : 30px;
@@ -931,7 +930,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group31 .bp1-fill563 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group31 .bp1-fill563 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 11px;
@@ -943,7 +942,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group31 .bp1-fill565 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group31 .bp1-fill565 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 11px;
   height              : 19px;
@@ -955,7 +954,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group31 .bp1-fill567 {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group31 .bp1-fill567 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 10px;
   height              : 18px;
@@ -967,19 +966,19 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu {
   background-color    : rgba(255,255,255,0.0);
   top                 : 26px;
   height              : 27px;
   width               : 606px;
   position            : absolute;
   margin              : 0;
-  left                : 570px;
+  left                : 550px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-blogs {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-blogs {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -998,10 +997,10 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-blogs:hover {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-blogs:hover {
   transform           : scale(1.1);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-aboutus {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-aboutus {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1020,10 +1019,11 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-aboutus:hover {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-aboutus:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-faq {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-faq {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1042,10 +1042,11 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-faq:hover {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-faq:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-whyreuse {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-whyreuse {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1064,10 +1065,11 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-whyreuse:hover {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-whyreuse:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-howitworks {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-howitworks {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1086,30 +1088,31 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-howitworks:hover {
+.bp1-autheticationgetotp .header-bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-howitworks:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-button {
+.bp1-autheticationgetotp .header-bp1-headerlogout .header-bp1-button {
   background-color    : rgba(255,255,255,0.0);
   top                 : 19px;
   height              : 42px;
-  width               : 140px;
+  width               : 180px;
   position            : absolute;
   margin              : 0;
-  left                : 1234px;
+  left                : 1196px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
   transition          : all 0.2s ease-in-out;
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-button:hover {
+.bp1-autheticationgetotp .header-bp1-headerlogout .header-bp1-button:hover {
   box-shadow          : 0px 0px 10px 2px rgba(0,0,0,0.2);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-button .bp1-rectangle {
+.bp1-autheticationgetotp .header-bp1-headerlogout .header-bp1-button .header-bp1-rectangle {
   background-color    : rgba(0, 175, 70, 1.0);
   top                 : 0px;
   height              : 42px;
-  width               : 140px;
+  width               : 180px;
   position            : absolute;
   margin              : 0;
   left                : 0px;
@@ -1117,11 +1120,11 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-button .bp1-text {
+.bp1-autheticationgetotp .header-bp1-headerlogout .header-bp1-button .header-bp1-text {
   background-color    : rgba(255,255,255,0.0);
   top                 : 9px;
   height              : 24px;
-  width               : 101px;
+  width               : 141px;
   position            : absolute;
   margin              : 0;
   left                : 20px;
@@ -1129,7 +1132,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-autheticationgetotp .bp1-headerlogout .bp1-button .bp1-text .bp1-u21b3u270fufe0fvalue {
+.bp1-autheticationgetotp .header-bp1-headerlogout .header-bp1-button .header-bp1-text .bp1-u21b3u270fufe0fvalue {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1148,7 +1151,7 @@ div {
 }
 
 .bp1-u21b3u270fufe0fvalue-para {
-  font-size: 13px !important;
+  font-size: 18px !important;
 }
 /* .anima-animate-appear prefix for appear animations */
 .anima-animate-appear {
@@ -1948,15 +1951,16 @@ div {
   line-height         : 41.0px;
 }
 .bp2-u21b3u270fufe0fvalue-para {
-  font-size: 10.5px !important;
+  font-size: 14px !important;
 }
 .bp2-mobileautheticationgetotp .bp2-headermobilelogout {
+  z-index: 1;
   box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
   width               : 360px;
-  position            : absolute;
+  position            : fixed;
   margin              : 0;
   left                : 0px;
   overflow            : hidden;
@@ -2141,10 +2145,10 @@ div {
   background-color    : rgba(255,255,255,0.0);
   top                 : 25px;
   height              : 30px;
-  width               : 100px;
+  width               : 120px;
   position            : absolute;
   margin              : 0;
-  left                : 240px;
+  left                : 220px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -2157,7 +2161,7 @@ div {
   background-color    : rgba(0, 175, 70, 1.0);
   top                 : 0px;
   height              : 30px;
-  width               : 100px;
+  width               : 120px;
   position            : absolute;
   margin              : 0;
   left                : 0px;
@@ -2169,7 +2173,7 @@ div {
   background-color    : rgba(255,255,255,0.0);
   top                 : 5px;
   height              : 19px;
-  width               : 78px;
+  width               : 104px;
   position            : absolute;
   margin              : 0;
   left                : 11px;
