@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {TimeSlots} from "../interfaces/time-slots";
+import {UserHttpService} from './user-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import {TimeSlots} from "../interfaces/time-slots";
 export class TimeSlotServiceService {
 
   givenSlots: number[] = [8, 11, 14, 17]; //08:am to 08:00pm
+  givenTimeSlotDuration: number = 3;
   timeSlots: TimeSlots[] = [];
   hourMappings: object = {
     8: "08:00 AM",
@@ -16,53 +18,11 @@ export class TimeSlotServiceService {
     20: "08:00 PM",
   };
 
-  constructor() { }
-  getNextSlots(currentHours: Number) {
-    let nextGreaterIndex = -1;
-    for(let idx = 0; idx< this.givenSlots.length; idx++) {
-      if(this.givenSlots[idx] > currentHours) {
-        nextGreaterIndex = idx;
-        break;
-      }
-    }
-    if(nextGreaterIndex > -1) {
-      this.prepareTodaysSlots(nextGreaterIndex);
-    }
-    this.prepareTomorrowSlots();
-    this.injectUniqueId();
-    return this.timeSlots;
-  }
-
-  private injectUniqueId() {
-    let i=1;
-    this.timeSlots.forEach(function(eachSlot) {
-      eachSlot.id = i;
-      i++;
-    })
-  }
-
-  private prepareTodaysSlots(nextGreaterIndex: number) {
-    for(let idx=nextGreaterIndex; idx<this.givenSlots.length; idx++) {
-      let hour = this.givenSlots[idx];
-      let slot = {
-        id: -1,
-        day: 'Today',
-        startTime: this.hourMappings[hour],
-        endTime: this.hourMappings[hour+3]
-      }
-      this.timeSlots.push(slot);
-    }
-  }
-
-  private prepareTomorrowSlots() {
-    for(let givenSlot of this.givenSlots) {
-      let slot = {
-        id: -1,
-        day: 'Tomorrow',
-        startTime: this.hourMappings[givenSlot],
-        endTime: this.hourMappings[givenSlot+3]
-      }
-      this.timeSlots.push(slot);
-    }
+  constructor(private userHttpService: UserHttpService) {
+    this.userHttpService.getAppConfig()
+      .subscribe(res => {
+        this.givenSlots = res.givenTimeSlots;
+        this.givenTimeSlotDuration = res.givenTimeSlotInterval;
+      });
   }
 }

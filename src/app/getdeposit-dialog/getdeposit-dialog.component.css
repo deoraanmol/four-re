@@ -7,8 +7,8 @@
   font-family: "OpenSans-SemiBold", Helvetica, Arial, serif;
 }
 
-.form-field-mobile {
-  padding-top: 10px;
+.gd-form-field-mobile {
+  padding-top: 15px;
   background-color: rgba(255,255,255,0.0);
   -ms-transform: rotate(0deg);
   -webkit-transform: rotate(0deg);
@@ -43,6 +43,21 @@
   margin-top: 10px;
 }
 
+.form-value-mobile {
+  font-size: 14px;
+  background-color: rgba(255,255,255,0.0);
+  height: 37px;
+  box-sizing: border-box;
+  width: 300px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.75);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  margin-top: 5px;
+}
+
 .form-line-multiple-fields {
   display: flex;
   justify-content: left;
@@ -65,7 +80,7 @@
   width: 140px;
   height: 30px;
   border: 1px solid;
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 14px;
 }
 
@@ -75,16 +90,14 @@
   border: 1px solid;
   margin-top: 10px;
   font-size: 14px;
-  background-color: #ececec;
 }
 
 .form-input-disabled-mobile {
   width: 140px;
   height: 30px;
   border: 1px solid;
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 14px;
-  background-color: #ececec;
 }
 
 .form-line-mobile {
@@ -98,9 +111,14 @@
   transform: rotate(0deg);
 }
 
-.half-field {
+.gd-half-field {
   width: 150px !important;
   margin-top: 15px;
+}
+
+.gd-half-field-mobile {
+  width: 150px !important;
+  margin-top: 5px;
 }
 
 .half-field-mobile {

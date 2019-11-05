@@ -69,11 +69,22 @@ export class CurrentUserService {
   }
 
   navToHome() {
-    this.router.navigate(["/home-content"]);
+    this.router.navigate(["/home"]);
   }
 
   navToRewardsEarned() {
-    this.router.navigate(["/rewards-earned"]);
+    this.router.navigate(["/dashboard"]);
+  }
+
+  excludeCountryCode(countryCode, inputStr) {
+    if(inputStr && inputStr.length > 3) {
+      if(countryCode === "IND") {
+        inputStr = inputStr.replace("+91",'');
+      }
+      return inputStr;
+    } else {
+      return inputStr;
+    }
   }
 
   constructor(private userHttpService: UserHttpService,

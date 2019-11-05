@@ -14,14 +14,8 @@ import {PaymentTypes} from "../interfaces/payment-types";
 })
 export class GetRewardsComponent implements OnInit {
   requestPickupValidations: FormGroup;
-  societies: Society[] =[
-    {name: 'Grand Arch'},
-    {name: 'Ireo'},
-    {name: 'Valley View'}
-  ];
-  paymentTypes: PaymentTypes[] = [
-    {name: 'PayTM'}
-  ]
+  societies: Society[] =[];
+  paymentTypes: PaymentTypes[] = []
 
   constructor(private formBuilder: FormBuilder,
               private dialog: MatDialog,
@@ -55,11 +49,11 @@ export class GetRewardsComponent implements OnInit {
   }
 
   redirectToHome() {
-    this.router.navigate(['/home-content']);
+    this.router.navigate(['/home']);
   }
 
   saveProfile() {
-    this.router.navigate(['/request-pickup']);
+    this.router.navigate(['/pickup']);
   }
 }
 

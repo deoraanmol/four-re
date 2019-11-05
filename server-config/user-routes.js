@@ -56,6 +56,47 @@ router.get('/pending-requests/:userId', function(req, res, next) {
     }).sort({_id:1});
 });
 
+/* GET APP CONFIG */
+router.get('/get-app-config/:type', function(req, res, next) {
+  res.json({
+    rewardsPerBag: appConfig.rewardsPerBag,
+    paymentTypes: appConfig.paymentTypes,
+    givenTimeSlots: appConfig.givenTimeSlots,
+    givenTimeSlotInterval: appConfig.givenTimeSlotInterval,
+    societies: appConfig.societies
+  });
+});
+
+router.get('/get-time-slots/:currentHrs', function(req, res, next) {
+  let nextGreaterIndex = -1;
+  let allTimeSlots = [];
+  let todayTimeSlots = [];
+  let tomorrowTimeSlots = [];
+  const currentHours = Number.parseInt(req.params.currentHrs);
+  for(let idx = 0; idx< appConfig.givenTimeSlots.length; idx++) {
+    if(appConfig.givenTimeSlots[idx] > currentHours) {
+      nextGreaterIndex = idx;
+      break;
+    }
+  }
+  if(nextGreaterIndex > -1) {
+    todayTimeSlots = prepareTodaysSlots(nextGreaterIndex);
+  }
+  tomorrowTimeSlots = prepareTomorrowSlots();
+  allTimeSlots = todayTimeSlots.concat(tomorrowTimeSlots);
+  allTimeSlots = injectUniqueId(allTimeSlots);
+  console.log("herere: "+nextGreaterIndex);
+  res.json({timeSlots: allTimeSlots});
+});
+
+/* GET NEXT TIME SLOTS */
+// router.get('/get-time-slots/:currentHrs', function(req, res, next) {
+//   console.get("hererer")
+
+
+  // res.json(allTimeSlots);
+// });
+
 /* STORE REQ PICKUP FOR USER */
 router.post('/request-pickup', function (req, res, next) {
   var rewardsEarned = req.body.rewardsEarned;
@@ -146,7 +187,10 @@ router.post('/request-pickup/cancel', function (req, res, next) {
       requestPickup.save(); //update status
       res.json(requestPickup)
     });
-})
+});
+
+
+
 
 
 router.get('/requests/:status', function(req, res, next) {
@@ -228,6 +272,54 @@ function getTimesForNewRequest(pickupTimeSlot) {
   var startDate = new Date(currentDate.setHours(startTimeHrs, startTimeMins, 0));
   var endDate = new Date(currentDate.setHours(endTimeHrs, endTimeMins, 0));
  return {startTime: startDate, endTime: endDate};
+}
+
+function prepareTodaysSlots(nextGreaterIndex) {
+  let timeSlots = [];
+  let hourMappings = getHourMappings();
+  for(let idx=nextGreaterIndex; idx<appConfig.givenTimeSlots.length; idx++) {
+    let hour = appConfig.givenTimeSlots[idx];
+    let slot = {
+      id: -1,
+      day: 'Today',
+      startTime: hourMappings[hour],
+      endTime: hourMappings[hour + appConfig.givenTimeSlotInterval]
+    };
+    if(slot.endTime && slot.startTime) {
+      timeSlots.push(slot);
+    }
+  }
+  return timeSlots;
+}
+
+function prepareTomorrowSlots() {
+  let timeSlots = [];
+  let hourMappings = getHourMappings();
+  for(let givenSlot of appConfig.givenTimeSlots) {
+    let slot = {
+      id: -1,
+      day: 'Tomorrow',
+      startTime: hourMappings[givenSlot],
+      endTime: hourMappings[givenSlot + appConfig.givenTimeSlotInterval]
+    }
+    if(slot.endTime && slot.startTime) {
+      timeSlots.push(slot);
+    }
+  }
+  return timeSlots;
+}
+
+function injectUniqueId(timeSlots) {
+  let i=1;
+  timeSlots.forEach(function(eachSlot) {
+    eachSlot.id = i;
+    i++;
+  });
+  return timeSlots;
+}
+
+function getHourMappings() {
+  return appConfig.hourMappings
 }
 
 module.exports = router;
