@@ -205,6 +205,11 @@ export class RewardsEarnedComponent implements OnInit {
 
       }
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.anchorId) {
+        this.takeHomeAt(result.anchorId);
+      } else this.router.navigate(['/home']);
+    });
   }
 
   slotTodayOrTom(slotDate: string) {
@@ -216,6 +221,10 @@ export class RewardsEarnedComponent implements OnInit {
     } else {
       return "NONE"
     }
+  }
+
+  takeHomeAt(anchorId: string) {
+    this.router.navigate(["/home"], {state: {anchorId: anchorId}});
   }
 }
 
