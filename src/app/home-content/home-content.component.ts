@@ -10,8 +10,21 @@ import {MobileMenuDialogComponent} from '../mobile-menu-dialog/mobile-menu-dialo
 })
 export class HomeContentComponent implements OnInit {
 
+  homeAnchorId: string = '';
+
   constructor(private router: Router,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+    if(this.router.getCurrentNavigation().extras.state) {
+      this.homeAnchorId = this.router.getCurrentNavigation().extras.state.anchorId;
+
+    }
+  }
+
+  ngAfterViewInit() {
+    if(this.homeAnchorId) {
+      this.scrollMob(this.homeAnchorId);
+    }
+  }
 
   ngOnInit() {
   }
@@ -37,13 +50,13 @@ export class HomeContentComponent implements OnInit {
     let doc = document.getElementById(anchorId);
     if(doc) {
       doc.scrollIntoView(true);
-      if(anchorId === "hiwmobile") {
+      if(anchorId === "hiwmobile" || anchorId === "hiwweb") {
         window.scrollBy(0,-90);
-      } else if(anchorId === "wrmobile") {
+      } else if(anchorId === "wrmobile" || anchorId === "wrweb") {
         window.scrollBy(0,-100);
-      } else if(anchorId === "faqmobile") {
+      } else if(anchorId === "faqmobile" || anchorId === "faqweb") {
         window.scrollBy(0,-100);
-      } else if(anchorId === "aumobile") {
+      } else if(anchorId === "aumobile" || anchorId === "auweb") {
         window.scrollBy(0,-100);
       }
     }

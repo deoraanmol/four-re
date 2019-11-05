@@ -128,7 +128,7 @@
 </div>
 <div class="bp1-requestpickup">
   <div style="width: 1400px; height: 100%; position:relative; margin:auto;">
-    <div class="bp1-headerloggedin">
+    <div class="rp-bp1-headerloggedin">
       <div class="bp1-background">
       </div>
       <div class="bp1-headerbase">
@@ -157,16 +157,16 @@
           </a>
         </div>
         <div class="bp1-menu1">
-          <div class="bp1-aboutus">
+          <div class="bp1-aboutus" (click)="takeHomeAt('auweb')">
             About us
           </div>
-          <div class="bp1-faq">
+          <div class="bp1-faq" (click)="takeHomeAt('faqweb')">
             FAQ
           </div>
-          <div class="bp1-whyreuse">
+          <div class="bp1-whyreuse" (click)="takeHomeAt('wrweb')">
             Why reuse?
           </div>
-          <div class="bp1-howitworks">
+          <div class="bp1-howitworks" (click)="takeHomeAt('hiwweb')">
             How it works?
           </div>
         </div>
