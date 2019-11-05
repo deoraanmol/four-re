@@ -58,13 +58,38 @@ router.get('/pending-requests/:userId', function(req, res, next) {
 
 /* GET APP CONFIG */
 router.get('/get-app-config/:type', function(req, res, next) {
-  res.json({
-    rewardsPerBag: appConfig.rewardsPerBag,
-    paymentTypes: appConfig.paymentTypes,
-    givenTimeSlots: appConfig.givenTimeSlots,
-    givenTimeSlotInterval: appConfig.givenTimeSlotInterval,
-    societies: appConfig.societies
-  });
+  try {
+    throw new Error("ererer");
+    res.json({
+      rewardsPerBag: appConfig.rewardsPerBag,
+      paymentTypes: appConfig.paymentTypes,
+      givenTimeSlots: appConfig.givenTimeSlots,
+      givenTimeSlotInterval: appConfig.givenTimeSlotInterval,
+      societies: appConfig.societies
+    });
+  } catch(err) {
+    next(err);
+  }
+});
+
+router.get('/get-app-config-m1/:type', function(req, res, next) {
+  try {
+    res.json({
+      rewardsPerBag: appConfig.rewardsPerBag,
+    });
+  } catch(err) {
+    next(err);
+  }
+});
+
+router.get('/get-app-config-m2/:type', function(req, res, next) {
+  try {
+    res.json({
+      "foo":"bar"
+    });
+  } catch(err) {
+    next(err);
+  }
 });
 
 router.post('/get-time-slots', function(req, res, next) {
