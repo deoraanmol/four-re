@@ -13,8 +13,8 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDialogModule,
-  MatFormFieldModule, MatIconModule, MatInputModule,
-  MatSelectModule, MatSnackBarModule
+  MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinner, MatProgressSpinnerModule,
+  MatSelectModule, MatSnackBarModule, MatSpinner
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { GeneralDialogComponent } from './general-dialog/general-dialog.component';

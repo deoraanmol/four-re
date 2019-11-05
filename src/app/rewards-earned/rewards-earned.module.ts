@@ -7,7 +7,7 @@ import {
   MatButtonModule,
   MatCheckboxModule, MatChipsModule,
   MatFormFieldModule, MatIconModule,
-  MatInputModule, MatMenuModule,
+  MatInputModule, MatMenuModule, MatProgressSpinnerModule,
   MatSelectModule,
   MatTabsModule
 } from '@angular/material';
@@ -30,7 +30,8 @@ import {LoginModule} from '../login/login.module';
     MatChipsModule,
     LoginModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   declarations: [RewardsEarnedComponent]
 })

@@ -33,6 +33,7 @@ export class RewardsEarnedComponent implements OnInit {
   activeTabIdx: number = 0;
   rewardsPerBag = 0;
   upFormSubmitted: boolean = false;
+  pendingReqSpinner: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private dialog: MatDialog,
@@ -50,6 +51,7 @@ export class RewardsEarnedComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pendingReqSpinner = true;
     this.currentUserService.refreshUserData(this.angularFireAuth);
     this.userHttpService.getAppConfig()
       .subscribe(res => {
@@ -90,13 +92,13 @@ export class RewardsEarnedComponent implements OnInit {
       //todo anmol mock
       this.currentUserService.currentUserData['_id'] = "5da7e29e552fe14e9500d928";
     }
-
     if(this.currentUserService.currentUserData
       && this.currentUserService.currentUserData['_id']) {
       this.userHttpService
         .getPendingPickups(this.currentUserService.currentUserData['_id'])
         .subscribe(res => {
           this.pendingPickups = res;
+          this.pendingReqSpinner = false;
         });
     }
   }
