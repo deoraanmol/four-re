@@ -108,7 +108,7 @@
         </mat-tab>
       </mat-tab-group>
     </div>
-    <div class="bp2-headermobilelogin">
+    <div class="re-bp2-headermobilelogin">
       <img src="assets/img/mobile-dashboard-pickups-completed-background-2.png" class="bp2-background" />
       <a href="/">
         <div class="bp2-logo">
@@ -135,7 +135,7 @@
           <button mat-button [matMenuTriggerFor]="menuMobile">
             <span class="bp2-myaccount">My Account</span>
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
-            <mat-menu #menuMobile="matMenu" class="dropdown-mobile">
+            <mat-menu #menuMobile="matMenu" class="re-dropdown-mobile">
               <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
               <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
               <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
@@ -148,7 +148,7 @@
 </div>
 <div class="bp1-dashboardpickupspending">
   <div style="width: 1400px; height: 100%; position:absolute; margin-left: 10%;">
-    <div class="bp1-headerloggedin">
+    <div class="re-bp1-headerloggedin">
       <div class="bp1-background">
       </div>
       <div class="bp1-headerbase">
@@ -177,16 +177,16 @@
           </a>
         </div>
         <div class="bp1-menu1">
-          <div class="bp1-aboutus">
+          <div class="bp1-aboutus"  (click)="takeHomeAt('auweb')">
             About us
           </div>
-          <div class="bp1-faq">
+          <div class="bp1-faq" (click)="takeHomeAt('faqweb')">
             FAQ
           </div>
-          <div class="bp1-whyreuse">
+          <div class="bp1-whyreuse" (click)="takeHomeAt('wrweb')">
             Why reuse?
           </div>
-          <div class="bp1-howitworks">
+          <div class="bp1-howitworks" (click)="takeHomeAt('hiwweb')">
             How it works?
           </div>
         </div>

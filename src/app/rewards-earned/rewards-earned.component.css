@@ -13,8 +13,9 @@
   margin-left: 23px;
 }
 
-.dropdown-mobile {
+.re-dropdown-mobile {
   margin-left: 73px;
+  margin-right: 3px;
   width: 50px;
 }
 
@@ -32,13 +33,14 @@
 }
 
 .rewards-earned-form-container {
+  z-index: 0;
   margin-left: 13%;
   height: 575px;
   overflow-y: scroll;
   width: 940px;
   background-color: white;
   border-radius: 10px;
-  margin-top: 100px;
+  margin-top: 140px;
   position: relative;
 }
 
@@ -668,12 +670,14 @@ div {
   text-align          : left;
   line-height         : 20.0px;
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin {
+  z-index: 1;
+  box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
   width               : 360px;
-  position            : absolute;
+  position            : fixed;
   margin              : 0;
   left                : 0px;
   overflow            : hidden;
@@ -681,7 +685,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-background {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-background {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
@@ -693,7 +697,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo {
   background-color    : rgba(255,255,255,0.0);
   top                 : 21px;
   height              : 37px;
@@ -707,10 +711,10 @@ div {
   transform           : rotate(0deg);
   transition          : all 0.2s ease-in-out;
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo:hover {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo:hover {
   transform           : scale(1.1);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-background1 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-background1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 37px;
@@ -722,7 +726,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 37px;
@@ -734,7 +738,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group2 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group2 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 6px;
   height              : 24px;
@@ -746,7 +750,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group2 .bp2-fill559 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group2 .bp2-fill559 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 24px;
@@ -758,7 +762,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group2 .bp2-fill557 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group2 .bp2-fill557 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 24px;
@@ -770,7 +774,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group2 .bp2-fill569 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group2 .bp2-fill569 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 24px;
@@ -782,7 +786,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-fill561 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-fill561 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 37px;
@@ -794,7 +798,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group3 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group3 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 7px;
   height              : 24px;
@@ -806,7 +810,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group3 .bp2-fill563 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group3 .bp2-fill563 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 8px;
@@ -818,7 +822,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group3 .bp2-fill565 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group3 .bp2-fill565 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 8px;
   height              : 15px;
@@ -830,7 +834,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group3 .bp2-fill567 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-logo .bp2-group .bp2-group3 .bp2-fill567 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 7px;
   height              : 14px;
@@ -842,7 +846,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-shape {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-shape {
   background-color    : rgba(255,255,255,0.0);
   top                 : 30px;
   height              : 20px;
@@ -854,7 +858,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-menu {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-menu {
   background-color    : rgba(255,255,255,0.0);
   top                 : 30px;
   height              : 19px;
@@ -866,7 +870,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-menu .bp2-iconright {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-menu .bp2-iconright {
   background-color    : rgba(255,255,255,0.0);
   top                 : 2px;
   height              : 12px;
@@ -878,7 +882,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-menu .bp2-iconright .bp2-iconright1 {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-menu .bp2-iconright .bp2-iconright1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 12px;
@@ -890,7 +894,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-menu .bp2-myaccount {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-menu .bp2-myaccount {
   background-color    : rgba(255,255,255,0.0);
   margin-top:           -10px;
   -ms-transform       : rotate(0deg); /* IE 9 */
@@ -904,7 +908,7 @@ div {
   letter-spacing      : 0.2px;
   line-height         : 19.0px;
 }
-.bp2-mobiledashboardpickupspending .bp2-headermobilelogin .bp2-menu .bp2-myaccount:hover {
+.bp2-mobiledashboardpickupspending .re-bp2-headermobilelogin .bp2-menu .bp2-myaccount:hover {
   transform           : scale(1.1);
 }
 /* .anima-animate-appear prefix for appear animations */
@@ -1016,20 +1020,19 @@ textarea:focus, input:focus {
 div {
   -webkit-text-size-adjust: none;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin {
+  z-index: 1;
+  box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 81px;
   width               : 1400px;
-  position            : absolute;
-  margin              : 0;
-  left                : 0px;
   overflow            : hidden;
-  -ms-transform       : rotate(0deg); /* IE 9 */
-  -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
-  transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-background {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-background {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 81px;
@@ -1041,7 +1044,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 79px;
@@ -1054,7 +1057,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-background1 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-background1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 79px;
@@ -1066,7 +1069,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
@@ -1079,7 +1082,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-background2 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-background2 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
@@ -1091,7 +1094,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo {
   background-color    : rgba(255,255,255,0.0);
   top                 : 19px;
   height              : 47px;
@@ -1105,10 +1108,10 @@ div {
   transform           : rotate(0deg);
   transition          : all 0.2s ease-in-out;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo:hover {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo:hover {
   transform           : scale(1.1);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-background3 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-background3 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 47px;
@@ -1120,7 +1123,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 47px;
@@ -1132,7 +1135,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 8px;
   height              : 31px;
@@ -1144,7 +1147,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill559 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill559 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 30px;
@@ -1156,7 +1159,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill557 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill557 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 30px;
@@ -1168,7 +1171,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill569 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group2 .bp1-fill569 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 30px;
@@ -1180,7 +1183,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-fill561 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-fill561 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 47px;
@@ -1192,7 +1195,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group3 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group3 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 8px;
   height              : 30px;
@@ -1204,7 +1207,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group3 .bp1-fill563 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group3 .bp1-fill563 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 11px;
@@ -1216,7 +1219,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group3 .bp1-fill565 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group3 .bp1-fill565 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 11px;
   height              : 19px;
@@ -1228,7 +1231,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group3 .bp1-fill567 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-base .bp1-logo .bp1-group .bp1-group3 .bp1-fill567 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 10px;
   height              : 18px;
@@ -1240,7 +1243,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 26px;
   height              : 27px;
@@ -1252,7 +1255,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-blogs {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-blogs {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1271,10 +1274,10 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-blogs:hover {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-blogs:hover {
   transform           : scale(1.1);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-aboutus {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-aboutus {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1293,11 +1296,11 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-aboutus:hover {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-aboutus:hover {
   transform           : scale(1.1);
   cursor: pointer;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-faq {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-faq {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1316,11 +1319,11 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-faq:hover {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-faq:hover {
   transform           : scale(1.1);
   cursor: pointer;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-whyreuse {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-whyreuse {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1339,11 +1342,11 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-whyreuse:hover {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-whyreuse:hover {
   transform           : scale(1.1);
   cursor: pointer;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-howitworks {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-howitworks {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
@@ -1362,11 +1365,11 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-howitworks:hover {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-howitworks:hover {
   transform           : scale(1.1);
   cursor: pointer;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-menu {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-menu {
   background-color    : rgba(255,255,255,0.0);
   top                 : 26px;
   height              : 27px;
@@ -1378,7 +1381,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-menu .bp1-iconright {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-menu .bp1-iconright {
   background-color    : rgba(255,255,255,0.0);
   top                 : 4px;
   height              : 18px;
@@ -1390,7 +1393,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-menu .bp1-iconright .bp1-iconright1 {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-menu .bp1-iconright .bp1-iconright1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 18px;
@@ -1402,7 +1405,7 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-menu .bp1-myaccount {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-menu .bp1-myaccount {
   margin-top: -5px !important;
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
@@ -1421,7 +1424,7 @@ div {
   letter-spacing      : 0.29px;
   line-height         : 27.0px;
 }
-.bp1-dashboardpickupspending .bp1-headerloggedin .bp1-menu .bp1-myaccount:hover {
+.bp1-dashboardpickupspending .re-bp1-headerloggedin .bp1-menu .bp1-myaccount:hover {
   transform           : scale(1.1);
 }
 .bp1-dashboardpickupspending .bp1-group5 {
