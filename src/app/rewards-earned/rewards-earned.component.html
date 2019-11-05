@@ -23,7 +23,10 @@
       <mat-tab-group style="padding-left: 10px; padding-top: 10px; padding-right: 10px">
         <mat-tab label="Pickups" style="width: 50%">
           <div style="padding-top: 5px">
-            <div *ngIf="pendingPickups.length > 0">
+            <div *ngIf="pendingReqSpinner == true" style="overflow: hidden; padding-top: 40px">
+              <mat-spinner style="left: 40%"></mat-spinner>
+            </div>
+            <div *ngIf="!pendingReqSpinner && pendingPickups.length > 0">
               <h3 style="font-weight: 500">Pending Request(s)</h3>
               <div class="pending-requests-list">
                 <div class="pending-request-box" *ngFor="let pendingPickup of pendingPickups">
@@ -55,7 +58,7 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="!pendingPickups || pendingPickups.length == 0">
+            <div *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
               <div style="padding-bottom: 20px">
                 <div style="margin-left: 50%; transform: translateX(-35%);">
                   <img src="assets/img/mobile-dashboard-pickups-completed-group-61@2x.png" style="height: 80px; width: 100px;" />
@@ -93,7 +96,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </mat-tab>
         <mat-tab label="Profile">
@@ -265,7 +267,10 @@
       <mat-tab-group style="padding-left: 30px; padding-top: 30px" [selectedIndex]="activeTabIdx">
         <mat-tab label="Pickups">
           <div style="padding-top: 30px">
-            <div *ngIf="pendingPickups.length > 0">
+            <div *ngIf="pendingReqSpinner == true" style="overflow: hidden">
+              <mat-spinner style="left: 45%"></mat-spinner>
+            </div>
+            <div *ngIf="!pendingReqSpinner && pendingPickups.length > 0">
               <h3 style="font-weight: 500">Pending Request(s)</h3>
               <div class="pending-requests-list">
                 <div class="pending-request-box" *ngFor="let pendingPickup of pendingPickups">
@@ -309,7 +314,7 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="!pendingPickups || pendingPickups.length == 0">
+            <div *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
               <div style="padding-bottom: 20px">
                 <div style="margin-left: 50%; transform: translateX(-24%);">
                   <img src="assets/img/mobile-dashboard-pickups-completed-group-61@2x.png" style="height: 100px; width: 145px" />
