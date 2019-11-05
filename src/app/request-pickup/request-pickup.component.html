@@ -6,7 +6,7 @@
   <div style="width: 360px; height: 100%; position:relative; margin:auto;">
     <div class="bp2-headermobilelogin">
       <img src="/assets/img/mobile-dashboard-pickups-completed-background-2.png" class="bp2-background" />
-      <a href="/home-content">
+      <a href="/">
         <div class="bp2-logo">
           <div class="bp2-background1">
           </div>
@@ -31,8 +31,10 @@
         <div class="bp2-myaccount">
           <button mat-button [matMenuTriggerFor]="menuMobile">
             <span class="bp2-myaccount">My Account</span>
-            <mat-icon>more_vert</mat-icon>
+            <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
             <mat-menu #menuMobile="matMenu" class="dropdown-mobile">
+              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
+              <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
               <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
             </mat-menu>
           </button>
@@ -40,23 +42,25 @@
       </div>
     </div>
     <div class="pickup-form-container-mobile">
-      <div class="header-container-mobile">
-        <div class="header-text">
+      <div class="rp-header-container-mobile">
+        <div class="rp-header-text">
           Request Pickup
         </div>
-        <div class="header-hint-mobile">
+        <div class="rp-header-hint">
           Place a request and our agent will come for pickup at your convenience
         </div>
       </div>
       <form class="pickup-form" [formGroup]="requestPickupValidations">
-        <div class="form-line-mobile">
+        <div class="form-line-mobile" style="padding-top: 10px">
           <div class="form-field">
             <div class="form-label">Number of Bags</div>
-            <input class="form-value" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <input [className]="requestPickupValidations.get('noOfBags').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors && formSubmitted">Number of Bags is required</span>
           </div>
           <div class="form-field-mobile">
             <div class="form-label">Name</div>
-            <input class="form-value" matInput formControlName="name" type="text" placeholder="Enter name">
+            <input [className]="requestPickupValidations.get('name').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="name" type="text" placeholder="Enter name">
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('name').errors && formSubmitted">Name is required</span>
           </div>
         </div>
 
@@ -73,15 +77,16 @@
 
           <div class="form-field-mobile">
             <div class="form-label">Email</div>
-            <input class="form-value" matInput formControlName="email" type="text" placeholder="Enter email">
+            <input [className]="requestPickupValidations.get('email').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="email" type="text" placeholder="Enter email">
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('email').errors && formSubmitted">Email is invalid</span>
           </div>
         </div>
 
         <div class="form-line-mobile">
-          <div class="form-line-multiple-fields">
+          <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
             <div class="form-field-mobile custom-short-field-mobile" style="padding-right: 20px">
               <div class="form-label">Society</div>
-              <select formControlName="society" class="form-field-dropdown half-field-mobile">
+              <select formControlName="society" class="form-field-dropdown rp-half-field-mobile">
                 <option *ngFor="let society of societies" [value]="society.name">
                   {{society.name}}
                 </option>
@@ -89,13 +94,14 @@
             </div>
             <div class="form-field-mobile custom-short-field-mobile">
               <div class="form-label">Flat Number</div>
-              <input class="form-value" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
             </div>
           </div>
-          <div class="form-line-multiple-fields">
+          <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
             <div class="form-field-mobile custom-short-field-mobile" style="padding-right: 20px">
               <div class="form-label">Credit To</div>
-              <select formControlName="creditTo" class="form-field-dropdown half-field-mobile">
+              <select formControlName="creditTo" class="form-field-dropdown rp-half-field-mobile">
                 <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                   {{paymentType.name}}
                 </option>
@@ -103,14 +109,15 @@
             </div>
             <div class="form-field-mobile custom-short-field-mobile">
               <div class="form-label">Account Id</div>
-              <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">Account Id is required</span>
             </div>
           </div>
         </div>
       </form>
       <div class="footer-container-mobile">
         <button class="cancel-button"
-                (click)="currentUserService.navToHome()"
+                (click)="currentUserService.navToRewardsEarned()"
                 style="margin-right: 20px !important; margin-left: -4px;">
           Cancel
         </button>
@@ -129,7 +136,7 @@
         </div>
         <div class="bp1-base">
           <img src="/assets/img/dashboard-pickups-pending-background.png" class="bp1-background2" />
-          <a href="/home-content">
+          <a href="/">
             <div class="bp1-logo">
               <div class="bp1-background3">
               </div>
@@ -150,11 +157,6 @@
           </a>
         </div>
         <div class="bp1-menu1">
-          <a href="https://blogs.4re.in" target="_blank">
-            <div class="bp1-blogs">
-              Blogs
-            </div>
-          </a>
           <div class="bp1-aboutus">
             About us
           </div>
@@ -173,28 +175,31 @@
         <div class="bp1-myaccount">
           <button mat-button [matMenuTriggerFor]="menu">
             <span class="bp1-myaccount">My Account</span>
-            <mat-icon>more_vert</mat-icon>
+            <mat-icon aria-hidden="true" role="img" class="mat-icon notranslate material-icons mat-icon-no-color menu-arrow">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="dropdown">
+            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
+            <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
             <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
           </mat-menu>
         </div>
       </div>
     </div>
     <div class="pickup-form-container">
-      <div class="header-container">
-        <div class="header-text">
+      <div class="rp-header-container">
+        <div class="rp-header-text">
           Request Pickup
         </div>
-        <div class="header-hint">
+        <div class="rp-header-hint">
           Place a request and our agent will come for pickup at your convenience
         </div>
       </div>
       <form class="pickup-form" [formGroup]="requestPickupValidations">
-        <div class="form-line-multiple-fields">
+        <div class="rp-form-line-multiple-fields">
           <div class="form-field">
             <div class="form-label">Number of Bags</div>
-            <input class="form-value" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <input [className]="requestPickupValidations.get('noOfBags').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors && formSubmitted">Number of Bags is required</span>
           </div>
           <div class="form-field">
             <div class="form-label">Pickup Time</div>
@@ -207,22 +212,24 @@
           </div>
         </div>
 
-        <div class="form-line-multiple-fields">
+        <div class="rp-form-line-multiple-fields">
           <div class="form-field">
             <div class="form-label">Name</div>
-            <input class="form-value" matInput formControlName="name" type="text" placeholder="Enter name">
+            <input [className]="requestPickupValidations.get('name').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="name" type="text" placeholder="Enter name">
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('name').errors && formSubmitted">Name is required</span>
           </div>
           <div class="form-field">
             <div class="form-label">Email</div>
-            <input class="form-value" matInput formControlName="email" type="text" placeholder="Enter email">
+            <input [className]="requestPickupValidations.get('email').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="email" type="text" placeholder="Enter email">
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('email').errors && formSubmitted">Email is invalid</span>
           </div>
         </div>
 
-        <div class="form-line-multiple-fields">
-          <div class="form-line-multiple-fields">
+        <div class="rp-form-line-multiple-fields">
+          <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
             <div class="form-field custom-short-field" style="padding-right: 20px">
               <div class="form-label">Society</div>
-              <select formControlName="society" class="form-field-dropdown half-field">
+              <select formControlName="society" class="form-field-dropdown rp-half-field">
                 <option *ngFor="let society of societies" [value]="society.name">
                   {{society.name}}
                 </option>
@@ -230,13 +237,14 @@
             </div>
             <div class="form-field custom-short-field">
               <div class="form-label">Flat Number</div>
-              <input class="form-value" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
             </div>
           </div>
-          <div class="form-line-multiple-fields">
+          <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
             <div class="form-field custom-short-field" style="padding-right: 20px">
               <div class="form-label">Credit To</div>
-              <select formControlName="creditTo" class="form-field-dropdown half-field">
+              <select formControlName="creditTo" class="form-field-dropdown rp-half-field">
                 <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                   {{paymentType.name}}
                 </option>
@@ -244,14 +252,15 @@
             </div>
             <div class="form-field custom-short-field">
               <div class="form-label">Account Id</div>
-              <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">Account Id is required</span>
             </div>
           </div>
         </div>
       </form>
       <div class="footer-container">
-        <button class="cancel-button" (click)="currentUserService.navToHome()">Cancel</button>
-        <button class="submit-button" (click)="requestPickup()" [disabled]="requestPickupValidations.invalid">Submit</button>
+        <button class="cancel-button" (click)="currentUserService.navToRewardsEarned()">Cancel</button>
+        <button class="submit-button" (click)="requestPickup()">Submit</button>
       </div>
     </div>
   </div>

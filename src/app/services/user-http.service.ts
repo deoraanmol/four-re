@@ -80,6 +80,19 @@ export class UserHttpService {
       );
   }
 
+  getAppConfig(): Observable<any> {
+    return this.http.get(apiUrl+'/get-app-config/obj', httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getTimeSlots(hours: number): Observable<any> {
+    return this.http.get(apiUrl+'/get-time-slots/'+hours, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
   private extractData(res: Response) {
     let body = res;
@@ -100,6 +113,4 @@ export class UserHttpService {
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
   };
-
-
 }

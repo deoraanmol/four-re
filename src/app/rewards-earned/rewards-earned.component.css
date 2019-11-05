@@ -54,7 +54,7 @@
 }
 
 .parent-re-custom-header {
-  background-color: #d2dada;
+  background-color: #F4F6FC;
   display: flex;
   justify-content: space-between;
   padding-left: 30px;
@@ -62,7 +62,7 @@
 }
 
 .parent-re-custom-header-mobile {
-  background-color: #d2dada;
+  background-color: #F4F6FC;
   padding-left: 10px;
   padding-right: 30px;
 }
@@ -1281,7 +1281,7 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 422px;
+  left                : 516px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -1295,6 +1295,7 @@ div {
 }
 .bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-aboutus:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-faq {
   background-color    : rgba(255,255,255,0.0);
@@ -1303,7 +1304,7 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 340px;
+  left                : 420px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -1317,6 +1318,7 @@ div {
 }
 .bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-faq:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-whyreuse {
   background-color    : rgba(255,255,255,0.0);
@@ -1325,7 +1327,7 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 181px;
+  left                : 264px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -1339,6 +1341,7 @@ div {
 }
 .bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-whyreuse:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-howitworks {
   background-color    : rgba(255,255,255,0.0);
@@ -1361,6 +1364,7 @@ div {
 }
 .bp1-dashboardpickupspending .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-howitworks:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-dashboardpickupspending .bp1-headerloggedin .bp1-menu {
   background-color    : rgba(255,255,255,0.0);

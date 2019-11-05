@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {Society} from '../interfaces/Society';
 import {PaymentTypes} from '../interfaces/payment-types';
 import {TimeSlots} from "../interfaces/time-slots";
@@ -8,7 +8,6 @@ import {Router} from "@angular/router";
 import {CurrentUserService} from "../services/current-user.service";
 import {Observable} from "rxjs";
 import {UserHttpService} from "../services/user-http.service";
-import {tap} from "rxjs/operators";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {MobileMenuDialogComponent} from '../mobile-menu-dialog/mobile-menu-dialog.component';
@@ -22,14 +21,9 @@ import {MobileMenuDialogComponent} from '../mobile-menu-dialog/mobile-menu-dialo
 })
 export class RequestPickupComponent implements OnInit {
   requestPickupValidations: FormGroup;
-  societies: Society[] =[
-    {name: 'Grand Arch'},
-    {name: 'Ireo'},
-    {name: 'Valley View'}
-  ];
-  paymentTypes: PaymentTypes[] = [
-    {name: 'PayTM'}
-  ]
+  societies: Society[] =[];
+  paymentTypes: PaymentTypes[] = [];
+  formSubmitted: boolean = false;
   timeSlots: TimeSlots[] = [];
   currentUser = {};
   form: FormGroup;
@@ -44,19 +38,42 @@ export class RequestPickupComponent implements OnInit {
               private snackar: MatSnackBar,
               private dialog: MatDialog) { }
 
+  getFormValidationErrors() {
+    Object.keys(this.requestPickupValidations.controls).forEach(key => {
+
+      const controlErrors: ValidationErrors = this.requestPickupValidations.get(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+        });
+      }
+    });
+  }
+
   ngOnInit() {
     this.currentUserService.refreshUserData(this.angularFireAuth);
-    this.timeSlots = this.timeSlotService.getNextSlots(new Date().getHours());
+    this.userhttpService.getTimeSlots(new Date().getHours())
+      .subscribe(res => {
+        this.timeSlots = res.timeSlots;
+        this.requestPickupValidations.controls['pickupTimeSlot'].setValue(this.timeSlots[0].id);
+      });
+    this.userhttpService.getAppConfig()
+      .subscribe(res => {
+        this.societies = res.societies;
+        this.paymentTypes = res.paymentTypes;
+        this.requestPickupValidations.controls['society'].setValue(this.societies[0].name);
+        this.requestPickupValidations.controls['creditTo'].setValue(this.paymentTypes[0].name);
+      })
     this.requestPickupValidations = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      society: [this.societies[0].name, Validators.required],
+      society: ['', Validators.required],
       flatNumber: ['', Validators.required],
-      creditTo: [this.paymentTypes[0].name, Validators.required],
-      accountId: [this.currentUser['phoneNumber'], Validators.required],
-      phoneNumber: ['', [Validators.required]],
+      creditTo: ['', Validators.required],
+      accountId: [this.currentUserService.excludeCountryCode("IND", this.currentUser['phoneNumber']), Validators.required],
+      phoneNumber: [''],
       noOfBags: ['', [Validators.required]],
-      pickupTimeSlot: [this.timeSlots[0].id, Validators.required]
+      pickupTimeSlot: ['', Validators.required]
     });
     this.currentUserService.userRefreshed
       .subscribe(res => {
@@ -66,12 +83,11 @@ export class RequestPickupComponent implements OnInit {
             name: this.currentUser['name'],
             email: this.currentUser['email'],
             phoneNumber: this.currentUser['phoneNumber'],
-            society: this.currentUser['society'],
             flatNumber: this.currentUser['flatNumber'],
             creditTo: this.currentUser['creditTo'],
             accountId: this.currentUser['accountId']
-              ? this.currentUser['accountId']
-              : this.currentUser['phoneNumber']
+              ? this.currentUserService.excludeCountryCode("IND", this.currentUser['accountId'])
+              : this.currentUserService.excludeCountryCode("IND", this.currentUser['phoneNumber'])
           });
         } else {
           // this.router.navigate(['/get-started']);
@@ -79,44 +95,37 @@ export class RequestPickupComponent implements OnInit {
       });
   }
 
-  public findInvalidControls() {
-    debugger
-    const invalid = [];
-    const controls = this.requestPickupValidations.controls;
-    for (const name in controls) {
-      if (controls[name].invalid) {
-        invalid.push(name);
-      }
-    }
-    return invalid;
-  }
-
   redirectToHome() {
-    this.router.navigate(['/home-content']);
+    this.router.navigate(['/home']);
   }
   requestPickup() {
-    if(this.currentUser['phoneNumber']) {
-      var requestPickupRequest = {
-        "name": this.requestPickupValidations.controls.name.value,
-        "society": this.requestPickupValidations.controls.society.value,
-        "flatNumber": this.requestPickupValidations.controls.flatNumber.value,
-        "email": this.requestPickupValidations.controls.email.value,
-        "creditTo": this.requestPickupValidations.controls.creditTo.value,
-        "accountId": this.requestPickupValidations.controls.accountId.value,
-        "noOfBags": this.requestPickupValidations.controls.noOfBags.value,
-        "userId": this.currentUserService.currentUserData['_id'].toString(),
-        "pickupTimeSlot": this.getTimeSlotString(),
-        "rewardsEarned": this.currentUserService.currentUserData['rewardsEarned']
-      }
-      this.userhttpService.storeRequestPickup(requestPickupRequest).subscribe(res => {
-
-        //update new rewards earned
-        this.currentUserService.currentUserData['rewardsEarned'] = res.rewardsEarned;
-        console.log("request pickup saved, navigating to rewards: "+this.currentUserService.currentUserData['rewardsEarned']);
-        this.currentUserService.navToRewardsEarned();
-      });
+    this.formSubmitted = true;
+    if(this.requestPickupValidations.status === "INVALID") {
+      this.currentUserService.openSnackbar(this.snackar, "There are some errors in the form", "Ok");
     } else {
-      this.currentUserService.openSnackbar(this.snackar, "User is not logged in", "Ok");
+      if(this.currentUser['phoneNumber']) {
+        var requestPickupRequest = {
+          "name": this.requestPickupValidations.controls.name.value,
+          "society": this.requestPickupValidations.controls.society.value,
+          "flatNumber": this.requestPickupValidations.controls.flatNumber.value,
+          "email": this.requestPickupValidations.controls.email.value,
+          "creditTo": this.requestPickupValidations.controls.creditTo.value,
+          "accountId": this.requestPickupValidations.controls.accountId.value,
+          "noOfBags": this.requestPickupValidations.controls.noOfBags.value,
+          "userId": this.currentUserService.currentUserData['_id'].toString(),
+          "pickupTimeSlot": this.getTimeSlotString(),
+          "rewardsEarned": this.currentUserService.currentUserData['rewardsEarned']
+        }
+        this.userhttpService.storeRequestPickup(requestPickupRequest).subscribe(res => {
+
+          //update new rewards earned
+          this.currentUserService.currentUserData['rewardsEarned'] = res.rewardsEarned;
+          console.log("request pickup saved, navigating to rewards: "+this.currentUserService.currentUserData['rewardsEarned']);
+          this.currentUserService.navToRewardsEarned();
+        });
+      } else {
+        this.currentUserService.openSnackbar(this.snackar, "User is not logged in", "Ok");
+      }
     }
   }
 
@@ -140,5 +149,9 @@ export class RequestPickupComponent implements OnInit {
     let slotId = this.requestPickupValidations.controls.pickupTimeSlot.value;
     let timeSlotObj = this.timeSlots[slotId-1];
     return timeSlotObj.day + ", " + timeSlotObj.startTime + " - " + timeSlotObj.endTime;
+  }
+
+  openREScreen(selectTab) {
+    this.router.navigate(["/dashboard"], {state: {activeTab: selectTab}});
   }
 }

@@ -4,16 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home-content',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: 'get-started', loadChildren: './get-started/get-started.module#GetStartedModule' },
-  { path: 'home-content', loadChildren: './home-content/home-content.module#HomeContentModule' },
+  { path: 'home', loadChildren: './home-content/home-content.module#HomeContentModule' },
   {
-    path: 'request-pickup',
+    path: 'pickup',
     loadChildren: './request-pickup/request-pickup.module#RequestPickupModule'
   },
-  { path: 'rewards-earned', loadChildren: './rewards-earned/rewards-earned.module#RewardsEarnedModule' },
+  { path: 'dashboard', loadChildren: './rewards-earned/rewards-earned.module#RewardsEarnedModule' },
   { path: 'get-rewards', loadChildren: './get-rewards/get-rewards.module#GetRewardsModule' },
   {
     path: 'login',
