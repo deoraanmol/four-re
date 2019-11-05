@@ -9,6 +9,9 @@ const routes: Routes = [
   },
   { path: 'get-started', loadChildren: './get-started/get-started.module#GetStartedModule' },
   { path: 'home', loadChildren: './home-content/home-content.module#HomeContentModule' },
+  { path: 'home#hiwweb', loadChildren: './home-content/home-content.module#HomeContentModule',
+    data: {title: 'sdf'}
+  },
   { path: 'request-pins', loadChildren: './request-pins/request-pins.module#RequestPinsModule' },
   {
     path: 'pickup',

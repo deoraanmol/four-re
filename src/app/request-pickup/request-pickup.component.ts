@@ -143,6 +143,11 @@ export class RequestPickupComponent implements OnInit {
 
       }
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.anchorId) {
+        this.takeHomeAt(result.anchorId);
+      } else this.redirectToHome();
+    });
   }
 
   private getTimeSlotString() {
@@ -153,5 +158,9 @@ export class RequestPickupComponent implements OnInit {
 
   openREScreen(selectTab) {
     this.router.navigate(["/dashboard"], {state: {activeTab: selectTab}});
+  }
+
+  takeHomeAt(anchorId: string) {
+     this.router.navigate(["/home"], {state: {anchorId: anchorId}});
   }
 }
