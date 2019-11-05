@@ -59,11 +59,12 @@
           <div style="padding-top: 10px">
             <form [formGroup]="userProfileForm">
               <div class="form-line-mobile">
-                <div class="form-field">
+                <div class="form-field" style="width: 285px">
                   <div class="form-label">Name</div>
-                  <input matInput class="form-input" formControlName="name" placeholder="Enter Name">
+                  <input matInput [className]="userProfileForm.get('name').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="name" placeholder="Enter Name">
+                  <span class="field-error-hint" *ngIf="userProfileForm.get('name').errors && upFormSubmitted">Name is required</span>
                 </div>
-                <div class="form-field-mobile">
+                <div class="form-field-mobile" style="width: 285px">
                   <div class="form-label">Email</div>
                   <input matInput class="form-input" formControlName="email" placeholder="Enter Name">
                 </div>

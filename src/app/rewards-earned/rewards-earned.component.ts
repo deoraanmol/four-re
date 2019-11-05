@@ -31,6 +31,7 @@ export class RewardsEarnedComponent implements OnInit {
   activeTab:string = null;
   activeTabIdx: number = 0;
   rewardsPerBag = 0;
+  upFormSubmitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private dialog: MatDialog,
@@ -154,21 +155,27 @@ export class RewardsEarnedComponent implements OnInit {
   }
 
   updateProfile() {
-    var userObj = {
-      "name": this.userProfileForm.controls.name.value,
-      "society": this.userProfileForm.controls.society.value,
-      "flatNumber": this.userProfileForm.controls.flatNumber.value,
-      "email": this.userProfileForm.controls.email.value,
-      "creditTo": this.userProfileForm.controls.creditTo.value,
-      "accountId": this.userProfileForm.controls.accountId.value
-    };
-    var _id = this.currentUserService.currentUserData['_id'].toString();
-    this.userHttpService.updateUser(userObj, _id)
-      .subscribe(res => {
-        this.fetchedUser = res;
-        this.getUserProfile();
-        this.currentUserService.openSnackbar(this.snackbar, "User Profile is successfully updated", "Ok");
-      });
+    this.upFormSubmitted = true;
+    debugger
+    if(this.userProfileForm.invalid) {
+
+    } else {
+      var userObj = {
+        "name": this.userProfileForm.controls.name.value,
+        "society": this.userProfileForm.controls.society.value,
+        "flatNumber": this.userProfileForm.controls.flatNumber.value,
+        "email": this.userProfileForm.controls.email.value,
+        "creditTo": this.userProfileForm.controls.creditTo.value,
+        "accountId": this.userProfileForm.controls.accountId.value
+      };
+      var _id = this.currentUserService.currentUserData['_id'].toString();
+      this.userHttpService.updateUser(userObj, _id)
+        .subscribe(res => {
+          this.fetchedUser = res;
+          this.getUserProfile();
+          this.currentUserService.openSnackbar(this.snackbar, "User Profile is successfully updated", "Ok");
+        });
+    }
   }
 
   signOutFromRE() {

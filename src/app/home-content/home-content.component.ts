@@ -20,6 +20,35 @@ export class HomeContentComponent implements OnInit {
     this.router.navigate(['/get-started']);
   }
 
+  scrollWeb(el: HTMLElement, divType: string) {
+    el.scrollIntoView(true);
+    if(divType === "howitworks") {
+      window.scrollBy(0,-90);
+    } else if(divType === "whyreuse") {
+      window.scrollBy(0,-100);
+    } else if(divType === "faq") {
+      window.scrollBy(0,-100);
+    } else if(divType === "aboutus") {
+      window.scrollBy(0,-100);
+    }
+  }
+
+  scrollMob(anchorId: string) {
+    let doc = document.getElementById(anchorId);
+    if(doc) {
+      doc.scrollIntoView(true);
+      if(anchorId === "hiwmobile") {
+        window.scrollBy(0,-90);
+      } else if(anchorId === "wrmobile") {
+        window.scrollBy(0,-100);
+      } else if(anchorId === "faqmobile") {
+        window.scrollBy(0,-100);
+      } else if(anchorId === "aumobile") {
+        window.scrollBy(0,-100);
+      }
+    }
+  }
+
   openMobileMenuDialog() {
     const dialogRef = this.dialog.open(MobileMenuDialogComponent, {
       maxWidth: '100vw',
@@ -29,6 +58,9 @@ export class HomeContentComponent implements OnInit {
       data: {
 
       }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.scrollMob(result.anchorId);
     });
   }
 }

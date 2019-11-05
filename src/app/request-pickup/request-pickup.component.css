@@ -33,7 +33,7 @@
 
 .pickup-form-container {
   margin-left: 13%;
-  height: 480px;
+  height: 510px;
   width: 940px;
   background-color: white;
   border-radius: 10px;
@@ -150,18 +150,19 @@
   margin-right: 25px;
 }
 
-.form-field {
+.rp-form-field {
   background-color: rgba(255,255,255,0.0);
   height: 61px;
   width: 300px;
+  padding-top: 10px;
   -ms-transform: rotate(0deg);
   -webkit-transform: rotate(0deg);
   transform: rotate(0deg);
   font-family: "OpenSans-SemiBold", Helvetica, Arial, serif;
 }
 
-.form-field-mobile {
-  padding-top: 20px;
+.rp-form-field-mobile {
+  padding-top: 30px;
   background-color: rgba(255,255,255,0.0);
   height: 61px;
   width: 300px;
@@ -202,6 +203,7 @@
   display: flex;
   justify-content: space-evenly;
   margin-top: 20px;
+  font-family: "OpenSans-SemiBold", Helvetica, Arial, serif;
 }
 
 .form-line-mobile {
