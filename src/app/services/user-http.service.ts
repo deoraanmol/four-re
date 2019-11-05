@@ -94,7 +94,7 @@ export class UserHttpService {
   }
 
   getTimeSlots(hours: number): Observable<any> {
-    return this.http.get(apiUrl+'/get-time-slots/'+hours, httpOptions)
+    return this.http.post(apiUrl+'/get-time-slots', {currentHrs: hours},httpOptions)
       .pipe(
         catchError(this.handleError)
       );
