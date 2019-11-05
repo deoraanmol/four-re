@@ -79,6 +79,12 @@ export class UserHttpService {
         catchError(this.handleError)
       );
   }
+  getCompletedPickups(userId: any): Observable<any> {
+    return this.http.get(apiUrl+'/completed-requests/'+userId, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
   getRequestPins(status: string): Observable<any> {
     return this.http.get(apiUrl+'/requests/'+status, httpOptions)
       .pipe(

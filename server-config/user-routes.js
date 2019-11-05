@@ -56,6 +56,15 @@ router.get('/pending-requests/:userId', function(req, res, next) {
     }).sort({_id:1});
 });
 
+/* GET COMPLETED REQUESTS */
+router.get('/completed-requests/:userId', function(req, res, next) {
+  RequestPickupModel.find({userId: req.params.userId, status: 'COMPLETED'},
+    function(err, record) {
+      if(err) return next(err);
+      res.json(record);
+    }).sort({_id:1});
+});
+
 /* GET APP CONFIG */
 router.get('/get-app-config/:type', function(req, res, next) {
   try {
