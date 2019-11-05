@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MobileMenuDialogComponent} from '../../mobile-menu-dialog/mobile-menu-dialog.component';
 import {MatDialog} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import {MatDialog} from '@angular/material';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+              private router: Router) {
     console.log('Header constructor called');
   }
 
@@ -26,6 +28,14 @@ export class HeaderComponent implements OnInit {
 
       }
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.anchorId) {
+        this.takeHomeAt(result.anchorId);
+      } else this.router.navigate(['/home']);
+    });
   }
 
+  takeHomeAt(anchorId: string) {
+    this.router.navigate(["/home"], {state: {anchorId: anchorId}});
+  }
 }
