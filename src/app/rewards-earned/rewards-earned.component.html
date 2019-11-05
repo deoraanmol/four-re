@@ -31,7 +31,15 @@
                   <div style="padding-left: 10px">
                     <h2><p>&#x20b9; {{pendingPickup.totalValue}}</p></h2>
 <!--                    <h2><p>&#x20b9; 100</p></h2>-->
-                    <h2 style="font-size: 20px; font-weight: 400;"><p>{{pendingPickup.pickupTimeSlot}}</p></h2>
+                    <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'TODAY'">
+                      <p>Today, {{pendingPickup.startTime | date: 'hh:mm a'}} - {{pendingPickup.endTime | date: 'hh:mm a'}}</p>
+                    </h2>
+                    <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'TOMORROW'">
+                      <p>Tomorrow, {{pendingPickup.startTime | date: 'hh:mm a'}} - {{pendingPickup.endTime | date: 'hh:mm a'}}</p>
+                    </h2>
+                    <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'NONE'">
+                      <p>{{pendingPickup.startTime | date: 'dd MMM yyyy, hh:mm a'}} - {{pendingPickup.endTime | date: 'hh:mm a'}}</p>
+                    </h2>
 <!--                    <h1 style="font-size: 20px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
                     <h4><p>{{pendingPickup.paymentType}} ({{pendingPickup.accountId}})</p></h4>
 <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
@@ -40,7 +48,6 @@
                   </div>
                 </div>
                 <div style="padding-left: 10px; padding-bottom: 10px; padding-top: 20px;">
-                  <button class="cancel-button footer-btns-mobile" (click)="redirectToHome()">Cancel</button>
                   <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog(pendingPickup)">Get Deposit</button>
 <!--                  <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog({})">Get Deposit</button>-->
                 </div>
@@ -93,7 +100,7 @@
               </div>
             </form>
           </div>
-          <div style="padding-top: 45px; margin-left: 10px;">
+          <div style="padding-top: 45px; margin-left: 10px; height: 40px">
             <button class="cancel-button" (click)="resetUserProfile()">Reset</button>
             <button class="submit-button" (click)="updateProfile()">Save</button>
           </div>
@@ -102,7 +109,7 @@
     </div>
     <div class="bp2-headermobilelogin">
       <img src="assets/img/mobile-dashboard-pickups-completed-background-2.png" class="bp2-background" />
-      <a href="/home-content">
+      <a href="/">
         <div class="bp2-logo">
           <div class="bp2-background1">
           </div>
@@ -126,8 +133,10 @@
         <div class="bp2-myaccount">
           <button mat-button [matMenuTriggerFor]="menuMobile">
             <span class="bp2-myaccount">My Account</span>
-            <mat-icon>more_vert</mat-icon>
+            <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
             <mat-menu #menuMobile="matMenu" class="dropdown-mobile">
+              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
+              <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
               <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
             </mat-menu>
           </button>
@@ -146,7 +155,7 @@
         </div>
         <div class="bp1-base">
           <img src="assets/img/dashboard-pickups-pending-background.png" class="bp1-background2" />
-          <a href="/home-content">
+          <a href="/">
             <div class="bp1-logo">
               <div class="bp1-background3">
               </div>
@@ -167,11 +176,6 @@
           </a>
         </div>
         <div class="bp1-menu1">
-          <a href="https://blogs.4re.in" target="_blank">
-            <div class="bp1-blogs">
-              Blogs
-            </div>
-          </a>
           <div class="bp1-aboutus">
             About us
           </div>
@@ -190,9 +194,11 @@
         <div class="bp1-myaccount">
           <button mat-button [matMenuTriggerFor]="menu">
             <span class="bp1-myaccount">My Account</span>
-            <mat-icon>more_vert</mat-icon>
+            <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="dropdown">
+            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
+            <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
             <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
           </mat-menu>
         </div>
@@ -214,7 +220,7 @@
           </div>
         </div>
       </div>
-      <mat-tab-group style="padding-left: 30px; padding-top: 30px">
+      <mat-tab-group style="padding-left: 30px; padding-top: 30px" [selectedIndex]="activeTabIdx">
         <mat-tab label="Pickups">
           <div style="padding-top: 30px">
             <h3 style="font-weight: 500">Pending Request(s)</h3>
@@ -228,13 +234,21 @@
 <!--                      <h2><p>&#x20b9; 100</p></h2>-->
                     </div>
                     <div>
-                      <h2 style="font-size: 25px; font-weight: 400;"><p>{{pendingPickup.pickupTimeSlot}}</p></h2>
+                      <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'TODAY'">
+                        <p>Today, {{pendingPickup.startTime | date: 'hh:mm aa'}} - {{pendingPickup.endTime | date: 'hh:mm aa'}}</p>
+                      </h2>
+                      <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'TOMORROW'">
+                        <p>Tomorrow, {{pendingPickup.startTime | date: 'hh:mm aa'}} - {{pendingPickup.endTime | date: 'hh:mm aa'}}</p>
+                      </h2>
+                      <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'NONE'">
+                        <p>{{pendingPickup.startTime | date: 'dd MMM yyyy, hh:mm aa'}} - {{pendingPickup.endTime | date: 'hh:mm aa'}}</p>
+                      </h2>
 <!--                      <h1 style="font-size: 25px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
                     </div>
                   </span>
                   <span style="padding-right: 30px">
                   <div>
-                    <h4><p>{{pendingPickup.paymentType}} ({{pendingPickup.accountId}})</p></h4>
+                    <h4><p>{{pendingPickup.paymentType}} ({{currentUserService.excludeCountryCode("IND", pendingPickup.accountId)}})</p></h4>
 <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
                   </div>
                   <div>
@@ -245,8 +259,7 @@
                   </div>
                 </span>
                 </div>
-                <div style="padding-left: 30px; padding-bottom: 30px;">
-                  <button class="cancel-button" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
+                <div style="padding-left: 30px; padding-bottom: 30px; height: 40px">
                   <button class="submit-button" (click)="openGetDepositDialog(pendingPickup)">Get Deposit</button>
 <!--                  <button class="submit-button" (click)="openGetDepositDialog({})">Get Deposit</button>-->
                 </div>
@@ -299,7 +312,7 @@
               </div>
             </form>
           </div>
-          <div style="padding-top: 45px">
+          <div style="padding-top: 45px; height: 40px">
             <button class="cancel-button" (click)="resetUserProfile()">Reset</button>
             <button class="submit-button" (click)="updateProfile()">Save</button>
           </div>

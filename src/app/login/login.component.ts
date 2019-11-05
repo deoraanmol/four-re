@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.firebaseAuth.user.subscribe(result => {
       if(result != null) {
-        debugger
         let phoneNo = result.phoneNumber;
         this.signUpUser(phoneNo);
         //todo anmol mock
@@ -60,7 +59,7 @@ export class LoginComponent implements OnInit {
 
   private navigateToRequestPickup(user) {
     this.currentUserService.currentUserData = user;
-    this.router.navigate(['/request-pickup']);
+    this.router.navigate(['/pickup']);
   }
 
   successCallback($event: FirebaseUISignInSuccessWithAuthResult) {

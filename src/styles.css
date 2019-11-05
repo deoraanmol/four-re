@@ -91,6 +91,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .submit-button {
+  outline: none;
   cursor: pointer;
   background-color: rgba(0, 175, 70, 1.0);
   right: 0px;
@@ -106,8 +107,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-size: 18px;
 }
 
+.field-error-hint {
+  font-size: 11px !important;
+  color: #DC151D;
+}
+
+.field-border-error {
+  border-color: #DC151D !important;
+}
+
+.mat-input-element {
+  padding-left: 10px !important;
+}
+
+input {
+  padding-left: 10px;
+}
+.mat-tab-label {
+  border-radius: 0px !important;
+}
+
 .cancel-button {
   cursor: pointer;
+  outline: none;
   background-color: rgba(255,255,255,0.0);
   border-color: rgba(0, 175, 70, 1.0);
   height: 40px;
@@ -126,6 +148,42 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .mat-tab-label {
     min-width: 50% !important;
   }
+}
+
+.menu-arrow {
+  margin-top: 4px !important;
+}
+
+select {
+  background: white !important;
+}
+
+.bp1-howitworks {
+  left: 75px !important;
+}
+
+.bp1-whyreuse {
+  left: 262px;
+}
+
+.bp1-whyreuse-para {
+  left: 50px !important;
+}
+
+.bp1-faq {
+  left: 422px;
+}
+
+.bp1-faq-para {
+  left: 53px !important;
+}
+
+.bp1-aboutus {
+  left: 514px;
+}
+
+.bp1-aboutus-para {
+  left: 134px !important;
 }
 
 .mat-dialog-container {

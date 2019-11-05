@@ -1022,6 +1022,7 @@ div {
 }
 .bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-aboutus:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-faq {
   background-color    : rgba(255,255,255,0.0);
@@ -1044,6 +1045,7 @@ div {
 }
 .bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-faq:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-whyreuse {
   background-color    : rgba(255,255,255,0.0);
@@ -1066,6 +1068,7 @@ div {
 }
 .bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-whyreuse:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-howitworks {
   background-color    : rgba(255,255,255,0.0);
@@ -1088,6 +1091,7 @@ div {
 }
 .bp1-autheticationgetotp .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-howitworks:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-autheticationgetotp .bp1-headerlogout .bp1-button {
   background-color    : rgba(255,255,255,0.0);

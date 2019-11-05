@@ -79,9 +79,22 @@ export class UserHttpService {
         catchError(this.handleError)
       );
   }
-
   getRequestPins(status: string): Observable<any> {
     return this.http.get(apiUrl+'/requests/'+status, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getAppConfig(): Observable<any> {
+    return this.http.get(apiUrl+'/get-app-config/obj', httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getTimeSlots(hours: number): Observable<any> {
+    return this.http.get(apiUrl+'/get-time-slots/'+hours, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -107,6 +120,4 @@ export class UserHttpService {
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
   };
-
-
 }

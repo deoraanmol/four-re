@@ -5,5 +5,7 @@ export interface PendingPickups {
   paymentType: String,
   accountId: String,
   _id: String, //requestId
-  userId: String
+  userId: String,
+  startTime: String,
+  endTime: String
 }

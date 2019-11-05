@@ -1,7 +1,6 @@
 <div class="for-web">
   <span class="dialog-header">
     <h1 mat-dialog-title>Get Reward</h1>
-    <div class="header-hint" style="margin-top: -10px;">Place a request and our agent will come for pickup at your convenience</div>
   </span>
   <div mat-dialog-content>
     <div>
@@ -10,12 +9,13 @@
         <div class="form-line">
           <div class="form-field">
             <div class="form-label">Number of Bags</div>
-            <input matInput class="form-input-disabled" formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <input matInput [className]="getDepositForm.get('noOfBags').errors && gdFormSubmitted ? 'form-value field-border-error' : 'form-value'" formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <div class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors && gdFormSubmitted">Number of Bags is required</div>
           </div>
           <div class="form-line-multiple-fields">
             <div class="form-field custom-short-field" style="padding-right: 20px">
-              <div class="form-label">Credit &#x20b9; 100 To</div>
-              <select formControlName="paymentType" class="form-field-dropdown half-field">
+              <div class="form-label">Credit &#x20b9; {{getAmt()}} To</div>
+              <select formControlName="paymentType" class="form-field-dropdown gd-half-field">
                 <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                   {{paymentType.name}}
                 </option>
@@ -23,20 +23,21 @@
             </div>
             <div class="form-field custom-short-field">
               <div class="form-label">Account Id</div>
-              <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <input [className]="getDepositForm.get('accountId').errors && gdFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <div class="field-error-hint" *ngIf="getDepositForm.get('accountId').errors && gdFormSubmitted">Account Id is required</div>
             </div>
           </div>
           <div class="form-field" style="padding-top: 20px">
             <div class="form-label">Pickup Code</div>
-            <input matInput class="form-input" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
-            <span class="error-hint" *ngIf="invalidPIN">Pickup Code is invalid</span>
+            <input matInput formControlName="pickupCode" type="number" placeholder="Enter pickup code" [className]="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted) ? 'form-input field-border-error' : 'form-input'">
+            <div class="field-error-hint" *ngIf="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Pickup Code is invalid</div>
           </div>
 
         </div>
         <br/><br/>
         <span style="font-size: 13px; padding-top: 15px">
           <mat-checkbox formControlName="touCheckbox" style="padding-right: 5px"></mat-checkbox>
-          <span>By submitting the agent PIN, you confirm to receive &#x20b9; 100 in above account</span>
+          <span>By submitting the agent PIN, you confirm to receive &#x20b9; {{getAmt()}} in above account</span>
         </span>
       </form>
 
@@ -46,52 +47,50 @@
   </div>
   <div mat-dialog-actions>
     <button class="cancel-button" (click)="onNoClick()">Cancel</button>
-    <button class="submit-button" [disabled]="getDepositForm.invalid" (click)="completePendingRequest()">Submit</button>
+    <button class="submit-button" (click)="completePendingRequest()">Submit</button>
   </div>
 </div>
 
 <div class="for-mobile">
   <span class="dialog-header">
-    <h1 mat-dialog-title style="font-size:20px; text-align: left; margin-top: -25px">Get Reward</h1>
-    <div class="header-hint-mobile"
-         style="margin-top: -33px;
-         line-height: 13.0px !important;
-         font-size: 13px; padding-left: 0px !important;">Place a request and our agent will come for pickup at your convenience</div>
+    <h1 mat-dialog-title style="font-size:20px; text-align: left; margin-top: -25px; margin-left: 10px">Get Reward</h1>
   </span>
-  <div mat-dialog-content>
+  <div mat-dialog-content style="margin-top: -25px">
     <div>
       <form [formGroup]="getDepositForm">
 
         <div class="form-line-mobile">
-          <div class="form-field-mobile">
+          <div class="gd-form-field-mobile">
             <div class="form-label">Number of Bags</div>
-            <input matInput class="form-input-disabled-mobile" formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <input matInput [className]="getDepositForm.get('noOfBags').errors && gdFormSubmitted ? 'form-input-disabled-mobile field-border-error' : 'form-input-disabled-mobile'" formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <div class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors && gdFormSubmitted">Number of Bags is required</div>
           </div>
           <div class="form-line-multiple-fields-mobile">
-            <div class="form-field-mobile">
-              <div class="form-label">Credit &#x20b9; 100 To</div>
-              <select formControlName="paymentType" class="form-field-dropdown half-field">
+            <div class="gd-form-field-mobile">
+              <div class="form-label">Credit &#x20b9; {{getAmt()}} To</div>
+              <select formControlName="paymentType" class="form-field-dropdown gd-half-field-mobile">
                 <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                   {{paymentType.name}}
                 </option>
               </select>
             </div>
-            <div class="form-field-mobile">
+            <div class="gd-form-field-mobile">
               <div class="form-label">Account Id</div>
-              <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <input [className]="getDepositForm.get('accountId').errors && gdFormSubmitted ? 'form-value-mobile field-border-error' : 'form-value-mobile'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <div class="field-error-hint" *ngIf="getDepositForm.get('accountId').errors && gdFormSubmitted">Account Id is required</div>
             </div>
           </div>
-          <div class="form-field-mobile" style="padding-top: 20px">
+          <div class="gd-form-field-mobile" style="padding-top: 20px">
             <div class="form-label">Pickup Code</div>
-            <input matInput class="form-input-mobile" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
-            <span class="error-hint" *ngIf="invalidPIN">Pickup Code is invalid</span>
+            <input matInput [className]="getDepositForm.get('pickupCode').errors && gdFormSubmitted ? 'form-input-mobile field-border-error' : 'form-input-mobile'" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
+            <div class="field-error-hint" *ngIf="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Pickup Code is invalid</div>
           </div>
 
         </div>
-        <span style="font-size: 13px; padding-top: 15px">
+        <div style="font-size: 13px; padding-top: 15px; padding-left: 10px; padding-right: 14px">
           <mat-checkbox formControlName="touCheckbox" style="padding-right: 5px"></mat-checkbox>
-          <span>By submitting the agent PIN, you confirm to receive &#x20b9; 100 in above account</span>
-        </span>
+          <span>By submitting the agent PIN, you confirm to receive &#x20b9; {{getAmt()}} in above account</span>
+        </div>
       </form>
 
 
@@ -100,6 +99,6 @@
   </div>
   <div mat-dialog-actions style="flex-wrap: inherit !important;">
     <button class="cancel-button" (click)="onNoClick()">Cancel</button>
-    <button class="submit-button" (click)="completePendingRequest()" [disabled]="getDepositForm.invalid">Submit</button>
+    <button class="submit-button" (click)="completePendingRequest()">Submit</button>
   </div>
 </div>

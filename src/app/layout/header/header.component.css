@@ -1007,7 +1007,7 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 422px;
+  left                : 516px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -1029,7 +1029,7 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 340px;
+  left                : 420px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -1051,7 +1051,7 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 181px;
+  left                : 264px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -1144,6 +1144,10 @@ div {
   color               : rgba(255, 255, 255, 1.0);
   text-align          : center;
   line-height         : 24.0px;
+}
+
+.bp1-u21b3u270fufe0fvalue-para {
+  font-size: 13px !important;
 }
 /* .anima-animate-appear prefix for appear animations */
 .anima-animate-appear {
@@ -1941,6 +1945,9 @@ div {
   color               : rgba(0, 175, 70, 1.0);
   text-align          : left;
   line-height         : 41.0px;
+}
+.bp2-u21b3u270fufe0fvalue-para {
+  font-size: 10.5px !important;
 }
 .bp2-mobileautheticationgetotp .bp2-headermobilelogout {
   background-color    : rgba(255,255,255,0.0);

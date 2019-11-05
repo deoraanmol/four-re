@@ -12,7 +12,8 @@ class DialogData {
   paymentType: String;
   accountId: String;
   requestId: String;
-  userId: String
+  userId: String;
+  rewardsPerBag: number;
 }
 
 @Component({
@@ -32,18 +33,18 @@ export class GetdepositDialogComponent implements OnInit {
               private currentUserService: CurrentUserService) { }
 
   getDepositForm: FormGroup;
-  societies: Society[] =[
-    {name: 'Grand Arch'},
-    {name: 'Ireo'},
-    {name: 'Valley View'}
-  ];
-  paymentTypes: PaymentTypes[] = [
-    {name: 'PayTM'}
-  ];
+  gdFormSubmitted: boolean = false;
+  societies: Society[] =[];
+  paymentTypes: PaymentTypes[] = [];
   invalidPIN = false;
 
   ngOnInit() {
     this.invalidPIN = false;
+    this.userHttpService.getAppConfig()
+      .subscribe(res => {
+        this.societies = res.societies;
+        this.paymentTypes = res.paymentTypes;
+      });
     this.getDepositForm = this.formBuilder.group({
       noOfBags: ['', Validators.required],
       paymentType: ['', Validators.required],
@@ -52,9 +53,9 @@ export class GetdepositDialogComponent implements OnInit {
       touCheckbox: [true, Validators.pattern('true')]
     });
     this.getDepositForm.patchValue({
-      noOfBags: this.data.noOfBags,
+        noOfBags: this.data.noOfBags,
       paymentType: this.data.paymentType,
-      accountId: this.data.accountId,
+      accountId: this.currentUserService.excludeCountryCode("IND", this.data.accountId),
       pickupCode: '',
     });
   }
@@ -69,11 +70,11 @@ export class GetdepositDialogComponent implements OnInit {
 
 
   redirectToHome() {
-    this.router.navigate(['/home-content']);
+    this.router.navigate(['/home']);
   }
 
   saveProfile() {
-    this.router.navigate(['/request-pickup']);
+    this.router.navigate(['/pickup']);
   }
 
   onNoClick(): void {
@@ -81,20 +82,28 @@ export class GetdepositDialogComponent implements OnInit {
   }
 
   completePendingRequest() {
-    this.userHttpService.completeRequestPickup({
-      _id: this.data.userId,
-      requestId: this.data.requestId,
-      pinCode: this.getDepositForm.controls.pickupCode.value,
-      noOfBags: this.getDepositForm.controls.noOfBags.value
-    }).subscribe(res => {
-      if(res.error) {
-        this.invalidPIN = true;
-      } else {
-        this.invalidPIN = false;
-        this.onNoClick();
-        this.currentUserService.openSnackbar(this.snackbar, "Request was successfully submitted", "Ok");
-      }
-    });
+    this.gdFormSubmitted = true;
+    if(this.getDepositForm.invalid) {
 
+    } else {
+      this.userHttpService.completeRequestPickup({
+        _id: this.data.userId,
+        requestId: this.data.requestId,
+        pinCode: this.getDepositForm.controls.pickupCode.value,
+        noOfBags: this.getDepositForm.controls.noOfBags.value
+      }).subscribe(res => {
+        if(res.error) {
+          this.invalidPIN = true;
+        } else {
+          this.invalidPIN = false;
+          this.onNoClick();
+          this.currentUserService.openSnackbar(this.snackbar, "Request was successfully completed", "Ok");
+        }
+      });
+    }
+  }
+
+  getAmt() {
+    return (this.getDepositForm.controls.noOfBags.value * this.data.rewardsPerBag);
   }
 }

@@ -2146,6 +2146,13 @@ div {
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
 }
+
+.bp1-u21b3u270fufe0fvalue-para {
+  font-size: 13px !important;
+}
+.bp2-u21b3u270fufe0fvalue-para {
+  font-size: 10.5px !important;
+}
 .bp1-home .bp1-headerlogout .bp1-button .bp1-text {
   background-color    : rgba(255,255,255,0.0);
   top                 : 9px;

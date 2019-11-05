@@ -33,7 +33,7 @@
 
 .pickup-form-container {
   margin-left: 13%;
-  height: 575px;
+  height: 480px;
   width: 940px;
   background-color: white;
   border-radius: 10px;
@@ -44,19 +44,21 @@
 .pickup-form-container-mobile {
   background-color: white;
   border-radius: 10px;
-  margin: 40px 10px 10px;
+  margin: 30px 10px 10px;
   position: relative;
 }
 
-.header-container {
+.rp-header-container {
   padding-top: 40px;
+  padding-bottom: 15px;
 }
 
-.header-container-mobile {
-  padding-top: 40px;
+.rp-header-container-mobile {
+  padding-top: 25px;
+  padding-bottom: 15px;
 }
 
-.header-text {
+.rp-header-text {
   background-color: rgba(255,255,255,0.0);
   height: auto;
   width: auto;
@@ -68,7 +70,7 @@
   line-height: 41.0px;
 }
 
-.header-hint {
+.rp-header-hint {
   background-color: rgba(255,255,255,0.0);
   height: auto;
   padding-top: 10px;
@@ -81,6 +83,7 @@
   text-align: center;
   line-height: 22.0px;
 }
+
 
 .header-hint-mobile {
   background-color: rgba(255,255,255,0.0);
@@ -115,10 +118,11 @@
 
 .submit-button {
   cursor: pointer;
+  outline: none;
   background-color: rgba(0, 175, 70, 1.0);
   right: 0px;
   top: 0px;
-  height: 100%;
+  height: 40px;
   width: 140px;
   margin: 0;
   transform: rotate(0deg);
@@ -131,9 +135,10 @@
 
 .cancel-button {
   cursor: pointer;
+  outline: none;
   background-color: rgba(255,255,255,0.0);
   border-color: rgba(0, 175, 70, 1.0);
-  height: 100%;
+  height: 40px;
   width: 140px;
   margin: 0;
   transform: rotate(0deg);
@@ -193,7 +198,7 @@
   margin-top: 10px;
 }
 
-.form-line-multiple-fields {
+.rp-form-line-multiple-fields {
   display: flex;
   justify-content: space-evenly;
   margin-top: 20px;
@@ -216,9 +221,19 @@
   margin-top: 4px;
 }
 
+.rp-half-field {
+  width: 150px !important;
+  margin-top: 15px;
+}
+
 .half-field-mobile {
   width: 140px !important;
   margin-top: 4px;
+}
+
+.rp-half-field-mobile {
+  width: 140px !important;
+  margin-top: 15px;
 }
 
 .custom-short-field {
@@ -3083,7 +3098,7 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 422px;
+  left                : 516px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -3097,6 +3112,7 @@ div {
 }
 .bp1-requestpickup .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-aboutus:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-requestpickup .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-faq {
   background-color    : rgba(255,255,255,0.0);
@@ -3105,7 +3121,7 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 340px;
+  left                : 420px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -3119,6 +3135,7 @@ div {
 }
 .bp1-requestpickup .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-faq:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-requestpickup .bp1-headerloggedin .bp1-headerbase .bp1-menu1 .bp1-whyreuse {
   background-color    : rgba(255,255,255,0.0);
@@ -3127,7 +3144,8 @@ div {
   width               : auto;
   position            : absolute;
   margin              : 0;
-  left                : 181px;
+  left                : 264px;
+  cursor: pointer;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -3147,6 +3165,7 @@ div {
   top                 : 0px;
   height              : auto;
   width               : auto;
+  cursor: pointer;
   position            : absolute;
   margin              : 0;
   left                : 0px;
