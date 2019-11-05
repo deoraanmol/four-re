@@ -59,7 +59,6 @@ router.get('/pending-requests/:userId', function(req, res, next) {
 /* GET APP CONFIG */
 router.get('/get-app-config/:type', function(req, res, next) {
   try {
-    throw new Error("ererer");
     res.json({
       rewardsPerBag: appConfig.rewardsPerBag,
       paymentTypes: appConfig.paymentTypes,
