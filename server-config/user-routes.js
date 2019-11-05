@@ -67,12 +67,13 @@ router.get('/get-app-config/:type', function(req, res, next) {
   });
 });
 
-router.get('/get-time-slots/:currentHrs', function(req, res, next) {
+router.post('/get-time-slots', function(req, res, next) {
+
   let nextGreaterIndex = -1;
   let allTimeSlots = [];
   let todayTimeSlots = [];
   let tomorrowTimeSlots = [];
-  const currentHours = Number.parseInt(req.params.currentHrs);
+  const currentHours = req.body.currentHrs;
   for(let idx = 0; idx< appConfig.givenTimeSlots.length; idx++) {
     if(appConfig.givenTimeSlots[idx] > currentHours) {
       nextGreaterIndex = idx;
