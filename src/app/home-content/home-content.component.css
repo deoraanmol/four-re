@@ -1135,21 +1135,20 @@ div {
   line-height         : 33.0px;
 }
 .bp1-home .bp1-faq .bp1-frequentlyaskedque {
-  background-color    : rgba(255,255,255,0.0);
-  top                 : 0px;
-  height              : auto;
-  width               : auto;
-  position            : absolute;
-  margin              : 0;
-  left                : 383px;
-  -ms-transform       : rotate(0deg); /* IE 9 */
-  -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
-  transform           : rotate(0deg);
-  font-family         : "OpenSans-SemiBold", Helvetica, Arial, serif;
-  font-size           : 40.0px;
-  color               : rgba(0, 0, 0, 1.0);
-  text-align          : left;
-  line-height         : 55.0px;
+  background-color: rgba(255,255,255,0.0);
+  top: 0px;
+  height: auto;
+  width: auto;
+  position: relative;
+  margin: 0;
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  font-family: "OpenSans-SemiBold", Helvetica, Arial, serif;
+  font-size: 40.0px;
+  color: rgba(0, 0, 0, 1.0);
+  text-align: center;
+  line-height: 55.0px;
 }
 .bp1-home .bp1-whyreuse {
   background-color    : rgba(255,255,255,0.0);
@@ -1773,13 +1772,13 @@ div {
   line-height         : 55.0px;
 }
 .bp1-home .bp1-headerlogout {
+  box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
   width               : 1400px;
-  position            : absolute;
+  position            : fixed;
   margin              : 0;
-  left                : 0px;
   overflow            : hidden;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
@@ -2002,8 +2001,10 @@ div {
   height              : 27px;
   width               : 606px;
   position            : absolute;
+  display: flex;
+  justify-content: space-evenly;
   margin              : 0;
-  left                : 570px;
+  left                : 600px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -2035,7 +2036,6 @@ div {
   top                 : 0px;
   height              : auto;
   width               : auto;
-  position            : absolute;
   margin              : 0;
   left                : 422px;
   -ms-transform       : rotate(0deg); /* IE 9 */
@@ -2051,13 +2051,13 @@ div {
 }
 .bp1-home .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-aboutus1:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-home .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-faq1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
   width               : auto;
-  position            : absolute;
   margin              : 0;
   left                : 340px;
   -ms-transform       : rotate(0deg); /* IE 9 */
@@ -2073,13 +2073,13 @@ div {
 }
 .bp1-home .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-faq1:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-home .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-whyreuse1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
   width               : auto;
-  position            : absolute;
   margin              : 0;
   left                : 181px;
   -ms-transform       : rotate(0deg); /* IE 9 */
@@ -2095,13 +2095,13 @@ div {
 }
 .bp1-home .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-whyreuse1:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-home .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-howitworks1 {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : auto;
   width               : auto;
-  position            : absolute;
   margin              : 0;
   left                : 0px;
   -ms-transform       : rotate(0deg); /* IE 9 */
@@ -2117,15 +2117,16 @@ div {
 }
 .bp1-home .bp1-headerlogout .bp1-headerbase .bp1-menu .bp1-howitworks1:hover {
   transform           : scale(1.1);
+  cursor: pointer;
 }
 .bp1-home .bp1-headerlogout .bp1-button {
   background-color    : rgba(255,255,255,0.0);
   top                 : 19px;
   height              : 42px;
-  width               : 140px;
+  width               : 180px;
   position            : absolute;
   margin              : 0;
-  left                : 1234px;
+  left                : 1196px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -2138,8 +2139,6 @@ div {
   background-color    : rgba(0, 175, 70, 1.0);
   top                 : 0px;
   height              : 42px;
-  width               : 140px;
-  position            : absolute;
   margin              : 0;
   left                : 0px;
   -ms-transform       : rotate(0deg); /* IE 9 */
@@ -2148,16 +2147,16 @@ div {
 }
 
 .bp1-u21b3u270fufe0fvalue-para {
-  font-size: 13px !important;
+  font-size: 18px !important;
 }
 .bp2-u21b3u270fufe0fvalue-para {
-  font-size: 10.5px !important;
+  font-size: 14px !important;
 }
 .bp1-home .bp1-headerlogout .bp1-button .bp1-text {
   background-color    : rgba(255,255,255,0.0);
   top                 : 9px;
   height              : 24px;
-  width               : 101px;
+  width               : 141px;
   position            : absolute;
   margin              : 0;
   left                : 20px;
@@ -3989,13 +3988,13 @@ div {
   line-height         : 36.0px;
 }
 .bp2-mobilehome .bp2-headermobilelogout {
+  box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
   width               : 360px;
-  position            : absolute;
+  position            : fixed;
   margin              : 0;
-  left                : 0px;
   overflow            : hidden;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
@@ -4178,10 +4177,10 @@ div {
   background-color    : rgba(255,255,255,0.0);
   top                 : 25px;
   height              : 30px;
-  width               : 100px;
+  width               : 120px;
   position            : absolute;
   margin              : 0;
-  left                : 240px;
+  left                : 220px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -4194,8 +4193,6 @@ div {
   background-color    : rgba(0, 175, 70, 1.0);
   top                 : 0px;
   height              : 30px;
-  width               : 100px;
-  position            : absolute;
   margin              : 0;
   left                : 0px;
   -ms-transform       : rotate(0deg); /* IE 9 */
@@ -4206,7 +4203,7 @@ div {
   background-color    : rgba(255,255,255,0.0);
   top                 : 5px;
   height              : 19px;
-  width               : 78px;
+  width               : 104px;
   position            : absolute;
   margin              : 0;
   left                : 11px;

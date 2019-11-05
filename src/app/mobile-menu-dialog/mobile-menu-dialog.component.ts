@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {GetdepositDialogComponent} from '../getdeposit-dialog/getdeposit-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-mobile-menu-dialog',
@@ -9,12 +10,19 @@ import {GetdepositDialogComponent} from '../getdeposit-dialog/getdeposit-dialog.
 })
 export class MobileMenuDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<GetdepositDialogComponent>) { }
+  constructor(public dialogRef: MatDialogRef<GetdepositDialogComponent>,
+              private router: Router) { }
+  anchorTag: string = '';
 
   ngOnInit() {
   }
 
   closeMobMenuDialog() {
-    this.dialogRef.close();
+    this.dialogRef.close({anchorId: this.anchorTag});
+  }
+
+  scrollMobile(anchorId: string) {
+    this.anchorTag = anchorId;
+    this.closeMobMenuDialog();
   }
 }

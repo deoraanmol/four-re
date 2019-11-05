@@ -743,6 +743,7 @@ div {
   line-height         : 41.0px;
 }
 .bp1-autheticationgetotp .bp1-headerlogout {
+  box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
@@ -1950,6 +1951,7 @@ div {
   font-size: 10.5px !important;
 }
 .bp2-mobileautheticationgetotp .bp2-headermobilelogout {
+  box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
   height              : 80px;
