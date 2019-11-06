@@ -4,6 +4,7 @@ import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import {PendingPickups} from '../interfaces/PendingPickups';
 import {Observable} from 'rxjs';
+import {Validators} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,14 @@ export class CurrentUserService {
   currentUserData: {};
   pendingPickups: PendingPickups[] = [];
   userRefreshed = new EventEmitter<any>();
+  phoneNumberValidator = [
+    Validators.required,
+    Validators.pattern("^[1-9][0-9]{0,11}$"),
+    Validators.maxLength(10),
+    Validators.minLength(10)];
+  emailValidator = [
+    Validators.required,
+    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')];
 
   refreshUserData(angularFireAuth: AngularFireAuth) {
     angularFireAuth.user.subscribe(result => {
@@ -60,7 +69,7 @@ export class CurrentUserService {
 
   signOutUser(angularFireAuth) {
     angularFireAuth.auth.signOut().then(() => {
-      this.navToLogin();
+      this.navToHome();
     });
   }
 
@@ -90,4 +99,10 @@ export class CurrentUserService {
   constructor(private userHttpService: UserHttpService,
               private router: Router) { }
 
+  isPayTM(paymentType) {
+    if(paymentType.toLowerCase() === "paytm"){
+      return true;
+    }
+    return false;
+  }
 }

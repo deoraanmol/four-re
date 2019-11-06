@@ -88,9 +88,11 @@
 .pending-request-box {
   border: 1px solid #d2dada;
   margin-right: 30px;
+  background: #F4F6FC;
 }
 
 .completed-request-box {
+  border: 1px solid #d2dada;
   background: #F4F6FC;
   border: 1px solid #e4eef5;
 }
@@ -116,6 +118,11 @@
   -webkit-transform: rotate(0deg);
   transform: rotate(0deg);
   font-family: "OpenSans-SemiBold", Helvetica, Arial, serif;
+}
+
+.re-user-req-completed-header {
+  font-weight: 500;
+  margin-top: 20px;
 }
 
 .form-field-mobile {

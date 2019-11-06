@@ -59,7 +59,17 @@ export class LoginComponent implements OnInit {
 
   private navigateToRequestPickup(user) {
     this.currentUserService.currentUserData = user;
-    this.router.navigate(['/pickup']);
+    this.userHttpService
+      .getPendingPickups(user['_id'])
+      .subscribe(res => {
+        debugger
+        if(res && res.length > 0) {
+          //there are pending requests, dont allow a new pickup -> navigate directly to my rewards
+          this.currentUserService.navToRewardsEarned();
+        } else {
+          this.router.navigate(['/pickup']);
+        }
+    });
   }
 
   successCallback($event: FirebaseUISignInSuccessWithAuthResult) {

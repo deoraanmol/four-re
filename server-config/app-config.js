@@ -1,9 +1,7 @@
 module.exports = {
   rewardsPerBag: 10,
   paymentTypes: [
-    {name: 'PayTM'},
-    {name: 'Amazon Pay'},
-    {name: 'UPI'}
+    {name: 'PayTM'}
   ],
   societies: [
     {name: 'Ireo Grand Arch'},

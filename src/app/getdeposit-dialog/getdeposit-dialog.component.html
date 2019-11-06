@@ -9,13 +9,17 @@
         <div class="form-line">
           <div class="form-field">
             <div class="form-label">Number of Bags</div>
-            <input matInput [className]="getDepositForm.get('noOfBags').errors && gdFormSubmitted ? 'form-value field-border-error' : 'form-value'" formControlName="noOfBags" type="number" placeholder="Number of Bags">
-            <div class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors && gdFormSubmitted">Number of Bags is required</div>
+            <input matInput min="1" [className]="getDepositForm.get('noOfBags').errors && gdFormSubmitted ? 'form-value field-border-error' : 'form-value'" formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <div class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors && gdFormSubmitted">
+              <span class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors.required">Number of Bags is required</span>
+              <span class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors.min">Number of Bags must be greater than 0</span>
+              <span class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors.pattern">Number of Bags cannot have a decimal value</span>
+            </div>
           </div>
           <div class="form-line-multiple-fields">
             <div class="form-field custom-short-field" style="padding-right: 20px">
               <div class="form-label">Credit &#x20b9; {{getAmt()}} To</div>
-              <select formControlName="paymentType" class="form-field-dropdown gd-half-field">
+              <select formControlName="paymentType" class="form-field-dropdown gd-half-field" (change)="changePaymentType()">
                 <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                   {{paymentType.name}}
                 </option>
@@ -24,13 +28,19 @@
             <div class="form-field custom-short-field">
               <div class="form-label">Account Id</div>
               <input [className]="getDepositForm.get('accountId').errors && gdFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
-              <div class="field-error-hint" *ngIf="getDepositForm.get('accountId').errors && gdFormSubmitted">Account Id is required</div>
+              <div class="field-error-hint" *ngIf="getDepositForm.get('accountId').errors && gdFormSubmitted">
+                <span *ngIf="getDepositForm.get('accountId').errors.required; else invalidAccountIdWeb">Account Id is required</span>
+                <ng-template #invalidAccountIdWeb>Account Id is invalid</ng-template>
+              </div>
             </div>
           </div>
           <div class="form-field" style="padding-top: 20px">
             <div class="form-label">Pickup Code</div>
             <input matInput formControlName="pickupCode" type="number" placeholder="Enter pickup code" [className]="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted) ? 'form-input field-border-error' : 'form-input'">
-            <div class="field-error-hint" *ngIf="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Pickup Code is invalid</div>
+            <div class="field-error-hint" *ngIf="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted)">
+              <span *ngIf="invalidPIN && !(getDepositForm.get('pickupCode').errors)">Pickup Code is invalid</span>
+              <span *ngIf="(getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Pickup Code is required</span>
+            </div>
           </div>
 
         </div>
@@ -63,7 +73,11 @@
           <div class="gd-form-field-mobile">
             <div class="form-label">Number of Bags</div>
             <input matInput [className]="getDepositForm.get('noOfBags').errors && gdFormSubmitted ? 'form-input-disabled-mobile field-border-error' : 'form-input-disabled-mobile'" formControlName="noOfBags" type="number" placeholder="Number of Bags">
-            <div class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors && gdFormSubmitted">Number of Bags is required</div>
+            <div class="field-error-hint-mobile" *ngIf="getDepositForm.get('noOfBags').errors && gdFormSubmitted">
+              <span *ngIf="getDepositForm.get('noOfBags').errors.required">Number of Bags is required</span>
+              <span *ngIf="getDepositForm.get('noOfBags').errors.min">Number of Bags must be greater than 0</span>
+              <span *ngIf="getDepositForm.get('noOfBags').errors.pattern">Number of Bags cannot have a decimal value</span>
+            </div>
           </div>
           <div class="form-line-multiple-fields-mobile">
             <div class="gd-form-field-mobile">
@@ -77,13 +91,19 @@
             <div class="gd-form-field-mobile">
               <div class="form-label">Account Id</div>
               <input [className]="getDepositForm.get('accountId').errors && gdFormSubmitted ? 'form-value-mobile field-border-error' : 'form-value-mobile'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
-              <div class="field-error-hint" *ngIf="getDepositForm.get('accountId').errors && gdFormSubmitted">Account Id is required</div>
+              <div class="field-error-hint" *ngIf="getDepositForm.get('accountId').errors && gdFormSubmitted">
+                <span *ngIf="getDepositForm.get('accountId').errors.required; else invalidAccountIdMobile">Account Id is required</span>
+                <ng-template #invalidAccountIdMobile>Account Id is invalid</ng-template>
+              </div>
             </div>
           </div>
           <div class="gd-form-field-mobile" style="padding-top: 20px">
             <div class="form-label">Pickup Code</div>
             <input matInput [className]="getDepositForm.get('pickupCode').errors && gdFormSubmitted ? 'form-input-mobile field-border-error' : 'form-input-mobile'" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
-            <div class="field-error-hint" *ngIf="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Pickup Code is invalid</div>
+            <div class="field-error-hint-mobile" *ngIf="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted)">
+              <span *ngIf="invalidPIN && !(getDepositForm.get('pickupCode').errors)">Pickup Code is invalid</span>
+              <span *ngIf="(getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Pickup Code is required</span>
+            </div>
           </div>
 
         </div>

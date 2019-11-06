@@ -58,8 +58,8 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
-              <div style="padding-bottom: 20px">
+            <div>
+              <div style="padding-bottom: 20px" *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
                 <div style="margin-left: 50%; transform: translateX(-35%);">
                   <img src="assets/img/mobile-dashboard-pickups-completed-group-61@2x.png" style="height: 80px; width: 100px;" />
                   <div style="padding-top: 15px">
@@ -67,8 +67,8 @@
                   </div>
                 </div>
               </div>
-              <div style="border: 2px solid #2196f3; margin-right: 20px; border-radius: 5px;">
-                <h4 style="font-weight: 500; margin-top: 5px">Completed Request(s)</h4>
+              <div style="margin-right: 20px; border-radius: 5px;" *ngIf="completedPickups.length > 0">
+                <h3 class="re-user-req-completed-header">Completed Request(s)</h3>
                 <div class="pending-requests-list">
                   <div class="completed-request-box" *ngFor="let completedPickup of completedPickups">
                     <!--              <div class="pending-request-box">-->
@@ -109,14 +109,18 @@
                 </div>
                 <div class="form-field-mobile" style="width: 285px">
                   <div class="form-label">Email</div>
-                  <input matInput class="form-input" formControlName="email" placeholder="Enter Name">
+                  <input matInput [className]="userProfileForm.get('email').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="email" placeholder="Enter Name">
+                  <span class="field-error-hint" *ngIf="userProfileForm.get('email').errors && upFormSubmitted">
+                    <span *ngIf="userProfileForm.get('email').errors.required; else upInvalidEmailMobile">Email is required</span>
+                    <ng-template #upInvalidEmailMobile>Email is invalid</ng-template>
+                  </span>
                 </div>
               </div>
               <div class="form-line-mobile">
                 <div class="form-line-multiple-fields form-field-padding">
                   <div class="form-field custom-short-field" style="padding-right: 20px;">
                     <div class="form-label">Society</div>
-                    <select formControlName="society" class="form-field-dropdown half-field">
+                    <select formControlName="society" class="form-field-dropdown half-field" style="margin-top: 14px">
                       <option *ngFor="let society of societies" [value]="society.name">
                         {{society.name}}
                       </option>
@@ -124,13 +128,14 @@
                   </div>
                   <div class="form-field custom-short-field">
                     <div class="form-label">Flat Number</div>
-                    <input class="form-value" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+                    <input [className]="userProfileForm.get('flatNumber').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+                    <span class="field-error-hint" *ngIf="userProfileForm.get('flatNumber').errors && upFormSubmitted">Flat Number is required</span>
                   </div>
                 </div>
                 <div class="form-line-multiple-fields">
                   <div class="form-field custom-short-field" style="padding-right: 20px">
                     <div class="form-label">Credit To</div>
-                    <select formControlName="creditTo" class="form-field-dropdown half-field">
+                    <select formControlName="creditTo" class="form-field-dropdown half-field" (click)="changePaymentType()" style="margin-top: 14px">
                       <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                         {{paymentType.name}}
                       </option>
@@ -138,7 +143,11 @@
                   </div>
                   <div class="form-field custom-short-field">
                     <div class="form-label">Account Id</div>
-                    <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+                    <input [className]="userProfileForm.get('accountId').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+                    <span class="field-error-hint" *ngIf="userProfileForm.get('accountId').errors && upFormSubmitted">
+                      <span *ngIf="userProfileForm.get('accountId').errors.required; else upInvalidAccMobile">Account Id is required</span>
+                      <ng-template #upInvalidAccMobile>Account Id is invalid</ng-template>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -179,8 +188,7 @@
             <span class="bp2-myaccount">My Account</span>
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
             <mat-menu #menuMobile="matMenu" class="re-dropdown-mobile">
-              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
-              <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
+              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Rewards</button>
               <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
             </mat-menu>
           </button>
@@ -241,8 +249,7 @@
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="dropdown">
-            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
-            <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
+            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Rewards</button>
             <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
           </mat-menu>
         </div>
@@ -314,8 +321,8 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
-              <div style="padding-bottom: 20px">
+            <div>
+              <div style="padding-bottom: 20px" *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
                 <div style="margin-left: 50%; transform: translateX(-24%);">
                   <img src="assets/img/mobile-dashboard-pickups-completed-group-61@2x.png" style="height: 100px; width: 145px" />
                   <div style="padding-top: 15px">
@@ -323,8 +330,8 @@
                   </div>
                 </div>
               </div>
-              <div style="border: 2px solid #2196f3; margin-right: 20px; border-radius: 5px;">
-                <h4 style="font-weight: 500; margin-top: 5px;">Completed Request(s)</h4>
+              <div style="margin-right: 20px; border-radius: 5px;"  *ngIf="completedPickups.length > 0">
+                <h3 class="re-user-req-completed-header">Completed Request(s)</h3>
                 <div class="pending-requests-list">
                   <div class="completed-request-box" *ngFor="let completedPickup of completedPickups">
                     <div class="pending-request-money">
@@ -371,18 +378,23 @@
               <div class="form-line-multiple-fields">
                 <div class="form-field form-field-padding">
                   <div class="form-label">Name</div>
-                  <input matInput class="form-input" formControlName="name" placeholder="Enter Name">
+                  <input matInput [className]="userProfileForm.get('name').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="name" placeholder="Enter Name">
+                  <span class="field-error-hint" *ngIf="userProfileForm.get('name').errors && upFormSubmitted">Name is required</span>
                 </div>
                 <div class="form-field">
                   <div class="form-label">Email</div>
-                  <input matInput class="form-input" formControlName="email" placeholder="Enter Name">
+                  <input matInput [className]="userProfileForm.get('email').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="email" placeholder="Enter Name">
+                  <span class="field-error-hint" *ngIf="userProfileForm.get('email').errors && upFormSubmitted">
+                    <span *ngIf="userProfileForm.get('email').errors.required; else upInvalidEmailWeb">Email is required</span>
+                    <ng-template #upInvalidEmailWeb>Email is invalid</ng-template>
+                  </span>
                 </div>
               </div>
               <div class="form-line-multiple-fields">
                 <div class="form-line-multiple-fields form-field-padding">
                   <div class="form-field custom-short-field" style="padding-right: 20px">
                     <div class="form-label">Society</div>
-                    <select formControlName="society" class="form-field-dropdown half-field">
+                    <select formControlName="society" class="form-field-dropdown half-field" style="margin-top: 14px">
                       <option *ngFor="let society of societies" [value]="society.name">
                         {{society.name}}
                       </option>
@@ -390,13 +402,14 @@
                   </div>
                   <div class="form-field custom-short-field">
                     <div class="form-label">Flat Number</div>
-                    <input class="form-value" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+                    <input [className]="userProfileForm.get('flatNumber').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+                    <span class="field-error-hint" *ngIf="userProfileForm.get('flatNumber').errors && upFormSubmitted">Flat Number is required</span>
                   </div>
                 </div>
                 <div class="form-line-multiple-fields">
                   <div class="form-field custom-short-field" style="padding-right: 20px">
                     <div class="form-label">Credit To</div>
-                    <select formControlName="creditTo" class="form-field-dropdown half-field">
+                    <select formControlName="creditTo" class="form-field-dropdown half-field" (click)="changePaymentType()" style="margin-top: 14px">
                       <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                         {{paymentType.name}}
                       </option>
@@ -404,7 +417,11 @@
                   </div>
                   <div class="form-field custom-short-field">
                     <div class="form-label">Account Id</div>
-                    <input class="form-value" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+                    <input [className]="userProfileForm.get('accountId').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+                    <span class="field-error-hint" *ngIf="userProfileForm.get('accountId').errors && upFormSubmitted">
+                      <span *ngIf="userProfileForm.get('accountId').errors.required; else upInvalidAccWeb">Account Id is required</span>
+                      <ng-template #upInvalidAccWeb>Account Id is invalid</ng-template>
+                    </span>
                   </div>
                 </div>
               </div>

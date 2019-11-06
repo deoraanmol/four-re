@@ -112,6 +112,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #DC151D;
 }
 
+.field-error-hint-mobile {
+  font-size: 9.5px !important;
+  color: #DC151D;
+}
+
 .field-border-error {
   border-color: #DC151D !important;
 }

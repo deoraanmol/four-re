@@ -28,10 +28,12 @@ export class RequestPickupComponent implements OnInit {
   currentUser = {};
   form: FormGroup;
   user: Observable<object>;
+  rewardsPerBag: number = 10;
 
   constructor(private formBuilder: FormBuilder,
               private timeSlotService: TimeSlotServiceService,
               private router: Router,
+              private userHttpService: UserHttpService,
               private angularFireAuth: AngularFireAuth,
               private currentUserService: CurrentUserService,
               private userhttpService: UserHttpService,
@@ -51,6 +53,23 @@ export class RequestPickupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.afterInitSteps();
+  }
+
+  isNewReqAllowed() {
+    this.userHttpService
+      .getPendingPickups(this.currentUserService.currentUserData['_id'])
+      .subscribe(res => {
+        if(res && res.length > 0) {
+          //there are pending requests, dont allow a new pickup -> navigate directly to my rewards
+          this.currentUserService.navToRewardsEarned();
+        } else {
+        }
+      });
+  }
+
+
+  afterInitSteps() {
     this.currentUserService.refreshUserData(this.angularFireAuth);
     this.userhttpService.getTimeSlots(new Date().getHours())
       .subscribe(res => {
@@ -59,6 +78,7 @@ export class RequestPickupComponent implements OnInit {
       });
     this.userhttpService.getAppConfig()
       .subscribe(res => {
+        this.rewardsPerBag = res.rewardsPerBag;
         this.societies = res.societies;
         this.paymentTypes = res.paymentTypes;
         this.requestPickupValidations.controls['society'].setValue(this.societies[0].name);
@@ -66,13 +86,16 @@ export class RequestPickupComponent implements OnInit {
       })
     this.requestPickupValidations = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.compose(this.currentUserService.emailValidator)],
       society: ['', Validators.required],
       flatNumber: ['', Validators.required],
       creditTo: ['', Validators.required],
-      accountId: [this.currentUserService.excludeCountryCode("IND", this.currentUser['phoneNumber']), Validators.required],
+      accountId:
+        [ this.currentUserService.excludeCountryCode("IND", this.currentUser['phoneNumber']),
+          Validators.compose(this.currentUserService.phoneNumberValidator)
+        ],
       phoneNumber: [''],
-      noOfBags: ['', [Validators.required]],
+      noOfBags: [1, Validators.compose([Validators.min(1), Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])],
       pickupTimeSlot: ['', Validators.required]
     });
     this.currentUserService.userRefreshed
@@ -89,6 +112,7 @@ export class RequestPickupComponent implements OnInit {
               ? this.currentUserService.excludeCountryCode("IND", this.currentUser['accountId'])
               : this.currentUserService.excludeCountryCode("IND", this.currentUser['phoneNumber'])
           });
+          this.isNewReqAllowed();
         } else {
           // this.router.navigate(['/get-started']);
         }
@@ -99,9 +123,10 @@ export class RequestPickupComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   requestPickup() {
+    debugger
     this.formSubmitted = true;
     if(this.requestPickupValidations.status === "INVALID") {
-      this.currentUserService.openSnackbar(this.snackar, "There are some errors in the form", "Ok");
+
     } else {
       if(this.currentUser['phoneNumber']) {
         var requestPickupRequest = {
@@ -162,5 +187,22 @@ export class RequestPickupComponent implements OnInit {
 
   takeHomeAt(anchorId: string) {
      this.router.navigate(["/home"], {state: {anchorId: anchorId}});
+  }
+
+  changePaymentType() {
+    if(this.currentUserService.isPayTM(this.requestPickupValidations.controls['creditTo'].value)) {
+      this.requestPickupValidations.controls['accountId'].setValidators(this.currentUserService.phoneNumberValidator);
+    } else {
+      this.requestPickupValidations.controls['accountId'].setValidators(Validators.required);
+    }
+    this.requestPickupValidations.controls["accountId"].updateValueAndValidity();
+  }
+
+  getAmt() {
+    var amt = (this.requestPickupValidations.controls.noOfBags.value * this.rewardsPerBag);
+    if(amt < 0) {
+      return 0;
+    }
+    return amt;
   }
 }

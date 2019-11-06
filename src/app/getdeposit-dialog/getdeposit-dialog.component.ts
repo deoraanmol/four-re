@@ -46,9 +46,9 @@ export class GetdepositDialogComponent implements OnInit {
         this.paymentTypes = res.paymentTypes;
       });
     this.getDepositForm = this.formBuilder.group({
-      noOfBags: ['', Validators.required],
+      noOfBags: ['', Validators.compose([Validators.min(1), Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])],
       paymentType: ['', Validators.required],
-      accountId: ['', Validators.required],
+      accountId: ['', Validators.compose(this.currentUserService.phoneNumberValidator)],
       pickupCode: ['', Validators.required],
       touCheckbox: [true, Validators.pattern('true')]
     });
@@ -105,5 +105,14 @@ export class GetdepositDialogComponent implements OnInit {
 
   getAmt() {
     return (this.getDepositForm.controls.noOfBags.value * this.data.rewardsPerBag);
+  }
+
+  changePaymentType() {
+    if(this.currentUserService.isPayTM(this.getDepositForm.controls['paymentType'].value)) {
+      this.getDepositForm.controls['accountId'].setValidators(this.currentUserService.phoneNumberValidator);
+    } else {
+      this.getDepositForm.controls['accountId'].setValidators(Validators.required);
+    }
+    this.getDepositForm.controls["accountId"].updateValueAndValidity();
   }
 }

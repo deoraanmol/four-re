@@ -66,6 +66,17 @@ export class UserHttpService {
       );
   }
 
+  updateRequests(requestIds, data): Observable<any> {
+    let obj = {
+      _ids: requestIds,
+      status: data.status
+    }
+    return this.http.post(apiUrl+'/request-pickups/update', obj, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   completeRequestPickup(data): Observable<any> {
     return this.http.post(apiUrl+'/request-pickup/complete', data, httpOptions)
       .pipe(
@@ -85,8 +96,8 @@ export class UserHttpService {
         catchError(this.handleError)
       );
   }
-  getRequestPins(status: string): Observable<any> {
-    return this.http.get(apiUrl+'/requests/'+status, httpOptions)
+  getRequestPins(status: string, obj): Observable<any> {
+    return this.http.post(apiUrl+'/requests/'+status, obj, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

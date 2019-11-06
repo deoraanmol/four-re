@@ -224,13 +224,33 @@ router.post('/request-pickup/cancel', function (req, res, next) {
 });
 
 
+/* UPDATE GROUP OF REQUEST PICKUPS (MAJORLY CANCELLING THEM) */
+router.post('/request-pickups/update', function (req, res, next) {
+  var reqPickupIds = req.body._ids;
+  var newStatus = req.body.status;
+  RequestPickupModel.updateMany({_id: {$in: reqPickupIds}}, {$set: {"status": newStatus}},
+    function (err, requestPickups) {
+      res.json(requestPickups);
+    });
+});
 
-
-
-router.get('/requests/:status', function(req, res, next) {
+//FIND REQUESTS
+router.post('/requests/:status', function(req, res, next) {
   var condition = {status: req.params.status};
   if(req.params.status === "ALL" || !(req.params.status)) {
     condition = {};
+  }
+  if(req.body.startTime) {
+    var yyyyMMdd = req.body.startTime;
+    var startDate = new Date(yyyyMMdd);
+    var endDate = new Date();
+    endDate = new Date(endDate.setDate(startDate.getDate() + 1));
+    var dateCond = {startTime: {$gte: startDate, $lte: endDate}};
+    if(Object.keys(condition).length > 0) {
+      condition = {$and: [condition, dateCond]}
+    } else {
+      condition = dateCond
+    }
   }
   var sortCondition = {startTime: -1};
   if(req.params.status === "PENDING") {sortCondition = {startTime : 1};}
