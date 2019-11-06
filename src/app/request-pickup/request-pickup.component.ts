@@ -95,7 +95,7 @@ export class RequestPickupComponent implements OnInit {
           Validators.compose(this.currentUserService.phoneNumberValidator)
         ],
       phoneNumber: [''],
-      noOfBags: [1, Validators.compose([Validators.min(1), Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])],
+      noOfBags: ['', Validators.compose([Validators.min(1), Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])],
       pickupTimeSlot: ['', Validators.required]
     });
     this.currentUserService.userRefreshed
@@ -108,6 +108,7 @@ export class RequestPickupComponent implements OnInit {
             phoneNumber: this.currentUser['phoneNumber'],
             flatNumber: this.currentUser['flatNumber'],
             creditTo: this.currentUser['creditTo'],
+            society: this.currentUser['society'],
             accountId: this.currentUser['accountId']
               ? this.currentUserService.excludeCountryCode("IND", this.currentUser['accountId'])
               : this.currentUserService.excludeCountryCode("IND", this.currentUser['phoneNumber'])
