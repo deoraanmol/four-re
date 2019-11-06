@@ -33,8 +33,7 @@
             <span class="bp2-myaccount">My Account</span>
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
             <mat-menu #menuMobile="matMenu" class="rp-dropdown-mobile">
-              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
-              <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
+              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Rewards</button>
               <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
             </mat-menu>
           </button>
@@ -54,8 +53,12 @@
         <div class="form-line-mobile" style="padding-top: 10px">
           <div class="rp-form-field">
             <div class="form-label">Number of Bags</div>
-            <input [className]="requestPickupValidations.get('noOfBags').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
-            <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors && formSubmitted">Number of Bags is required</span>
+            <input min="1" [className]="requestPickupValidations.get('noOfBags').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <span  *ngIf="requestPickupValidations.get('noOfBags').errors && formSubmitted">
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors.required">Number of Bags is required</span>
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors.min">Number of Bags must be greater than 0</span>
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors.pattern">Number of Bags cannot have a decimal value</span>
+            </span>
           </div>
           <div class="rp-form-field-mobile">
             <div class="form-label">Name</div>
@@ -78,7 +81,10 @@
           <div class="rp-form-field-mobile" style="padding-top: 20px !important;">
             <div class="form-label">Email</div>
             <input [className]="requestPickupValidations.get('email').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="email" type="text" placeholder="Enter email">
-            <span class="field-error-hint" *ngIf="requestPickupValidations.get('email').errors && formSubmitted">Email is invalid</span>
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('email').errors && formSubmitted">
+              <span *ngIf="requestPickupValidations.get('email').errors.required; else invalidEmailWeb">Email is required</span>
+              <ng-template #invalidEmailWeb>Email is invalid</ng-template>
+            </span>
           </div>
         </div>
 
@@ -100,7 +106,7 @@
           </div>
           <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
             <div class="rp-form-field-mobile custom-short-field-mobile" style="padding-right: 20px">
-              <div class="form-label">Credit To</div>
+              <div class="form-label">Credit &#x20b9; {{getAmt()}} To</div>
               <select formControlName="creditTo" class="form-field-dropdown rp-half-field-mobile">
                 <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                   {{paymentType.name}}
@@ -110,7 +116,10 @@
             <div class="rp-form-field-mobile custom-short-field-mobile">
               <div class="form-label">Account Id</div>
               <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
-              <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">Account Id is required</span>
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">
+                <span *ngIf="requestPickupValidations.get('accountId').errors.required; else rpInvalidAccMobile">Account Id is required</span>
+                <ng-template #rpInvalidAccMobile>Account Id is invalid</ng-template>
+              </span>
             </div>
           </div>
         </div>
@@ -121,7 +130,7 @@
                 style="margin-right: 20px !important; margin-left: -4px;">
           Cancel
         </button>
-        <button class="submit-button" (click)="requestPickup()" [disabled]="requestPickupValidations.invalid">Submit</button>
+        <button class="submit-button" (click)="requestPickup()">Submit</button>
       </div>
     </div>
   </div>
@@ -178,8 +187,7 @@
             <mat-icon aria-hidden="true" role="img" class="mat-icon notranslate material-icons mat-icon-no-color menu-arrow">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="dropdown">
-            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Pickups</button>
-            <button mat-menu-item (click)="openREScreen('PROFILE')">My Profile</button>
+            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Rewards</button>
             <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
           </mat-menu>
         </div>
@@ -198,8 +206,12 @@
         <div class="rp-form-line-multiple-fields">
           <div class="rp-form-field">
             <div class="form-label">Number of Bags</div>
-            <input [className]="requestPickupValidations.get('noOfBags').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
-            <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors && formSubmitted">Number of Bags is required</span>
+            <input min="1" [className]="requestPickupValidations.get('noOfBags').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
+            <span  *ngIf="requestPickupValidations.get('noOfBags').errors && formSubmitted">
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors.required">Number of Bags is required</span>
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors.min">Number of Bags must be greater than 0</span>
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors.pattern">Number of Bags cannot have a decimal value</span>
+            </span>
           </div>
           <div class="rp-form-field">
             <div class="form-label">Pickup Time</div>
@@ -221,7 +233,10 @@
           <div class="rp-form-field">
             <div class="form-label">Email</div>
             <input [className]="requestPickupValidations.get('email').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="email" type="text" placeholder="Enter email">
-            <span class="field-error-hint" *ngIf="requestPickupValidations.get('email').errors && formSubmitted">Email is invalid</span>
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('email').errors && formSubmitted">
+              <span *ngIf="requestPickupValidations.get('email').errors.required; else invalidEmailWeb">Email is required</span>
+              <ng-template #invalidEmailWeb>Email is invalid</ng-template>
+            </span>
           </div>
         </div>
 
@@ -243,8 +258,8 @@
           </div>
           <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
             <div class="form-field custom-short-field" style="padding-right: 20px">
-              <div class="form-label">Credit To</div>
-              <select formControlName="creditTo" class="form-field-dropdown rp-half-field">
+              <div class="form-label">Credit &#x20b9; {{getAmt()}} To</div>
+              <select formControlName="creditTo" class="form-field-dropdown rp-half-field" (change)="changePaymentType()">
                 <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
                   {{paymentType.name}}
                 </option>
@@ -253,7 +268,10 @@
             <div class="form-field custom-short-field">
               <div class="form-label">Account Id</div>
               <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
-              <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">Account Id is required</span>
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">
+                <span *ngIf="requestPickupValidations.get('accountId').errors.required; else rpInvalidAccountIdWeb">Account Id is required</span>
+                <ng-template #rpInvalidAccountIdWeb>Account Id is invalid</ng-template>
+              </span>
             </div>
           </div>
         </div>

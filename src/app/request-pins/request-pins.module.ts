@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { RequestPinsComponent } from './request-pins.component';
 import {RequestPinsRoutingModule} from './request-pins-routing.module';
-import {MatAutocompleteModule, MatFormFieldModule, MatSortModule, MatTableModule} from '@angular/material';
+import {
+  MatAutocompleteModule, MatCheckboxModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatNativeDateModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
@@ -17,7 +24,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatSortModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
-  ]
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule
+  ],
+  providers: [DatePipe]
 })
 export class RequestPinsModule { }

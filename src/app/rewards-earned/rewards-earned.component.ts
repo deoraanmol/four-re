@@ -61,12 +61,12 @@ export class RewardsEarnedComponent implements OnInit {
     this.afterUserRefreshed();
     this.userProfileForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.compose(this.currentUserService.emailValidator)],
       society: ['', Validators.required],
       flatNumber: ['', Validators.required],
       creditTo: ['', Validators.required],
-      accountId: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      accountId: ['', Validators.compose(this.currentUserService.phoneNumberValidator)],
+      phoneNumber: ['', []],
     });
     this.rewardsEarned = this.currentUserService.currentUserData
       ? this.currentUserService.currentUserData['rewardsEarned']
@@ -247,6 +247,15 @@ export class RewardsEarnedComponent implements OnInit {
 
   navToReqPickup() {
     this.router.navigate(['/pickup']);
+  }
+
+  changePaymentType() {
+    if(this.currentUserService.isPayTM(this.userProfileForm.controls['creditTo'].value)) {
+      this.userProfileForm.controls['accountId'].setValidators(this.currentUserService.phoneNumberValidator);
+    } else {
+      this.userProfileForm.controls['accountId'].setValidators(Validators.required);
+    }
+    this.userProfileForm.controls["accountId"].updateValueAndValidity();
   }
 }
 

@@ -14,6 +14,17 @@ table {
   width: 300px;
 }
 
+.rpins-filter-field {
+  border: 1px solid;
+}
+
+.rpins-form-value {
+  height: 30px;
+}
+
+.mat-datepicker-toggle {
+  color: black;
+}
 
 .mat-table {
   background: white;
