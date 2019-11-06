@@ -8,7 +8,7 @@
       <div class="parent-re-custom-header-mobile">
         <div class="header-container">
           <div class="header-text re-text-left">
-            Rewards Earned
+            Deposit Refunded
           </div>
           <div class="header-hint re-text-left">
             Security deposits credited to your account so far
@@ -52,7 +52,8 @@
                     </div>
                   </div>
                   <div style="padding-left: 10px; padding-bottom: 10px; padding-top: 20px;">
-                    <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog(pendingPickup)">Get Deposit</button>
+                    <button class="cancel-button footer-btns-mobile" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
+                    <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog(pendingPickup)">Add Pickup Code</button>
                     <!--                  <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog({})">Get Deposit</button>-->
                   </div>
                 </div>
@@ -109,7 +110,7 @@
                 </div>
                 <div class="form-field-mobile" style="width: 285px">
                   <div class="form-label">Email</div>
-                  <input matInput [className]="userProfileForm.get('email').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="email" placeholder="Enter Name">
+                  <input matInput [className]="userProfileForm.get('email').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="email" placeholder="Enter Email">
                   <span class="field-error-hint" *ngIf="userProfileForm.get('email').errors && upFormSubmitted">
                     <span *ngIf="userProfileForm.get('email').errors.required; else upInvalidEmailMobile">Email is required</span>
                     <ng-template #upInvalidEmailMobile>Email is invalid</ng-template>
@@ -128,7 +129,7 @@
                   </div>
                   <div class="form-field custom-short-field">
                     <div class="form-label">Flat Number</div>
-                    <input [className]="userProfileForm.get('flatNumber').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+                    <input [className]="userProfileForm.get('flatNumber').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
                     <span class="field-error-hint" *ngIf="userProfileForm.get('flatNumber').errors && upFormSubmitted">Flat Number is required</span>
                   </div>
                 </div>
@@ -188,7 +189,7 @@
             <span class="bp2-myaccount">My Account</span>
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
             <mat-menu #menuMobile="matMenu" class="re-dropdown-mobile">
-              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Rewards</button>
+              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Deposits</button>
               <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
             </mat-menu>
           </button>
@@ -249,7 +250,7 @@
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="dropdown">
-            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Rewards</button>
+            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Deposits</button>
             <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
           </mat-menu>
         </div>
@@ -259,7 +260,7 @@
       <div class="parent-re-custom-header">
         <div class="header-container" style="padding-bottom: 30px">
           <div class="header-text re-text-left">
-            Rewards Earned
+            Deposit Refunded
           </div>
           <div class="header-hint re-text-left">
             Security deposits credited to your account so far
@@ -315,7 +316,8 @@
                   </span>
                   </div>
                   <div style="padding-left: 30px; padding-bottom: 30px; height: 40px">
-                    <button class="submit-button" (click)="openGetDepositDialog(pendingPickup)">Get Deposit</button>
+                    <button class="cancel-button" [disabled]="!canCancel(pendingPickup)" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
+                    <button class="submit-button" style="width: 165px !important;" (click)="openGetDepositDialog(pendingPickup)">Add Pickup Code</button>
   <!--                  <button class="submit-button" (click)="openGetDepositDialog({})">Get Deposit</button>-->
                   </div>
                 </div>
@@ -383,7 +385,7 @@
                 </div>
                 <div class="form-field">
                   <div class="form-label">Email</div>
-                  <input matInput [className]="userProfileForm.get('email').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="email" placeholder="Enter Name">
+                  <input matInput [className]="userProfileForm.get('email').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="email" placeholder="Enter Email">
                   <span class="field-error-hint" *ngIf="userProfileForm.get('email').errors && upFormSubmitted">
                     <span *ngIf="userProfileForm.get('email').errors.required; else upInvalidEmailWeb">Email is required</span>
                     <ng-template #upInvalidEmailWeb>Email is invalid</ng-template>
@@ -402,7 +404,7 @@
                   </div>
                   <div class="form-field custom-short-field">
                     <div class="form-label">Flat Number</div>
-                    <input [className]="userProfileForm.get('flatNumber').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+                    <input [className]="userProfileForm.get('flatNumber').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
                     <span class="field-error-hint" *ngIf="userProfileForm.get('flatNumber').errors && upFormSubmitted">Flat Number is required</span>
                   </div>
                 </div>

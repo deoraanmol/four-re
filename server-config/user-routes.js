@@ -73,7 +73,9 @@ router.get('/get-app-config/:type', function(req, res, next) {
       paymentTypes: appConfig.paymentTypes,
       givenTimeSlots: appConfig.givenTimeSlots,
       givenTimeSlotInterval: appConfig.givenTimeSlotInterval,
-      societies: appConfig.societies
+      societies: appConfig.societies,
+      cannotCancelBefore: appConfig.cancelRequestConstraints.cannotCancelBefore,
+      cannotCancelAfter: appConfig.cancelRequestConstraints.cannotCancelAfter,
     });
   } catch(err) {
     next(err);
