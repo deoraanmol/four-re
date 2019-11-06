@@ -34,6 +34,8 @@ export class RewardsEarnedComponent implements OnInit {
   rewardsPerBag = 0;
   upFormSubmitted: boolean = false;
   pendingReqSpinner: boolean = false;
+  startX: number = 0;
+  endY: number = 0;
 
   constructor(private formBuilder: FormBuilder,
               private dialog: MatDialog,
@@ -57,6 +59,8 @@ export class RewardsEarnedComponent implements OnInit {
       .subscribe(res => {
         this.societies = res.societies;
         this.paymentTypes = res.paymentTypes;
+        this.startX = res.cannotCancelBefore;
+        this.endY = res.cannotCancelAfter;
       })
     this.afterUserRefreshed();
     this.userProfileForm = this.formBuilder.group({
@@ -205,12 +209,24 @@ export class RewardsEarnedComponent implements OnInit {
   }
 
   cancelPendingPickup(pendingPickup: PendingPickups) {
-    this.userHttpService.cancelRequestPickup(pendingPickup)
-      .subscribe(res => {
-        this.currentUserService.openSnackbar(this.snackbar, 'Request of Rs. '+pendingPickup.totalValue +
-          ' successfully cancelled', 'Ok');
-        this.currentUserService.refreshUserData(this.angularFireAuth);
-      });
+    const dialogRef = this.dialog.open(GeneralDialogComponent, {
+      width: '500px',
+      data: {
+        header: 'Cancel Request?',
+        content: "Are you sure you want to cancel the request?",
+        fields: {pendingPickup: pendingPickup}
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.action === "true") {
+        this.userHttpService.cancelRequestPickup(result.data.pendingPickup)
+          .subscribe(res => {
+            this.currentUserService.openSnackbar(this.snackbar, 'Request of Rs. '+pendingPickup.totalValue +
+              ' successfully cancelled', 'Ok');
+            this.currentUserService.refreshUserData(this.angularFireAuth);
+          });
+      }
+    });
   }
 
   openMobileMenuDialog() {
@@ -256,6 +272,36 @@ export class RewardsEarnedComponent implements OnInit {
       this.userProfileForm.controls['accountId'].setValidators(Validators.required);
     }
     this.userProfileForm.controls["accountId"].updateValueAndValidity();
+  }
+
+  canCancel(pendingPickup) {
+    console.log("here: "+this.startX);
+    var slotStartDateObj:any = new Date(pendingPickup.startTime);
+    var slotEndDateObj:any = new Date(pendingPickup.endTime);
+    var currentDateObj:any = new Date();
+    if(currentDateObj > slotEndDateObj) {
+      var diff = currentDateObj - slotEndDateObj;
+      var diffInMins = (diff/1000)/60;
+      if(diffInMins > this.endY) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      if(currentDateObj < slotEndDateObj && currentDateObj > slotStartDateObj) {
+        return false;
+      } else if(currentDateObj < slotStartDateObj) {
+        var diff = slotStartDateObj - currentDateObj;
+        var diffInMins = (diff/1000)/60;
+        if(diffInMins > this.startX) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
   }
 }
 

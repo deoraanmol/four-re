@@ -13,5 +13,9 @@ module.exports = {
     16: "04:00 PM",
     18: "06:00 PM",
     20: "08:00 PM",
+  },
+  cancelRequestConstraints: {
+    cannotCancelBefore: 60, //cannot cancel a request before X minutes of beginning of the time slot
+    cannotCancelAfter: 60, //cannot after Y minutes of the end of the time slot
   }
 }

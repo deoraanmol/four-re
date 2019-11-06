@@ -2,6 +2,7 @@
 <div mat-dialog-content>
   <p>{{data.content}}</p>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Ok</button>
+<div mat-dialog-actions class="general-footer">
+  <button class="cancel-button yes-no-btn" (click)="onNoClick()">No</button>
+  <button class="submit-button yes-no-btn" (click)="onYesClick()">Yes</button>
 </div>

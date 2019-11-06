@@ -21,7 +21,11 @@ export class GeneralDialogComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({action: 'false'});
+  }
+
+  onYesClick(): void {
+    this.dialogRef.close({action: 'true', data: this.data.fields});
   }
 
 }

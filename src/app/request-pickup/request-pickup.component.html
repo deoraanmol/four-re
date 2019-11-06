@@ -33,7 +33,7 @@
             <span class="bp2-myaccount">My Account</span>
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
             <mat-menu #menuMobile="matMenu" class="rp-dropdown-mobile">
-              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Rewards</button>
+              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Deposits</button>
               <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
             </mat-menu>
           </button>
@@ -100,7 +100,7 @@
             </div>
             <div class="rp-form-field-mobile custom-short-field-mobile">
               <div class="form-label">Flat Number</div>
-              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
               <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
             </div>
           </div>
@@ -187,7 +187,7 @@
             <mat-icon aria-hidden="true" role="img" class="mat-icon notranslate material-icons mat-icon-no-color menu-arrow">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="dropdown">
-            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Rewards</button>
+            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Deposits</button>
             <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
           </mat-menu>
         </div>
@@ -252,7 +252,7 @@
             </div>
             <div class="form-field custom-short-field">
               <div class="form-label">Flat Number</div>
-              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Enter flat number">
+              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
               <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
             </div>
           </div>
