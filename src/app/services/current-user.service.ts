@@ -20,7 +20,7 @@ export class CurrentUserService {
     Validators.minLength(10)];
   emailValidator = [
     Validators.required,
-    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')];
+    Validators.pattern('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$')];
 
   refreshUserData(angularFireAuth: AngularFireAuth) {
     angularFireAuth.user.subscribe(result => {
