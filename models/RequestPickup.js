@@ -14,7 +14,11 @@ var RequestPickupSchema = new mongoose.Schema({
   startTime: {type: Date, default: null},
   endTime: {type: Date, default: null},
   accountId: String,
-  pinCode:  {type: Number, default: -1}
+  pinCode:  {type: Number, default: -1},
+  requestUserName: {type: String, default: null},
+  requestSociety: {type: String, default: null},
+  requestFlatNumber: {type: String, default: null},
+  requestEmail: {type: String, default: null},
 });
 
 
