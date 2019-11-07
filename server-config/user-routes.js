@@ -198,10 +198,6 @@ router.post('/request-pickup/complete', function (req, res, next) {
                   requestPickup.totalValue = calculateTotalValue(req.body.noOfBags);
                   requestPickup.paymentType = req.body.paymentType;
                   requestPickup.accountId = req.body.accountId;
-                  requestPickup.requestUserName = req.body.name;
-                  requestPickup.requestSociety = req.body.society;
-                  requestPickup.requestFlatNumber = req.body.flatNumber;
-                  requestPickup.requestEmail = req.body.email;
 
                   var requestRewards = requestPickup.totalValue;
                   newRewards = oldRewards + requestRewards;
