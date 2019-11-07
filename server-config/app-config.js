@@ -1,5 +1,5 @@
 module.exports = {
-  rewardsPerBag: 10,
+  rewardsPerBag: 25,
   paymentTypes: [
     {name: 'PayTM'}
   ],

@@ -161,7 +161,7 @@ export class RewardsEarnedComponent implements OnInit {
         accountId: pendingPickup.accountId,
         requestId: pendingPickup._id,
         userId: pendingPickup.userId,
-        rewardsPerBag: 10
+        rewardsPerBag: this.rewardsPerBag
       }
     });
 
