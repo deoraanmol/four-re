@@ -190,6 +190,9 @@ router.post('/request-pickup/complete', function (req, res, next) {
                 function (err, requestPickup) {
                   requestPickup.noOfBags = req.body.noOfBags;
                   requestPickup.totalValue = calculateTotalValue(req.body.noOfBags);
+                  requestPickup.paymentType = req.body.paymentType;
+                  requestPickup.accountId = req.body.accountId;
+
                   var requestRewards = requestPickup.totalValue;
                   newRewards = oldRewards + requestRewards;
 
@@ -272,6 +275,7 @@ router.post('/requests/:status', function(req, res, next) {
           pinCode: records[i].pickupPin ? records[i].pickupPin[0].randomPIN : null,
           status: records[i].status,
           totalValue: records[i].totalValue,
+          paymentType: records[i].paymentType,
           accountId: records[i].accountId,
           mobileNumber: records[i].user ? records[i].user[0].phoneNumber : null,
           name: records[i].user ? records[i].user[0].name : null,

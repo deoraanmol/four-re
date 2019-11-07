@@ -90,7 +90,9 @@ export class GetdepositDialogComponent implements OnInit {
         _id: this.data.userId,
         requestId: this.data.requestId,
         pinCode: this.getDepositForm.controls.pickupCode.value,
-        noOfBags: this.getDepositForm.controls.noOfBags.value
+        noOfBags: this.getDepositForm.controls.noOfBags.value,
+        paymentType: this.getDepositForm.controls.paymentType.value,
+        accountId: this.getDepositForm.controls.accountId.value
       }).subscribe(res => {
         if(res.error) {
           this.invalidPIN = true;
