@@ -76,4 +76,8 @@ export class HomeContentComponent implements OnInit {
       this.scrollMob(result.anchorId);
     });
   }
+
+  viewAllQuesForMob() {
+    this.router.navigate(["/mobilefaq"]);
+  }
 }

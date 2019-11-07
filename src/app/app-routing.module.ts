@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'privacyterms',
     loadChildren: './privacy-policy/privacy-policy.module#PrivacyPolicyModule'
   },
+  {
+    path: 'mobilefaq',
+    loadChildren: './faq-mobile/faq-mobile.module#FaqMobileModule'
+  },
   { path: 'dashboard', loadChildren: './rewards-earned/rewards-earned.module#RewardsEarnedModule' },
   { path: 'get-rewards', loadChildren: './get-rewards/get-rewards.module#GetRewardsModule' },
   {
