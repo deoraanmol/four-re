@@ -25,12 +25,12 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       whitelistedCountries: ['+91'],
       recaptchaParameters: {
         size: 'invisible'
-      }
-
+      },
+      buttonColor:'#33711D'
     }
   ],
-  tosUrl: '<your-tos-link>',
-  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  tosUrl: '/privacyterms',
+  privacyPolicyUrl: '/privacyterms',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
 };
 

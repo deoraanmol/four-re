@@ -1962,11 +1962,11 @@ div {
   width               : 360px;
   position            : fixed;
   margin              : 0;
-  left                : 0px;
+  left                : 50%;
   overflow            : hidden;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
-  transform           : rotate(0deg);
+  transform           : translateX(-50%);
 }
 .bp2-mobileautheticationgetotp .bp2-headermobilelogout .bp2-background {
   background-color    : rgba(255,255,255,0.0);

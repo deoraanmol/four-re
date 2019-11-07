@@ -17,6 +17,10 @@ const routes: Routes = [
     path: 'pickup',
     loadChildren: './request-pickup/request-pickup.module#RequestPickupModule'
   },
+  {
+    path: 'privacyterms',
+    loadChildren: './privacy-policy/privacy-policy.module#PrivacyPolicyModule'
+  },
   { path: 'dashboard', loadChildren: './rewards-earned/rewards-earned.module#RewardsEarnedModule' },
   { path: 'get-rewards', loadChildren: './get-rewards/get-rewards.module#GetRewardsModule' },
   {
