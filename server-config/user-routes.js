@@ -76,6 +76,7 @@ router.get('/get-app-config/:type', function(req, res, next) {
       societies: appConfig.societies,
       cannotCancelBefore: appConfig.cancelRequestConstraints.cannotCancelBefore,
       cannotCancelAfter: appConfig.cancelRequestConstraints.cannotCancelAfter,
+      canRequestBefore: appConfig.newRequestConstraints.canRequestBefore
     });
   } catch(err) {
     next(err);
@@ -110,7 +111,8 @@ router.post('/get-time-slots', function(req, res, next) {
   let tomorrowTimeSlots = [];
   const currentHours = req.body.currentHrs;
   for(let idx = 0; idx< appConfig.givenTimeSlots.length; idx++) {
-    if(appConfig.givenTimeSlots[idx] > currentHours) {
+    var diffInMins = ( appConfig.givenTimeSlots[idx] * 60 ) - (currentHours * 60);
+    if(diffInMins > appConfig.newRequestConstraints.canRequestBefore) {
       nextGreaterIndex = idx;
       break;
     }
