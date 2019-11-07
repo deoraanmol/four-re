@@ -53,7 +53,7 @@ export class GetdepositDialogComponent implements OnInit {
       touCheckbox: [true, Validators.pattern('true')]
     });
     this.getDepositForm.patchValue({
-        noOfBags: this.data.noOfBags,
+      noOfBags: this.data.noOfBags,
       paymentType: this.data.paymentType,
       accountId: this.currentUserService.excludeCountryCode("IND", this.data.accountId),
       pickupCode: '',

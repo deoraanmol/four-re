@@ -157,6 +157,10 @@ router.post('/request-pickup', function (req, res, next) {
     accountId: req.body.accountId,
     startTime: reqPickupTimes.startTime,
     endTime: reqPickupTimes.endTime,
+    requestUserName: req.body.name,
+    requestSociety: req.body.society,
+    requestFlatNumber: req.body.flatNumber,
+    requestEmail: req.body.email
   }
 
   UserModel.findByIdAndUpdate(req.body.userId, user, function (err, updatedUser) {
@@ -194,6 +198,10 @@ router.post('/request-pickup/complete', function (req, res, next) {
                   requestPickup.totalValue = calculateTotalValue(req.body.noOfBags);
                   requestPickup.paymentType = req.body.paymentType;
                   requestPickup.accountId = req.body.accountId;
+                  requestPickup.requestUserName = req.body.name;
+                  requestPickup.requestSociety = req.body.society;
+                  requestPickup.requestFlatNumber = req.body.flatNumber;
+                  requestPickup.requestEmail = req.body.email;
 
                   var requestRewards = requestPickup.totalValue;
                   newRewards = oldRewards + requestRewards;
@@ -280,10 +288,10 @@ router.post('/requests/:status', function(req, res, next) {
           paymentType: records[i].paymentType,
           accountId: records[i].accountId,
           mobileNumber: records[i].user ? records[i].user[0].phoneNumber : null,
-          name: records[i].user ? records[i].user[0].name : null,
-          society: records[i].user ? records[i].user[0].society : null,
-          flatNo: records[i].user ? records[i].user[0].flatNumber : null,
-          email: records[i].user ? records[i].user[0].email : null,
+          name: records[i].requestUserName,
+          society: records[i].requestSociety,
+          flatNo: records[i].requestFlatNumber,
+          email: records[i].requestEmail,
         }
         responseArr.push(responseObj);
       }

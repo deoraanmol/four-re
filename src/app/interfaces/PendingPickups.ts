@@ -7,7 +7,11 @@ export interface PendingPickups {
   _id: String, //requestId
   userId: String,
   startTime: String,
-  endTime: String
+  endTime: String,
+  requestUserName: String,
+  requestSociety: String,
+  requestFlatNumber: String,
+  requestEmail: String
 }
 
 export interface CompletedPickups {
