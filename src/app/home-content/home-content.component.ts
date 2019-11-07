@@ -53,11 +53,24 @@ export class HomeContentComponent implements OnInit {
       if(anchorId === "hiwmobile" || anchorId === "hiwweb") {
         window.scrollBy(0,-90);
       } else if(anchorId === "wrmobile" || anchorId === "wrweb") {
-        window.scrollBy(0,-100);
+        if(anchorId === "wrmobile") {
+          window.scrollBy(0,-90);
+        } else {
+          window.scrollBy(0,-100);
+        }
       } else if(anchorId === "faqmobile" || anchorId === "faqweb") {
-        window.scrollBy(0,-100);
+        if(anchorId === "faqmobile") {
+          window.scrollBy(0,-90);
+        } else {
+          window.scrollBy(0,-100);
+        }
+        window.scrollBy(0,-90);
       } else if(anchorId === "aumobile" || anchorId === "auweb") {
-        window.scrollBy(0,-100);
+        if(anchorId === "aumobile") {
+          window.scrollBy(0,-70);
+        } else {
+          window.scrollBy(0,-100);
+        }
       }
     }
   }
@@ -75,5 +88,9 @@ export class HomeContentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.scrollMob(result.anchorId);
     });
+  }
+
+  viewAllQuesForMob() {
+    this.router.navigate(["/mobilefaq"]);
   }
 }

@@ -35,7 +35,7 @@ export class CurrentUserService {
           });
       } else {
         //todo anmol - put it only when success
-        return this.mockUser();
+        this.navToLogin();
       }
     });
   }

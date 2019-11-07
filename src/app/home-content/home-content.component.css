@@ -2313,7 +2313,7 @@ div {
 }
 .bp2-mobilehome .bp2-contactus {
   background-color    : rgba(255,255,255,0.0);
-  top                 : 5950px;
+  top                 : 4260px;
   height              : 128px;
   width               : 320px;
   position            : absolute;
@@ -2366,7 +2366,7 @@ div {
 }
 .bp2-mobilehome .bp2-aboutus {
   background-color    : rgba(255,255,255,0.0);
-  top                 : 5050px;
+  top                 : 3360px;
   height              : 850px;
   width               : 360px;
   position            : absolute;
@@ -2518,7 +2518,7 @@ div {
 .bp2-mobilehome .bp2-faq {
   background-color    : rgba(255,255,255,0.0);
   top                 : 2450px;
-  height              : 2496px;
+  height              : 866px;
   width               : 325px;
   position            : absolute;
   margin              : 0;
@@ -3402,6 +3402,23 @@ div {
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
+}
+.bp2-mobilehome .bp2-faq .bp2-viewallquestions {
+  background-color    : rgba(255,255,255,0.0);
+  top                 : 836px;
+  height              : auto;
+  width               : 144px;
+  position            : absolute;
+  margin              : 0;
+  left                : 90px;
+  -ms-transform       : rotate(0deg); /* IE 9 */
+  -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
+  transform           : rotate(0deg);
+  font-family         : "OpenSans-SemiBold", Helvetica, Arial, serif;
+  font-size           : 16.0px;
+  color               : rgba(0, 181, 151, 1.0);
+  text-align          : left;
+  line-height         : 30.0px;
 }
 .bp2-mobilehome .bp2-whyreuse .bp2-mask {
   background-color    : rgba(255,255,255,0.0);
