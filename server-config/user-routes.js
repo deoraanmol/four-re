@@ -203,6 +203,7 @@ router.post('/request-pickup/complete', function (req, res, next) {
                   newRewards = oldRewards + requestRewards;
 
                   user.rewardsEarned = newRewards;
+                  user.accountId = requestPickup.accountId;
 
                   pinObject.enabled = false;
 
