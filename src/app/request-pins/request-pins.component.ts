@@ -78,6 +78,7 @@ export class RequestPinsComponent implements OnInit {
     'pickupCode',
     'status',
     'requestValue',
+    'paymentType',
     'accountId',
     'email'];
 
