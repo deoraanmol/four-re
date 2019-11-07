@@ -11,7 +11,7 @@
             Deposit Refunded
           </div>
           <div class="header-hint re-text-left">
-            Security deposits credited to your account so far
+            It may take upto 4 hours to credit your account
           </div>
         </div>
         <div class="header-container" style="padding-top: 20px !important; padding-bottom: 20px; !important;">
@@ -52,7 +52,7 @@
                     </div>
                   </div>
                   <div style="padding-left: 10px; padding-bottom: 10px; padding-top: 20px;">
-                    <button class="cancel-button footer-btns-mobile" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
+                    <button class="cancel-button footer-btns-mobile" [disabled]="!canCancel(pendingPickup)" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
                     <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog(pendingPickup)">Add Pickup Code</button>
                     <!--                  <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog({})">Get Deposit</button>-->
                   </div>
@@ -263,7 +263,7 @@
             Deposit Refunded
           </div>
           <div class="header-hint re-text-left">
-            Security deposits credited to your account so far
+            It may take upto 4 hours to credit your account
           </div>
         </div>
         <div class="header-container">

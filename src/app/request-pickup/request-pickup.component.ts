@@ -28,7 +28,7 @@ export class RequestPickupComponent implements OnInit {
   currentUser = {};
   form: FormGroup;
   user: Observable<object>;
-  rewardsPerBag: number = 10;
+  rewardsPerBag: number = 0;
 
   constructor(private formBuilder: FormBuilder,
               private timeSlotService: TimeSlotServiceService,
