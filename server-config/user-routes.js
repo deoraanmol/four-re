@@ -62,7 +62,7 @@ router.get('/completed-requests/:userId', function(req, res, next) {
     function(err, record) {
       if(err) return next(err);
       res.json(record);
-    }).sort({_id:1});
+    }).sort({_id:-1});
 });
 
 /* GET APP CONFIG */
