@@ -333,19 +333,20 @@
               About us
             </div>
           </a>
+
+          <a (click)="takeMe('requestPickup')" style="margin-top: -7px">
+            <div class="submit-button" style="width: 175px">
+              <span class="submit-button-home-text">Request Pickup</span>
+            </div>
+          </a>
+
+          <a (click)="takeMe('viewRequests')" style="margin-top: -7px">
+            <div class="submit-button" style="width: 165px">
+              <span class="submit-button-home-text">View Requests</span>
+            </div>
+          </a>
         </div>
       </div>
-      <a class="link-btn"  (click)="takeMe()">
-        <div class="bp1-button">
-          <div class="bp1-rectangle1">
-          </div>
-          <div class="bp1-text">
-            <div class="bp1-u21b3u270fufe0fvalue bp1-u21b3u270fufe0fvalue-para">
-              Request Pickup
-            </div>
-          </div>
-        </div>
-      </a>
     </div>
   </div>
 </div>
@@ -555,17 +556,14 @@
       <img src="assets/img/mobile-dashboard-pickups-pending-shape@2x.png"
            (click)="openMobileMenuDialog()"
            class="bp2-shape"/>
-      <a href="/get-started">
-        <div class="bp2-button">
-          <div class="bp2-rectangle">
-          </div>
-          <div class="bp2-text">
-            <div class="bp2-u21b3u270fufe0fvalue bp2-u21b3u270fufe0fvalue-para">
-              Request Pickup
-            </div>
-          </div>
+      <div style="float: right">
+        <div class="submit-button home-mobile" style="margin-top: 8px" (click)="takeMe('requestPickup')">
+          <span class="home-mobile-text">Request Pickup</span>
         </div>
-      </a>
+        <div class="submit-button home-mobile" style="margin-top: 15px" (click)="takeMe('viewRequests')">
+          <span class="home-mobile-text">View Requests</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

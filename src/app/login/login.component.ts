@@ -17,11 +17,13 @@ import {CurrentUserService} from "../services/current-user.service";
 })
 export class LoginComponent implements OnInit {
 
+  homeSource: string = '';
 
   constructor(private router: Router,
               private firebaseAuth: AngularFireAuth,
               private userHttpService: UserHttpService,
               private currentUserService: CurrentUserService) {
+    this.homeSource = this.router.getCurrentNavigation().extras.state.source;
   }
 
 
@@ -59,17 +61,23 @@ export class LoginComponent implements OnInit {
 
   private navigateToRequestPickup(user) {
     this.currentUserService.currentUserData = user;
-    this.userHttpService
-      .getPendingPickups(user['_id'])
-      .subscribe(res => {
-        debugger
-        if(res && res.length > 0) {
-          //there are pending requests, dont allow a new pickup -> navigate directly to my rewards
-          this.currentUserService.navToRewardsEarned();
-        } else {
-          this.router.navigate(['/pickup']);
-        }
-    });
+    if(this.homeSource === 'viewRequests') {
+      //take user directly to his dashboard
+      this.currentUserService.navToRewardsEarned();
+    } else {
+      this.userHttpService
+            .getPendingPickups(user['_id'])
+            .subscribe(res => {
+              debugger
+              if(res && res.length > 0) {
+                //there are pending requests, dont allow a new pickup -> navigate directly to my rewards
+                this.currentUserService.navToRewardsEarned();
+              } else {
+                this.router.navigate(['/pickup']);
+              }
+          });
+    }
+
   }
 
   successCallback($event: FirebaseUISignInSuccessWithAuthResult) {
