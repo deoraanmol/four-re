@@ -108,14 +108,6 @@
                   <input matInput [className]="userProfileForm.get('name').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="name" placeholder="Enter Name">
                   <span class="field-error-hint" *ngIf="userProfileForm.get('name').errors && upFormSubmitted">Name is required</span>
                 </div>
-                <div class="form-field-mobile" style="width: 285px">
-                  <div class="form-label">Email</div>
-                  <input matInput [className]="userProfileForm.get('email').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="email" placeholder="Enter Email">
-                  <span class="field-error-hint" *ngIf="userProfileForm.get('email').errors && upFormSubmitted">
-                    <span *ngIf="userProfileForm.get('email').errors.required; else upInvalidEmailMobile">Email is required</span>
-                    <ng-template #upInvalidEmailMobile>Email is invalid</ng-template>
-                  </span>
-                </div>
               </div>
               <div class="form-line-mobile">
                 <div class="form-line-multiple-fields form-field-padding">
@@ -383,18 +375,8 @@
                   <input matInput [className]="userProfileForm.get('name').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="name" placeholder="Enter Name">
                   <span class="field-error-hint" *ngIf="userProfileForm.get('name').errors && upFormSubmitted">Name is required</span>
                 </div>
-                <div class="form-field">
-                  <div class="form-label">Email</div>
-                  <input matInput [className]="userProfileForm.get('email').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="email" placeholder="Enter Email">
-                  <span class="field-error-hint" *ngIf="userProfileForm.get('email').errors && upFormSubmitted">
-                    <span *ngIf="userProfileForm.get('email').errors.required; else upInvalidEmailWeb">Email is required</span>
-                    <ng-template #upInvalidEmailWeb>Email is invalid</ng-template>
-                  </span>
-                </div>
-              </div>
-              <div class="form-line-multiple-fields">
-                <div class="form-line-multiple-fields form-field-padding">
-                  <div class="form-field custom-short-field" style="padding-right: 20px">
+                <div class="form-line-multiple-fields form-field-padding" style="margin-top: 0px !important">
+                  <div class="form-field custom-short-field" style="padding-right: 30px">
                     <div class="form-label">Society</div>
                     <select formControlName="society" class="form-field-dropdown half-field" style="margin-top: 14px">
                       <option *ngFor="let society of societies" [value]="society.name">
@@ -408,8 +390,10 @@
                     <span class="field-error-hint" *ngIf="userProfileForm.get('flatNumber').errors && upFormSubmitted">Flat Number is required</span>
                   </div>
                 </div>
+              </div>
+              <div class="form-line-multiple-fields">
                 <div class="form-line-multiple-fields">
-                  <div class="form-field custom-short-field" style="padding-right: 20px">
+                  <div class="form-field custom-short-field" style="padding-right: 30px">
                     <div class="form-label">Credit To</div>
                     <select formControlName="creditTo" class="form-field-dropdown half-field" (click)="changePaymentType()" style="margin-top: 14px">
                       <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">

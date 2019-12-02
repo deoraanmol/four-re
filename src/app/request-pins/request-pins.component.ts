@@ -16,7 +16,6 @@ export interface PeriodicElement {
   status: string;
   totalValue: string;
   accountId: string;
-  email: string; //join
 }
 
 @Component({
@@ -47,8 +46,7 @@ export class RequestPinsComponent implements OnInit {
       "mobileNumber": "+919811882111",
       "name": "PANKAJ GARG",
       "society": "Ireo Grand Arch",
-      "flatNo": "16",
-      "email": "PANKAJGARG@GMAIL.COM"
+      "flatNo": "16"
     },
     {
       "requestId": 124,
@@ -62,8 +60,7 @@ export class RequestPinsComponent implements OnInit {
       "mobileNumber": "+919811882111",
       "name": "PANKAJ GARG",
       "society": "Ireo Grand Arch",
-      "flatNo": "16",
-      "email": "PANKAJGARG@GMAIL.COM"
+      "flatNo": "16"
     }
   ];
   displayedColumns: string[] = ['select',
@@ -79,8 +76,7 @@ export class RequestPinsComponent implements OnInit {
     'status',
     'requestValue',
     'paymentType',
-    'accountId',
-    'email'];
+    'accountId'];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   ngOnInit() {

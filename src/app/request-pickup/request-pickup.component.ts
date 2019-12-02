@@ -86,7 +86,6 @@ export class RequestPickupComponent implements OnInit {
       })
     this.requestPickupValidations = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.compose(this.currentUserService.emailValidator)],
       society: ['', Validators.required],
       flatNumber: ['', Validators.required],
       creditTo: ['', Validators.required],
@@ -104,7 +103,6 @@ export class RequestPickupComponent implements OnInit {
           this.currentUser = this.currentUserService.currentUserData;
           this.requestPickupValidations.patchValue({
             name: this.currentUser['name'],
-            email: this.currentUser['email'],
             phoneNumber: this.currentUser['phoneNumber'],
             flatNumber: this.currentUser['flatNumber'],
             creditTo: this.currentUser['creditTo'],
@@ -134,7 +132,6 @@ export class RequestPickupComponent implements OnInit {
           "name": this.requestPickupValidations.controls.name.value,
           "society": this.requestPickupValidations.controls.society.value,
           "flatNumber": this.requestPickupValidations.controls.flatNumber.value,
-          "email": this.requestPickupValidations.controls.email.value,
           "creditTo": this.requestPickupValidations.controls.creditTo.value,
           "accountId": this.requestPickupValidations.controls.accountId.value,
           "noOfBags": this.requestPickupValidations.controls.noOfBags.value,

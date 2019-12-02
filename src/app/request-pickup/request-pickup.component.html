@@ -77,15 +77,6 @@
               </option>
             </select>
           </div>
-
-          <div class="rp-form-field-mobile" style="padding-top: 20px !important;">
-            <div class="form-label">Email</div>
-            <input [className]="requestPickupValidations.get('email').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="email" type="text" placeholder="Enter email">
-            <span class="field-error-hint" *ngIf="requestPickupValidations.get('email').errors && formSubmitted">
-              <span *ngIf="requestPickupValidations.get('email').errors.required; else invalidEmailWeb">Email is required</span>
-              <ng-template #invalidEmailWeb>Email is invalid</ng-template>
-            </span>
-          </div>
         </div>
 
         <div class="form-line-mobile">
@@ -231,31 +222,25 @@
             <span class="field-error-hint" *ngIf="requestPickupValidations.get('name').errors && formSubmitted">Name is required</span>
           </div>
           <div class="rp-form-field">
-            <div class="form-label">Email</div>
-            <input [className]="requestPickupValidations.get('email').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="email" type="text" placeholder="Enter email">
-            <span class="field-error-hint" *ngIf="requestPickupValidations.get('email').errors && formSubmitted">
-              <span *ngIf="requestPickupValidations.get('email').errors.required; else invalidEmailWeb">Email is required</span>
-              <ng-template #invalidEmailWeb>Email is invalid</ng-template>
-            </span>
+            <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
+              <div class="form-field custom-short-field" style="padding-right: 20px">
+                <div class="form-label">Society</div>
+                <select formControlName="society" class="form-field-dropdown rp-half-field">
+                  <option *ngFor="let society of societies" [value]="society.name">
+                    {{society.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="form-field custom-short-field">
+                <div class="form-label">Flat Number</div>
+                <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
+                <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="rp-form-line-multiple-fields" style="padding-top: 10px">
-          <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
-            <div class="form-field custom-short-field" style="padding-right: 20px">
-              <div class="form-label">Society</div>
-              <select formControlName="society" class="form-field-dropdown rp-half-field">
-                <option *ngFor="let society of societies" [value]="society.name">
-                  {{society.name}}
-                </option>
-              </select>
-            </div>
-            <div class="form-field custom-short-field">
-              <div class="form-label">Flat Number</div>
-              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
-              <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
-            </div>
-          </div>
           <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
             <div class="form-field custom-short-field" style="padding-right: 20px">
               <div class="form-label">Credit &#x20b9; {{getAmt()}} To</div>
@@ -272,6 +257,21 @@
                 <span *ngIf="requestPickupValidations.get('accountId').errors.required; else rpInvalidAccountIdWeb">Account Id is required</span>
                 <ng-template #rpInvalidAccountIdWeb>Account Id is invalid</ng-template>
               </span>
+            </div>
+          </div>
+          <div class="rp-form-line-multiple-fields" style="margin-top: 0px; visibility: hidden">
+            <div class="form-field custom-short-field" style="padding-right: 20px">
+              <div class="form-label">Society</div>
+              <select formControlName="society" class="form-field-dropdown rp-half-field">
+                <option *ngFor="let society of societies" [value]="society.name">
+                  {{society.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-field custom-short-field">
+              <div class="form-label">Flat Number</div>
+              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
+              <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
             </div>
           </div>
         </div>

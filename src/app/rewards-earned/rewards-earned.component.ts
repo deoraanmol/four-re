@@ -65,7 +65,6 @@ export class RewardsEarnedComponent implements OnInit {
     this.afterUserRefreshed();
     this.userProfileForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.compose(this.currentUserService.emailValidator)],
       society: ['', Validators.required],
       flatNumber: ['', Validators.required],
       creditTo: ['', Validators.required],
@@ -134,7 +133,6 @@ export class RewardsEarnedComponent implements OnInit {
   setProfileFormValues(res) {
     this.userProfileForm.patchValue({
       name: res.name,
-      email: res.email,
       phoneNumber: res.phoneNumber,
       society: res.society,
       flatNumber: res.flatNumber,
@@ -164,8 +162,7 @@ export class RewardsEarnedComponent implements OnInit {
         rewardsPerBag: this.rewardsPerBag,
         requestUserName: pendingPickup.requestUserName,
         requestSociety: pendingPickup.requestSociety,
-        requestFlatNumber: pendingPickup.requestFlatNumber,
-        requestEmail: pendingPickup.requestEmail,
+        requestFlatNumber: pendingPickup.requestFlatNumber
       }
     });
 
@@ -190,7 +187,6 @@ export class RewardsEarnedComponent implements OnInit {
         "name": this.userProfileForm.controls.name.value,
         "society": this.userProfileForm.controls.society.value,
         "flatNumber": this.userProfileForm.controls.flatNumber.value,
-        "email": this.userProfileForm.controls.email.value,
         "creditTo": this.userProfileForm.controls.creditTo.value,
         "accountId": this.userProfileForm.controls.accountId.value
       };
