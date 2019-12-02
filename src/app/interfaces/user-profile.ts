@@ -3,7 +3,6 @@ export interface UserProfile {
   name: String,
   society: String,
   flatNumber: String,
-  email: String,
   creditTo: String,
   accountId: String,
   enabled: Boolean,
