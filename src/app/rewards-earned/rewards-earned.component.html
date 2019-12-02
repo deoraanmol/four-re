@@ -135,11 +135,11 @@
                     </select>
                   </div>
                   <div class="form-field custom-short-field">
-                    <div class="form-label">Account Id</div>
-                    <input [className]="userProfileForm.get('accountId').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+                    <div class="form-label">PayTM Number</div>
+                    <input [className]="userProfileForm.get('accountId').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
                     <span class="field-error-hint" *ngIf="userProfileForm.get('accountId').errors && upFormSubmitted">
-                      <span *ngIf="userProfileForm.get('accountId').errors.required; else upInvalidAccMobile">Account Id is required</span>
-                      <ng-template #upInvalidAccMobile>Account Id is invalid</ng-template>
+                      <span *ngIf="userProfileForm.get('accountId').errors.required; else upInvalidAccMobile">PayTM number is required</span>
+                      <ng-template #upInvalidAccMobile>PayTM number is invalid</ng-template>
                     </span>
                   </div>
                 </div>
@@ -402,11 +402,11 @@
                     </select>
                   </div>
                   <div class="form-field custom-short-field">
-                    <div class="form-label">Account Id</div>
-                    <input [className]="userProfileForm.get('accountId').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+                    <div class="form-label">PayTM Number</div>
+                    <input [className]="userProfileForm.get('accountId').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
                     <span class="field-error-hint" *ngIf="userProfileForm.get('accountId').errors && upFormSubmitted">
-                      <span *ngIf="userProfileForm.get('accountId').errors.required; else upInvalidAccWeb">Account Id is required</span>
-                      <ng-template #upInvalidAccWeb>Account Id is invalid</ng-template>
+                      <span *ngIf="userProfileForm.get('accountId').errors.required; else upInvalidAccWeb">PayTM number is required</span>
+                      <ng-template #upInvalidAccWeb>PayTM number is invalid</ng-template>
                     </span>
                   </div>
                 </div>

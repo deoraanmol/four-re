@@ -105,11 +105,11 @@
               </select>
             </div>
             <div class="rp-form-field-mobile custom-short-field-mobile">
-              <div class="form-label">Account Id</div>
-              <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <div class="form-label">PayTM Number</div>
+              <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
               <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">
-                <span *ngIf="requestPickupValidations.get('accountId').errors.required; else rpInvalidAccMobile">Account Id is required</span>
-                <ng-template #rpInvalidAccMobile>Account Id is invalid</ng-template>
+                <span *ngIf="requestPickupValidations.get('accountId').errors.required; else rpInvalidAccMobile">PayTM number is required</span>
+                <ng-template #rpInvalidAccMobile>PayTM number is invalid</ng-template>
               </span>
             </div>
           </div>
@@ -251,11 +251,11 @@
               </select>
             </div>
             <div class="form-field custom-short-field">
-              <div class="form-label">Account Id</div>
-              <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <div class="form-label">PayTM Number</div>
+              <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
               <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">
-                <span *ngIf="requestPickupValidations.get('accountId').errors.required; else rpInvalidAccountIdWeb">Account Id is required</span>
-                <ng-template #rpInvalidAccountIdWeb>Account Id is invalid</ng-template>
+                <span *ngIf="requestPickupValidations.get('accountId').errors.required; else rpInvalidAccountIdWeb">PayTM number is required</span>
+                <ng-template #rpInvalidAccountIdWeb>PayTM number is invalid</ng-template>
               </span>
             </div>
           </div>

@@ -26,11 +26,11 @@
               </select>
             </div>
             <div class="form-field custom-short-field">
-              <div class="form-label">Account Id</div>
-              <input [className]="getDepositForm.get('accountId').errors && gdFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <div class="form-label">PayTM Number</div>
+              <input [className]="getDepositForm.get('accountId').errors && gdFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
               <div class="field-error-hint" *ngIf="getDepositForm.get('accountId').errors && gdFormSubmitted">
-                <span *ngIf="getDepositForm.get('accountId').errors.required; else invalidAccountIdWeb">Account Id is required</span>
-                <ng-template #invalidAccountIdWeb>Account Id is invalid</ng-template>
+                <span *ngIf="getDepositForm.get('accountId').errors.required; else invalidAccountIdWeb">PayTM number is required</span>
+                <ng-template #invalidAccountIdWeb>PayTM number is invalid</ng-template>
               </div>
             </div>
           </div>
@@ -89,11 +89,11 @@
               </select>
             </div>
             <div class="gd-form-field-mobile">
-              <div class="form-label">Account Id</div>
-              <input [className]="getDepositForm.get('accountId').errors && gdFormSubmitted ? 'form-value-mobile field-border-error' : 'form-value-mobile'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter account id">
+              <div class="form-label">PayTM Number</div>
+              <input [className]="getDepositForm.get('accountId').errors && gdFormSubmitted ? 'form-value-mobile field-border-error' : 'form-value-mobile'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
               <div class="field-error-hint" *ngIf="getDepositForm.get('accountId').errors && gdFormSubmitted">
-                <span *ngIf="getDepositForm.get('accountId').errors.required; else invalidAccountIdMobile">Account Id is required</span>
-                <ng-template #invalidAccountIdMobile>Account Id is invalid</ng-template>
+                <span *ngIf="getDepositForm.get('accountId').errors.required; else invalidAccountIdMobile">PayTM number is required</span>
+                <ng-template #invalidAccountIdMobile>PayTM number is invalid</ng-template>
               </div>
             </div>
           </div>
