@@ -1999,12 +1999,12 @@ div {
   background-color    : rgba(255,255,255,0.0);
   top                 : 26px;
   height              : 27px;
-  width               : 606px;
+  right               : 0px;
   position            : absolute;
   display: flex;
   justify-content: space-evenly;
   margin              : 0;
-  left                : 600px;
+  left                : 450px;
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
@@ -4008,7 +4008,7 @@ div {
   box-shadow: 1px 1px 10px rgba(0, 175, 70, 1.0);
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
-  height              : 80px;
+  height              : 84px;
   width               : 360px;
   position            : fixed;
   margin              : 0;
@@ -4020,7 +4020,7 @@ div {
 .bp2-mobilehome .bp2-headermobilelogout .bp2-background {
   background-color    : rgba(255,255,255,0.0);
   top                 : 0px;
-  height              : 80px;
+  height              : 84px;
   width               : 360px;
   position            : absolute;
   margin              : 0;
@@ -4028,6 +4028,16 @@ div {
   -ms-transform       : rotate(0deg); /* IE 9 */
   -webkit-transform   : rotate(0deg); /* Chrome, Safari, Opera */
   transform           : rotate(0deg);
+}
+.home-mobile {
+  height: 25px;
+  font-size: 12px;
+  width: 100px;
+  margin-right: 5px;
+}
+.home-mobile-text {
+  position: absolute;
+  left: 7px;
 }
 .bp2-mobilehome .bp2-headermobilelogout .bp2-logo {
   background-color    : rgba(255,255,255,0.0);

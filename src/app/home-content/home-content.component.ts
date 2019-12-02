@@ -29,8 +29,8 @@ export class HomeContentComponent implements OnInit {
   ngOnInit() {
   }
 
-  takeMe() {
-    this.router.navigate(['/get-started']);
+  takeMe(source) {
+    this.router.navigate(['/get-started'], {state: {source: source}});
   }
 
   scrollWeb(el: HTMLElement, divType: string) {

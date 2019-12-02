@@ -107,6 +107,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-size: 18px;
 }
 
+.submit-button-home-text {
+  position: absolute;
+  left: 16px;
+  top: 6px;
+}
+
 .field-error-hint {
   font-size: 10px !important;
   color: #DC151D;
