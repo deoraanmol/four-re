@@ -43,10 +43,10 @@
     <div class="pickup-form-container-mobile">
       <div class="rp-header-container-mobile">
         <div class="rp-header-text">
-          Request Pickup
+          Drop Bags
         </div>
         <div class="rp-header-hint">
-          Place a request and our agent will come for pickup at your convenience
+
         </div>
       </div>
       <form class="pickup-form" [formGroup]="requestPickupValidations">
@@ -70,30 +70,23 @@
         <div class="form-line-mobile">
 
           <div class="rp-form-field-mobile">
-            <div class="form-label">Pickup Time</div>
-            <select formControlName="pickupTimeSlot" class="form-field-dropdown" style="margin-top: 3px">
-              <option *ngFor="let timeSlot of timeSlots" [value]="timeSlot.id">
-                {{timeSlot.day}}, {{timeSlot.startTime}} - {{timeSlot.endTime}}
+            <div class="form-label">Size</div>
+            <select formControlName="bagSize" class="form-field-dropdown rp-full-field">
+              <option *ngFor="let bagSize of bagSizes" [value]="bagSize.size">
+                {{bagSize.display}}
               </option>
             </select>
           </div>
         </div>
 
         <div class="form-line-mobile">
-          <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
-            <div class="rp-form-field-mobile custom-short-field-mobile" style="padding-right: 20px">
-              <div class="form-label">Society</div>
-              <select formControlName="society" class="form-field-dropdown rp-half-field-mobile">
-                <option *ngFor="let society of societies" [value]="society.name">
-                  {{society.name}}
-                </option>
-              </select>
-            </div>
-            <div class="rp-form-field-mobile custom-short-field-mobile">
-              <div class="form-label" style="width: 150px !important">Tower & Flat Number</div>
-              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
-              <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
-            </div>
+          <div class="rp-form-field-mobile">
+            <div class="form-label">Location Code</div>
+            <select formControlName="society" class="form-field-dropdown rp-full-field">
+              <option *ngFor="let society of societies" [value]="society.name">
+                {{society.name}}
+              </option>
+            </select>
           </div>
           <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
             <div class="rp-form-field-mobile custom-short-field-mobile" style="padding-right: 20px">
@@ -187,10 +180,10 @@
     <div class="pickup-form-container">
       <div class="rp-header-container">
         <div class="rp-header-text">
-          Request Pickup
+          Drop Bags
         </div>
         <div class="rp-header-hint">
-          Place a request and our agent will come for pickup at your convenience
+
         </div>
       </div>
       <form class="pickup-form" [formGroup]="requestPickupValidations">
@@ -205,11 +198,10 @@
             </span>
           </div>
           <div class="rp-form-field">
-            <div class="form-label">Pickup Time</div>
-            <select formControlName="pickupTimeSlot"
-                    class="form-field-dropdown" style="margin-top: 10px">
-              <option *ngFor="let timeSlot of timeSlots" [value]="timeSlot.id">
-                {{timeSlot.day}}, {{timeSlot.startTime}} - {{timeSlot.endTime}}
+            <div class="form-label">Size</div>
+            <select formControlName="bagSize" class="form-field-dropdown rp-full-field">
+              <option *ngFor="let bagSize of bagSizes" [value]="bagSize.size">
+                {{bagSize.display}}
               </option>
             </select>
           </div>
@@ -222,57 +214,31 @@
             <span class="field-error-hint" *ngIf="requestPickupValidations.get('name').errors && formSubmitted">Name is required</span>
           </div>
           <div class="rp-form-field">
-            <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
-              <div class="form-field custom-short-field" style="padding-right: 20px">
-                <div class="form-label">Society</div>
-                <select formControlName="society" class="form-field-dropdown rp-half-field">
-                  <option *ngFor="let society of societies" [value]="society.name">
-                    {{society.name}}
-                  </option>
-                </select>
-              </div>
-              <div class="form-field custom-short-field">
-                <div class="form-label" style="width: 150px !important">Tower & Flat Number</div>
-                <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
-                <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
-              </div>
-            </div>
+            <div class="form-label">Location Code</div>
+            <select formControlName="society" class="form-field-dropdown rp-full-field">
+              <option *ngFor="let society of societies" [value]="society.name">
+                {{society.name}}
+              </option>
+            </select>
           </div>
         </div>
 
-        <div class="rp-form-line-multiple-fields" style="padding-top: 10px">
-          <div class="rp-form-line-multiple-fields" style="margin-top: 0px">
-            <div class="form-field custom-short-field" style="padding-right: 20px">
-              <div class="form-label">Credit &#x20b9; {{getAmt()}} To</div>
-              <select formControlName="creditTo" class="form-field-dropdown rp-half-field" (change)="changePaymentType()">
-                <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
-                  {{paymentType.name}}
-                </option>
-              </select>
-            </div>
-            <div class="form-field custom-short-field">
-              <div class="form-label">PayTM Number</div>
-              <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
-              <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">
+        <div class="rp-form-line-multiple-fields">
+          <div class="rp-form-field">
+            <div class="form-label">Credit &#x20b9; {{getAmt()}} To</div>
+            <select formControlName="creditTo" class="form-field-dropdown rp-full-field" (change)="changePaymentType()">
+              <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
+                {{paymentType.name}}
+              </option>
+            </select>
+          </div>
+          <div class="rp-form-field">
+            <div class="form-label">PayTM Number</div>
+            <input [className]="requestPickupValidations.get('accountId').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
+            <span class="field-error-hint" *ngIf="requestPickupValidations.get('accountId').errors && formSubmitted">
                 <span *ngIf="requestPickupValidations.get('accountId').errors.required; else rpInvalidAccountIdWeb">PayTM number is required</span>
                 <ng-template #rpInvalidAccountIdWeb>PayTM number is invalid</ng-template>
-              </span>
-            </div>
-          </div>
-          <div class="rp-form-line-multiple-fields" style="margin-top: 0px; visibility: hidden">
-            <div class="form-field custom-short-field" style="padding-right: 20px">
-              <div class="form-label">Society</div>
-              <select formControlName="society" class="form-field-dropdown rp-half-field">
-                <option *ngFor="let society of societies" [value]="society.name">
-                  {{society.name}}
-                </option>
-              </select>
-            </div>
-            <div class="form-field custom-short-field">
-              <div class="form-label" style="width: 150px !important">Tower & Flat Number</div>
-              <input [className]="requestPickupValidations.get('flatNumber').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
-              <span class="field-error-hint" *ngIf="requestPickupValidations.get('flatNumber').errors && formSubmitted">Flat Number is required</span>
-            </div>
+            </span>
           </div>
         </div>
       </form>

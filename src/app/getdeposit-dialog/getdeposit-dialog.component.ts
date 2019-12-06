@@ -14,6 +14,8 @@ class DialogData {
   requestId: String;
   userId: String;
   rewardsPerBag: number;
+  requestSociety: String;
+  bagSize: String;
 }
 
 @Component({
@@ -50,13 +52,14 @@ export class GetdepositDialogComponent implements OnInit {
       paymentType: ['', Validators.required],
       accountId: ['', Validators.compose(this.currentUserService.phoneNumberValidator)],
       pickupCode: ['', Validators.required],
-      touCheckbox: [true, Validators.pattern('true')]
+      touCheckbox: [true, Validators.pattern('true')],
+      bagSize: [this.data.bagSize],
     });
     this.getDepositForm.patchValue({
       noOfBags: this.data.noOfBags,
       paymentType: this.data.paymentType,
       accountId: this.currentUserService.excludeCountryCode("IND", this.data.accountId),
-      pickupCode: '',
+      pickupCode: ''
     });
   }
 
@@ -92,7 +95,9 @@ export class GetdepositDialogComponent implements OnInit {
         pinCode: this.getDepositForm.controls.pickupCode.value,
         noOfBags: this.getDepositForm.controls.noOfBags.value,
         paymentType: this.getDepositForm.controls.paymentType.value,
-        accountId: this.getDepositForm.controls.accountId.value
+        accountId: this.getDepositForm.controls.accountId.value,
+        requestSociety: this.data.requestSociety,
+        requestUpdated: new Date()
       }).subscribe(res => {
         if(res.error) {
           this.invalidPIN = true;

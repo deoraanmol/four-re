@@ -3,9 +3,15 @@ module.exports = {
   paymentTypes: [
     {name: 'PayTM'}
   ],
+  //configure the bag sizes below
+  bagTypes: [
+      {size: 'Small', display: 'Small', amountPerBag: 10},
+      {size: 'Medium', display: 'Medium', amountPerBag: 20}
+  ],
+  //location codes will be the agent pins (todo - support firebase sms to send codes)
   societies: [
-    {name: 'Ireo Grand Arch'},
-    {name: 'Mahindra Lifespaces'}
+    {name: 'Ireo Grand Arch', locationCode: 1234},
+    {name: 'Mahindra Lifespaces', locationCode: 4567}
   ],
   givenTimeSlots: [16, 18, 20], // 4pm to 8pm, **use 16.5 for 4:30pm**
   givenTimeSlotInterval: 2, //2 hrs interval between any 2 slots

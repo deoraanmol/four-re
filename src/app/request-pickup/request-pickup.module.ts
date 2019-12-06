@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { RequestPickupRoutingModule } from './request-pickup-routing.module';
 import { RequestPickupComponent } from './request-pickup.component';
@@ -31,6 +31,7 @@ import {LoginModule} from "../login/login.module";
     MatMenuModule,
     MatIconModule
   ],
+  providers: [DatePipe],
   declarations: [RequestPickupComponent]
 })
 export class RequestPickupModule {}

@@ -8,10 +8,10 @@
       <div class="parent-re-custom-header-mobile">
         <div class="header-container">
           <div class="header-text re-text-left">
-            Deposit Refunded
+            My Refunds
           </div>
           <div class="header-hint re-text-left">
-            It may take upto 4 hours to credit your account
+            It may take upto 24 hours to credit your account
           </div>
         </div>
         <div class="header-container" style="padding-top: 20px !important; padding-bottom: 20px; !important;">
@@ -35,25 +35,17 @@
                     <div style="padding-left: 10px">
                       <h2><p>&#x20b9; {{pendingPickup.totalValue}}</p></h2>
                       <!--                    <h2><p>&#x20b9; 100</p></h2>-->
-                      <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'TODAY'">
-                        <p>Today, {{pendingPickup.startTime | date: 'hh:mm a'}} - {{pendingPickup.endTime | date: 'hh:mm a'}}</p>
-                      </h2>
-                      <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'TOMORROW'">
-                        <p>Tomorrow, {{pendingPickup.startTime | date: 'hh:mm a'}} - {{pendingPickup.endTime | date: 'hh:mm a'}}</p>
-                      </h2>
-                      <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'NONE'">
-                        <p>{{pendingPickup.startTime | date: 'dd MMM yyyy, hh:mm a'}} - {{pendingPickup.endTime | date: 'hh:mm a'}}</p>
+                      <h2 style="font-size: 16.5px; font-weight: 400;">
+                        <p>{{pendingPickup.requestCreated}}</p>
                       </h2>
                       <!--                    <h1 style="font-size: 20px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
                       <h4><p>{{pendingPickup.paymentType}} ({{pendingPickup.accountId}})</p></h4>
-                      <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
-                      <mat-chip>{{pendingPickup.noOfBags}} Bags</mat-chip>
-                      <!--                    <mat-chip>10 Bags</mat-chip>-->
+                      <mat-chip>{{pendingPickup.noOfBags}} {{pendingPickup.bagSize}} Bags</mat-chip>
                     </div>
                   </div>
                   <div style="padding-left: 10px; padding-bottom: 10px; padding-top: 20px;">
                     <button class="cancel-button footer-btns-mobile" [disabled]="!canCancel(pendingPickup)" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
-                    <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog(pendingPickup)">Add Pickup Code</button>
+                    <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog(pendingPickup)">Enter Agent Code</button>
                     <!--                  <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog({})">Get Deposit</button>-->
                   </div>
                 </div>
@@ -77,20 +69,13 @@
                       <div style="padding-left: 10px; padding-bottom: 10px">
                         <h2><p>&#x20b9; {{completedPickup.totalValue}}</p></h2>
                         <!--                    <h2><p>&#x20b9; 100</p></h2>-->
-                        <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(completedPickup.startTime) === 'TODAY'">
-                          <p>Today, {{completedPickup.startTime | date: 'hh:mm a'}} - {{completedPickup.endTime | date: 'hh:mm a'}}</p>
-                        </h2>
-                        <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(completedPickup.startTime) === 'TOMORROW'">
-                          <p>Tomorrow, {{completedPickup.startTime | date: 'hh:mm a'}} - {{completedPickup.endTime | date: 'hh:mm a'}}</p>
-                        </h2>
-                        <h2 style="font-size: 16.5px; font-weight: 400;" *ngIf="slotTodayOrTom(completedPickup.startTime) === 'NONE'">
-                          <p>{{completedPickup.startTime | date: 'dd MMM yyyy, hh:mm a'}} - {{completedPickup.endTime | date: 'hh:mm a'}}</p>
+                        <h2 style="font-size: 16.5px; font-weight: 400;">
+                          <p>{{completedPickup.requestUpdated | date: 'dd MMM yyyy hh:mm a'}}</p>
                         </h2>
                         <!--                    <h1 style="font-size: 20px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
                         <h4><p>{{completedPickup.paymentType}} ({{completedPickup.accountId}})</p></h4>
                         <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
-                        <mat-chip>{{completedPickup.noOfBags}} Bags</mat-chip>
-                        <!--                    <mat-chip>10 Bags</mat-chip>-->
+                        <mat-chip>{{completedPickup.noOfBags}} {{completedPickup.bagSize}} Bags</mat-chip>
                       </div>
                     </div>
                   </div>
@@ -252,10 +237,10 @@
       <div class="parent-re-custom-header">
         <div class="header-container" style="padding-bottom: 30px">
           <div class="header-text re-text-left">
-            Deposit Refunded
+            My Refunds
           </div>
           <div class="header-hint re-text-left">
-            It may take upto 4 hours to credit your account
+            It may take upto 24 hours to credit your account
           </div>
         </div>
         <div class="header-container">
@@ -282,16 +267,9 @@
   <!--                      <h2><p>&#x20b9; 100</p></h2>-->
                       </div>
                       <div>
-                        <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'TODAY'">
-                          <p>Today, {{pendingPickup.startTime | date: 'hh:mm aa'}} - {{pendingPickup.endTime | date: 'hh:mm aa'}}</p>
+                        <h2 style="font-size: 22px; font-weight: 400;">
+                          <p>{{pendingPickup.requestCreated}}</p>
                         </h2>
-                        <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'TOMORROW'">
-                          <p>Tomorrow, {{pendingPickup.startTime | date: 'hh:mm aa'}} - {{pendingPickup.endTime | date: 'hh:mm aa'}}</p>
-                        </h2>
-                        <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(pendingPickup.startTime) === 'NONE'">
-                          <p>{{pendingPickup.startTime | date: 'dd MMM yyyy, hh:mm aa'}} - {{pendingPickup.endTime | date: 'hh:mm aa'}}</p>
-                        </h2>
-  <!--                      <h1 style="font-size: 25px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
                       </div>
                     </span>
                     <span style="padding-right: 30px">
@@ -301,15 +279,14 @@
                     </div>
                     <div>
                       <mat-chip-list aria-label="Bags" style="float: right">
-                        <mat-chip>{{pendingPickup.noOfBags}} Bags</mat-chip>
-  <!--                      <mat-chip>10 Bags</mat-chip>-->
+                      <mat-chip>{{pendingPickup.noOfBags}} {{pendingPickup.bagSize}} Bags</mat-chip>
                       </mat-chip-list>
                     </div>
                   </span>
                   </div>
                   <div style="padding-left: 30px; padding-bottom: 30px; height: 40px">
                     <button class="cancel-button" [disabled]="!canCancel(pendingPickup)" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
-                    <button class="submit-button" style="width: 165px !important;" (click)="openGetDepositDialog(pendingPickup)">Add Pickup Code</button>
+                    <button class="submit-button" style="width: 170px !important;" (click)="openGetDepositDialog(pendingPickup)">Enter Agent Code</button>
   <!--                  <button class="submit-button" (click)="openGetDepositDialog({})">Get Deposit</button>-->
                   </div>
                 </div>
@@ -335,14 +312,8 @@
                         <!--                      <h2><p>&#x20b9; 100</p></h2>-->
                       </div>
                       <div>
-                        <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(completedPickup.startTime) === 'TODAY'">
-                          <p>Today, {{completedPickup.startTime | date: 'hh:mm aa'}} - {{completedPickup.endTime | date: 'hh:mm aa'}}</p>
-                        </h2>
-                        <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(completedPickup.startTime) === 'TOMORROW'">
-                          <p>Tomorrow, {{completedPickup.startTime | date: 'hh:mm aa'}} - {{completedPickup.endTime | date: 'hh:mm aa'}}</p>
-                        </h2>
-                        <h2 style="font-size: 22px; font-weight: 400;" *ngIf="slotTodayOrTom(completedPickup.startTime) === 'NONE'">
-                          <p>{{completedPickup.startTime | date: 'dd MMM yyyy, hh:mm aa'}} - {{completedPickup.endTime | date: 'hh:mm aa'}}</p>
+                        <h2 style="font-size: 22px; font-weight: 400;">
+                          <p>{{completedPickup.requestUpdated | date: 'dd MMM yyyy hh:mm a'}}</p>
                         </h2>
                         <!--                      <h1 style="font-size: 25px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
                       </div>
@@ -354,8 +325,7 @@
                     </div>
                     <div>
                       <mat-chip-list aria-label="Bags" style="float: right">
-                        <mat-chip>{{completedPickup.noOfBags}} Bags</mat-chip>
-                        <!--                      <mat-chip>10 Bags</mat-chip>-->
+                        <mat-chip>{{completedPickup.noOfBags}} {{completedPickup.bagSize}} Bags</mat-chip>
                       </mat-chip-list>
                     </div>
                   </span>
