@@ -74,6 +74,7 @@ router.get('/get-app-config/:type', function(req, res, next) {
       givenTimeSlots: appConfig.givenTimeSlots,
       givenTimeSlotInterval: appConfig.givenTimeSlotInterval,
       societies: appConfig.societies,
+      bagSizes: appConfig.bagTypes,
       cannotCancelBefore: appConfig.cancelRequestConstraints.cannotCancelBefore,
       cannotCancelAfter: appConfig.cancelRequestConstraints.cannotCancelAfter,
       canRequestBefore: appConfig.newRequestConstraints.canRequestBefore
@@ -146,21 +147,19 @@ router.post('/request-pickup', function (req, res, next) {
     creditTo: req.body.creditTo,
     accountId: req.body.accountId
   };
-  var reqPickupTimes = getTimesForNewRequest(req.body.pickupTimeSlot);
   var reqPickup = {
     noOfBags: req.body.noOfBags,
     userId: req.body.userId.toString(),
     fkUserId: req.body.userId,
     pickupTimeSlot: req.body.pickupTimeSlot,
-    totalValue: (req.body.noOfBags * appConfig.rewardsPerBag),
+    totalValue: req.body.totalValue,
     paymentType: req.body.creditTo,
     accountId: req.body.accountId,
-    startTime: reqPickupTimes.startTime,
-    endTime: reqPickupTimes.endTime,
     requestUserName: req.body.name,
     requestSociety: req.body.society,
-    requestFlatNumber: req.body.flatNumber,
-    requestEmail: req.body.email
+    requestEmail: req.body.email,
+    bagSize: req.body.bagSize.size,
+    requestCreated: req.body.requestCreated
   }
 
   UserModel.findByIdAndUpdate(req.body.userId, user, function (err, updatedUser) {
@@ -189,38 +188,50 @@ router.post('/request-pickup/complete', function (req, res, next) {
       if(err) return next(err);
       else {
         var oldRewards = user.rewardsEarned;
-        PickupPinModel.findOne({"requestId": req.body.requestId, randomPIN: req.body.pinCode, enabled: true},
-          function (err, pinObject) {
-            if(pinObject != null) {
-              RequestPickupModel.findById(req.body.requestId,
-                function (err, requestPickup) {
-                  requestPickup.noOfBags = req.body.noOfBags;
-                  requestPickup.totalValue = calculateTotalValue(req.body.noOfBags);
-                  requestPickup.paymentType = req.body.paymentType;
-                  requestPickup.accountId = req.body.accountId;
-
-                  var requestRewards = requestPickup.totalValue;
-                  newRewards = oldRewards + requestRewards;
-
-                  user.rewardsEarned = newRewards;
-                  user.accountId = requestPickup.accountId;
-
-                  pinObject.enabled = false;
-
-                  requestPickup.pinCode = pinObject.randomPIN;
-                  requestPickup.status = "COMPLETED";
-
-                  user.save(); //update the user's rewards
-                  requestPickup.save(); //update status
-                  pinObject.save();
-                  res.json(newRewards);
-                });
-            } else {
-              res.json({
-                "error":"Agent PIN Code is invalid"
-              });
+        var societies = appConfig.societies;
+        var isPinValid = false;
+        for(var i=0; i< societies.length; i++) {
+          if(societies[i].name == req.body.requestSociety) {
+            if(societies[i].locationCode == req.body.pinCode) {
+              isPinValid = true;
+              break;
             }
-          });
+          }
+        }
+
+        if(isPinValid) {
+          RequestPickupModel.findById(req.body.requestId,
+            function (err, requestPickup) {
+              requestPickup.noOfBags = req.body.noOfBags;
+              requestPickup.totalValue = calculateTotalValue(req.body.noOfBags);
+              requestPickup.paymentType = req.body.paymentType;
+              requestPickup.accountId = req.body.accountId;
+              requestPickup.requestUpdated = req.body.requestUpdated;
+
+              var requestRewards = requestPickup.totalValue;
+              newRewards = oldRewards + requestRewards;
+
+              user.rewardsEarned = newRewards;
+              user.accountId = requestPickup.accountId;
+
+              requestPickup.pinCode = req.body.pinCode;
+              requestPickup.status = "COMPLETED";
+
+              user.save(); //update the user's rewards
+              requestPickup.save(); //update status
+              res.json(newRewards);
+            });
+          } else {
+            res.json({
+              "error":"Agent PIN Code is invalid"
+            });
+          }
+
+
+//        PickupPinModel.findOne({"requestId": req.body.requestId, randomPIN: req.body.pinCode, enabled: true},
+//          function (err, pinObject) {
+//
+//          });
       }
     }).sort({_id:1}).limit(1);
 })
@@ -265,7 +276,7 @@ router.post('/requests/:status', function(req, res, next) {
     }
   }
   var sortCondition = {startTime: -1};
-  if(req.params.status === "PENDING") {sortCondition = {startTime : 1};}
+  if(req.params.status === "PENDING") {sortCondition = {_id : 1};}
   var $userLookup = {from: "usermodels", localField: "fkUserId", foreignField: "_id", as: "user"};
   var $pickupPinLookup = {from: "pickuppinmodels", localField: "fkPickupPinId", foreignField: "_id", as: "pickupPin"};
   RequestPickupModel.aggregate([{$match: condition}, {$lookup: $userLookup}, {$lookup: $pickupPinLookup}],
@@ -279,7 +290,7 @@ router.post('/requests/:status', function(req, res, next) {
           noOfBags: records[i].noOfBags,
           startDate: records[i].startTime,
           endDate: records[i].endTime,
-          pinCode: records[i].pickupPin ? records[i].pickupPin[0].randomPIN : null,
+          pinCode: records[i].pinCode > 0 ? records[i].pinCode : getSocietyPinCode(records[i]),
           status: records[i].status,
           totalValue: records[i].totalValue,
           paymentType: records[i].paymentType,
@@ -287,7 +298,9 @@ router.post('/requests/:status', function(req, res, next) {
           mobileNumber: records[i].user ? records[i].user[0].phoneNumber : null,
           name: records[i].requestUserName,
           society: records[i].requestSociety,
-          flatNo: records[i].requestFlatNumber,
+          bagSize: records[i].bagSize,
+          requestCreated: records[i].requestCreated,
+          requestUpdated: records[i].requestUpdated,
           email: records[i].requestEmail,
         }
         responseArr.push(responseObj);
@@ -295,6 +308,18 @@ router.post('/requests/:status', function(req, res, next) {
       res.json(responseArr);
     }).sort(sortCondition);
 });
+
+function getSocietyPinCode(record) {
+  var societies = appConfig.societies;
+  var pinCode = null;
+  for(var i=0; i< societies.length; i++) {
+    if(societies[i].name == record.requestSociety) {
+      pinCode = societies[i].locationCode;
+      break;
+    }
+  }
+  return pinCode;
+}
 
 function generateReqPIN(requestPickupId, reqPickupObj) {
   var randomPIN = getRandom4Digit();
@@ -315,30 +340,6 @@ function getRandom4Digit() {
 
 function calculateTotalValue(noOfBags) {
   return noOfBags * (appConfig.rewardsPerBag);
-}
-
-function getTimesForNewRequest(pickupTimeSlot) {
-  var slotArr = pickupTimeSlot.split(",");
-  var timeStr = slotArr[1].trim();
-  var startTimeStr = timeStr.trim().split("-")[0].trim();
-  var endTimeStr = timeStr.trim().split("-")[1].trim();
-  var startTimeHrs = Number.parseInt(startTimeStr.split(":")[0]);
-  var startTimeMins = Number.parseInt(startTimeStr.split(":")[1]);
-  var endTimeHrs = Number.parseInt(endTimeStr.split(":")[0]);
-  var endTimeMins = Number.parseInt(endTimeStr.split(":")[1]);
-  if(startTimeStr.indexOf("PM") > -1) {
-    startTimeHrs = startTimeHrs + 12;
-  }
-  if(endTimeStr.indexOf("PM") > -1) {
-    endTimeHrs = endTimeHrs + 12;
-  }
-  var currentDate = new Date();
-  if(slotArr[0] === "Tomorrow") {
-    currentDate.setDate(currentDate.getDate() + 1);
-  }
-  var startDate = new Date(currentDate.setHours(startTimeHrs, startTimeMins, 0));
-  var endDate = new Date(currentDate.setHours(endTimeHrs, endTimeMins, 0));
- return {startTime: startDate, endTime: endDate};
 }
 
 function prepareTodaysSlots(nextGreaterIndex) {

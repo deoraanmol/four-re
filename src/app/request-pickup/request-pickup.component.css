@@ -229,6 +229,11 @@
   margin-top: 15px;
 }
 
+.rp-full-field {
+ margin-top: 8px;
+ height: 37px;
+}
+
 .half-field-mobile {
   width: 140px !important;
   margin-top: 4px;

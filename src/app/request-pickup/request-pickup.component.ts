@@ -1,9 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {Society} from '../interfaces/Society';
+import {BagSize} from '../interfaces/BagSize';
 import {PaymentTypes} from '../interfaces/payment-types';
-import {TimeSlots} from "../interfaces/time-slots";
-import {TimeSlotServiceService} from "../services/time-slot-service.service";
 import {Router} from "@angular/router";
 import {CurrentUserService} from "../services/current-user.service";
 import {Observable} from "rxjs";
@@ -11,6 +10,7 @@ import {UserHttpService} from "../services/user-http.service";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {MobileMenuDialogComponent} from '../mobile-menu-dialog/mobile-menu-dialog.component';
+import {DatePipe} from '@angular/common';
 
 
 @Component({
@@ -22,23 +22,22 @@ import {MobileMenuDialogComponent} from '../mobile-menu-dialog/mobile-menu-dialo
 export class RequestPickupComponent implements OnInit {
   requestPickupValidations: FormGroup;
   societies: Society[] =[];
+  bagSizes: BagSize[] =[];
   paymentTypes: PaymentTypes[] = [];
   formSubmitted: boolean = false;
-  timeSlots: TimeSlots[] = [];
   currentUser = {};
   form: FormGroup;
   user: Observable<object>;
-  rewardsPerBag: number = 0;
 
   constructor(private formBuilder: FormBuilder,
-              private timeSlotService: TimeSlotServiceService,
               private router: Router,
               private userHttpService: UserHttpService,
               private angularFireAuth: AngularFireAuth,
               private currentUserService: CurrentUserService,
               private userhttpService: UserHttpService,
               private snackar: MatSnackBar,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private datePipe: DatePipe) {}
 
   getFormValidationErrors() {
     Object.keys(this.requestPickupValidations.controls).forEach(key => {
@@ -54,6 +53,7 @@ export class RequestPickupComponent implements OnInit {
 
   ngOnInit() {
     this.afterInitSteps();
+    this.getNowDateTime();
   }
 
   isNewReqAllowed() {
@@ -71,23 +71,18 @@ export class RequestPickupComponent implements OnInit {
 
   afterInitSteps() {
     this.currentUserService.refreshUserData(this.angularFireAuth);
-    this.userhttpService.getTimeSlots(new Date().getHours())
-      .subscribe(res => {
-        this.timeSlots = res.timeSlots;
-        this.requestPickupValidations.controls['pickupTimeSlot'].setValue(this.timeSlots[0].id);
-      });
     this.userhttpService.getAppConfig()
       .subscribe(res => {
-        this.rewardsPerBag = res.rewardsPerBag;
         this.societies = res.societies;
+        this.bagSizes = res.bagSizes;
         this.paymentTypes = res.paymentTypes;
         this.requestPickupValidations.controls['society'].setValue(this.societies[0].name);
         this.requestPickupValidations.controls['creditTo'].setValue(this.paymentTypes[0].name);
+        this.requestPickupValidations.controls['bagSize'].setValue(this.bagSizes[0].size);
       })
     this.requestPickupValidations = this.formBuilder.group({
       name: ['', Validators.required],
       society: ['', Validators.required],
-      flatNumber: ['', Validators.required],
       creditTo: ['', Validators.required],
       accountId:
         [ this.currentUserService.excludeCountryCode("IND", this.currentUser['phoneNumber']),
@@ -95,7 +90,7 @@ export class RequestPickupComponent implements OnInit {
         ],
       phoneNumber: [''],
       noOfBags: ['', Validators.compose([Validators.min(1), Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])],
-      pickupTimeSlot: ['', Validators.required]
+      bagSize: ['', Validators.required]
     });
     this.currentUserService.userRefreshed
       .subscribe(res => {
@@ -104,7 +99,6 @@ export class RequestPickupComponent implements OnInit {
           this.requestPickupValidations.patchValue({
             name: this.currentUser['name'],
             phoneNumber: this.currentUser['phoneNumber'],
-            flatNumber: this.currentUser['flatNumber'],
             creditTo: this.currentUser['creditTo'],
             society: this.currentUser['society'],
             accountId: this.currentUser['accountId']
@@ -122,7 +116,6 @@ export class RequestPickupComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   requestPickup() {
-    debugger
     this.formSubmitted = true;
     if(this.requestPickupValidations.status === "INVALID") {
 
@@ -131,13 +124,14 @@ export class RequestPickupComponent implements OnInit {
         var requestPickupRequest = {
           "name": this.requestPickupValidations.controls.name.value,
           "society": this.requestPickupValidations.controls.society.value,
-          "flatNumber": this.requestPickupValidations.controls.flatNumber.value,
           "creditTo": this.requestPickupValidations.controls.creditTo.value,
           "accountId": this.requestPickupValidations.controls.accountId.value,
           "noOfBags": this.requestPickupValidations.controls.noOfBags.value,
           "userId": this.currentUserService.currentUserData['_id'].toString(),
-          "pickupTimeSlot": this.getTimeSlotString(),
-          "rewardsEarned": this.currentUserService.currentUserData['rewardsEarned']
+          "totalValue": this.getAmt(),
+          "bagSize": this.findBagSize(this.requestPickupValidations.controls.bagSize.value),
+          "rewardsEarned": this.currentUserService.currentUserData['rewardsEarned'],
+          "requestCreated": this.getNowDateTime()
         }
         this.userhttpService.storeRequestPickup(requestPickupRequest).subscribe(res => {
 
@@ -151,6 +145,8 @@ export class RequestPickupComponent implements OnInit {
       }
     }
   }
+
+
 
   signOutFromRP() {
     this.currentUserService.signOutUser(this.angularFireAuth);
@@ -173,12 +169,6 @@ export class RequestPickupComponent implements OnInit {
     });
   }
 
-  private getTimeSlotString() {
-    let slotId = this.requestPickupValidations.controls.pickupTimeSlot.value;
-    let timeSlotObj = this.timeSlots[slotId-1];
-    return timeSlotObj.day + ", " + timeSlotObj.startTime + " - " + timeSlotObj.endTime;
-  }
-
   openREScreen(selectTab) {
     this.router.navigate(["/dashboard"], {state: {activeTab: selectTab}});
   }
@@ -196,11 +186,34 @@ export class RequestPickupComponent implements OnInit {
     this.requestPickupValidations.controls["accountId"].updateValueAndValidity();
   }
 
+  getNowDateTime() {
+    return this.datePipe.transform(new Date(), "dd MMM yyyy hh:mm a");
+  }
+
   getAmt() {
-    var amt = (this.requestPickupValidations.controls.noOfBags.value * this.rewardsPerBag);
-    if(amt < 0) {
+  debugger
+    var selectedBagSize = this.requestPickupValidations.controls.bagSize.value;
+    var bagSizeObj = this.findBagSize(selectedBagSize);
+    if(bagSizeObj) {
+      var amt = (this.requestPickupValidations.controls.noOfBags.value * bagSizeObj.amountPerBag);
+      if(amt < 0) {
+        return 0;
+      }
+      return amt;
+    } else {
       return 0;
     }
-    return amt;
+
+  }
+
+  findBagSize(selectedSize) {
+    var gotBagSize = null;
+    for(var i=0; i < this.bagSizes.length; i++) {
+      if(this.bagSizes[i].size == selectedSize) {
+        gotBagSize = this.bagSizes[i];
+        break;
+      }
+    }
+    return gotBagSize;
   }
 }

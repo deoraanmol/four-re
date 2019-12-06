@@ -8,10 +8,10 @@ export interface PeriodicElement {
   mobileNumber: string; //join
   name: string; //join
   society: string; //join
-  flatNo: string; //join
+  bagSize: string; //join
   noOfBags: number;
-  startDate: string;
-  endDate: string;
+  requestCreated: string;
+  requestUpdated: string;
   pinCode: number;
   status: string;
   totalValue: string;
@@ -37,8 +37,8 @@ export class RequestPinsComponent implements OnInit {
     {
       "requestId": 123,
       "noOfBags": 1,
-      "startDate": "2019-11-04T02:30:00.181Z",
-      "endDate": "2019-11-05T05:30:00.181Z",
+      "requestCreated": "2019-11-04T02:30:00.181Z",
+      "requestUpdated": "2019-11-05T05:30:00.181Z",
       "pinCode": 1983,
       "status": "PENDING",
       "totalValue": "10",
@@ -46,13 +46,13 @@ export class RequestPinsComponent implements OnInit {
       "mobileNumber": "+919811882111",
       "name": "PANKAJ GARG",
       "society": "Ireo Grand Arch",
-      "flatNo": "16"
+      "bagSize": "Small"
     },
     {
       "requestId": 124,
       "noOfBags": 1,
-      "startDate": "2019-11-04T02:30:00.181Z",
-      "endDate": "2019-11-05T05:30:00.181Z",
+      "requestCreated": "2019-11-04T02:30:00.181Z",
+      "requestUpdated": "2019-11-05T05:30:00.181Z",
       "pinCode": 1983,
       "status": "PENDING",
       "totalValue": "10",
@@ -60,7 +60,7 @@ export class RequestPinsComponent implements OnInit {
       "mobileNumber": "+919811882111",
       "name": "PANKAJ GARG",
       "society": "Ireo Grand Arch",
-      "flatNo": "16"
+      "bagSize": "Small"
     }
   ];
   displayedColumns: string[] = ['select',
@@ -68,10 +68,10 @@ export class RequestPinsComponent implements OnInit {
     'mobileNumber',
     'name',
     'society',
-    'flatNo',
+    'bagSize',
     'noOfBags',
-    'startDate',
-    'endDate',
+    'requestCreated',
+    'requestUpdated',
     'pickupCode',
     'status',
     'requestValue',

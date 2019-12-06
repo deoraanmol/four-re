@@ -54,9 +54,9 @@
     <td mat-cell *matCellDef="let element"> {{element.society}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="flatNo">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Flat No </th>
-    <td mat-cell *matCellDef="let element"> {{element.flatNo}} </td>
+  <ng-container matColumnDef="bagSize">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Bag Size</th>
+    <td mat-cell *matCellDef="let element"> {{element.bagSize}} </td>
   </ng-container>
 
   <ng-container matColumnDef="noOfBags">
@@ -64,14 +64,14 @@
     <td mat-cell *matCellDef="let element"> {{element.noOfBags}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="startDate">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup Start Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.startDate | date: 'dd MMM yyyy, hh:mm a'}} </td>
+  <ng-container matColumnDef="requestCreated">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Created </th>
+    <td mat-cell *matCellDef="let element"> {{element.requestCreated}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="endDate">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Pickup End Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.endDate | date: 'dd MMM yyyy, hh:mm a'}} </td>
+  <ng-container matColumnDef="requestUpdated">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Completed </th>
+    <td mat-cell *matCellDef="let element"> {{element.requestUpdated | date: 'dd MMM yyyy, hh:mm a'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="pickupCode">

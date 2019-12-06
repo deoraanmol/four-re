@@ -162,7 +162,8 @@ export class RewardsEarnedComponent implements OnInit {
         rewardsPerBag: this.rewardsPerBag,
         requestUserName: pendingPickup.requestUserName,
         requestSociety: pendingPickup.requestSociety,
-        requestFlatNumber: pendingPickup.requestFlatNumber
+        requestFlatNumber: pendingPickup.requestFlatNumber,
+        bagSize: pendingPickup.bagSize,
       }
     });
 

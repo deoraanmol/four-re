@@ -1,6 +1,6 @@
 <div class="for-web">
   <span class="dialog-header">
-    <h1 mat-dialog-title>Add Pickup Code</h1>
+    <h1 mat-dialog-title>Enter Agent Code</h1>
   </span>
   <div mat-dialog-content>
     <div>
@@ -15,6 +15,10 @@
               <span class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors.min">Number of Bags must be greater than 0</span>
               <span class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors.pattern">Number of Bags cannot have a decimal value</span>
             </div>
+          </div>
+          <div class="form-field" style="padding-top: 15px">
+            <div class="form-label">Size</div>
+            <input class="form-value" matInput formControlName="bagSize" [readonly]="true">
           </div>
           <div class="form-line-multiple-fields">
             <div class="form-field custom-short-field" style="padding-right: 20px">
@@ -35,11 +39,11 @@
             </div>
           </div>
           <div class="form-field" style="padding-top: 20px">
-            <div class="form-label">Pickup Code</div>
-            <input matInput formControlName="pickupCode" type="number" placeholder="Enter pickup code" [className]="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted) ? 'form-input field-border-error' : 'form-input'">
+            <div class="form-label">Agent Code</div>
+            <input matInput formControlName="pickupCode" type="number" placeholder="Enter agent code" [className]="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted) ? 'form-input field-border-error' : 'form-input'">
             <div class="field-error-hint" *ngIf="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted)">
-              <span *ngIf="invalidPIN && !(getDepositForm.get('pickupCode').errors)">Pickup Code is invalid</span>
-              <span *ngIf="(getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Pickup Code is required</span>
+              <span *ngIf="invalidPIN && !(getDepositForm.get('pickupCode').errors)">Agent Code is invalid</span>
+              <span *ngIf="(getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Agent Code is required</span>
             </div>
           </div>
 
@@ -47,7 +51,7 @@
         <br/><br/>
         <span style="font-size: 13px; padding-top: 15px">
           <mat-checkbox formControlName="touCheckbox" style="padding-right: 5px"></mat-checkbox>
-          <span>By submitting the agent PIN, you confirm to receive &#x20b9; {{getAmt()}} in above account</span>
+          <span>By submitting the agent code, you confirm to receive &#x20b9; {{getAmt()}} in above account</span>
         </span>
       </form>
 
@@ -63,7 +67,7 @@
 
 <div class="for-mobile">
   <span class="dialog-header">
-    <h1 mat-dialog-title style="font-size:20px; text-align: left; margin-top: -25px; margin-left: 10px">Add Pickup Code</h1>
+    <h1 mat-dialog-title style="font-size:20px; text-align: left; margin-top: -25px; margin-left: 10px">Enter Agent Code</h1>
   </span>
   <div mat-dialog-content style="margin-top: -25px">
     <div>
@@ -98,18 +102,18 @@
             </div>
           </div>
           <div class="gd-form-field-mobile" style="padding-top: 20px">
-            <div class="form-label">Pickup Code</div>
-            <input matInput [className]="getDepositForm.get('pickupCode').errors && gdFormSubmitted ? 'form-input-mobile field-border-error' : 'form-input-mobile'" formControlName="pickupCode" type="number" placeholder="Enter pickup code">
+            <div class="form-label">Agent Code</div>
+            <input matInput [className]="getDepositForm.get('pickupCode').errors && gdFormSubmitted ? 'form-input-mobile field-border-error' : 'form-input-mobile'" formControlName="pickupCode" type="number" placeholder="Enter agent code">
             <div class="field-error-hint-mobile" *ngIf="invalidPIN || (getDepositForm.get('pickupCode').errors && gdFormSubmitted)">
-              <span *ngIf="invalidPIN && !(getDepositForm.get('pickupCode').errors)">Pickup Code is invalid</span>
-              <span *ngIf="(getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Pickup Code is required</span>
+              <span *ngIf="invalidPIN && !(getDepositForm.get('pickupCode').errors)">Agent Code is invalid</span>
+              <span *ngIf="(getDepositForm.get('pickupCode').errors && gdFormSubmitted)">Agent Code is required</span>
             </div>
           </div>
 
         </div>
         <div style="font-size: 13px; padding-top: 15px; padding-left: 10px; padding-right: 14px">
           <mat-checkbox formControlName="touCheckbox" style="padding-right: 5px"></mat-checkbox>
-          <span>By submitting the agent PIN, you confirm to receive &#x20b9; {{getAmt()}} in above account</span>
+          <span>By submitting the agent code, you confirm to receive &#x20b9; {{getAmt()}} in above account</span>
         </div>
       </form>
 
