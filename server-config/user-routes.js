@@ -69,7 +69,6 @@ router.get('/completed-requests/:userId', function(req, res, next) {
 router.get('/get-app-config/:type', function(req, res, next) {
   try {
     res.json({
-      rewardsPerBag: appConfig.rewardsPerBag,
       paymentTypes: appConfig.paymentTypes,
       givenTimeSlots: appConfig.givenTimeSlots,
       givenTimeSlotInterval: appConfig.givenTimeSlotInterval,
@@ -87,7 +86,6 @@ router.get('/get-app-config/:type', function(req, res, next) {
 router.get('/get-app-config-m1/:type', function(req, res, next) {
   try {
     res.json({
-      rewardsPerBag: appConfig.rewardsPerBag,
     });
   } catch(err) {
     next(err);
@@ -203,10 +201,11 @@ router.post('/request-pickup/complete', function (req, res, next) {
           RequestPickupModel.findById(req.body.requestId,
             function (err, requestPickup) {
               requestPickup.noOfBags = req.body.noOfBags;
-              requestPickup.totalValue = calculateTotalValue(req.body.noOfBags);
+              requestPickup.totalValue = req.body.totalValue;
               requestPickup.paymentType = req.body.paymentType;
               requestPickup.accountId = req.body.accountId;
               requestPickup.requestUpdated = req.body.requestUpdated;
+              requestPickup.bagSize = req.body.bagSize;
 
               var requestRewards = requestPickup.totalValue;
               newRewards = oldRewards + requestRewards;
@@ -336,10 +335,6 @@ function generateReqPIN(requestPickupId, reqPickupObj) {
 
 function getRandom4Digit() {
   return Math.floor(1000 + Math.random() * 9000);
-}
-
-function calculateTotalValue(noOfBags) {
-  return noOfBags * (appConfig.rewardsPerBag);
 }
 
 function prepareTodaysSlots(nextGreaterIndex) {

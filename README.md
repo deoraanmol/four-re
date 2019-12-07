@@ -34,8 +34,8 @@ use four-re
 
 Mongo Collections used:
 usermodels: Stores user information (his/her contact no, name etc)
-requestpickupmodels: Stores Request Pickup information
-pickuppinmodels: This stores random 4 digit PIN codes that are associated to a Request Pickup.
+requestpickupmodels: Stores Drop Bags information
+pickuppinmodels: This stores random 4 digit PIN codes that are associated to a Drop Bags.
 
 To query any collection, type: db.collection_name.find() (For more mongo queries, use mongo tutorial)
 

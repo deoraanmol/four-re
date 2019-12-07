@@ -1,5 +1,4 @@
 module.exports = {
-  rewardsPerBag: 25,
   paymentTypes: [
     {name: 'PayTM'}
   ],
@@ -21,8 +20,8 @@ module.exports = {
     20: "08:00 PM",
   },
   cancelRequestConstraints: {
-    cannotCancelBefore: 60, //cannot cancel a request before X minutes of beginning of the time slot
-    cannotCancelAfter: 60, //cannot after Y minutes of the end of the time slot
+    cannotCancelBefore: 0, //cannot cancel a request before X minutes of beginning of the time slot
+    cannotCancelAfter: 0, //cannot cancel a request after Y minutes of the end of the time slot
   },
   newRequestConstraints: {
     canRequestBefore: 60 //can raise a request X mins before a slot's start time
