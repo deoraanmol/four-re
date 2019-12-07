@@ -78,6 +78,14 @@
       <form [formGroup]="getDepositForm">
 
         <div class="form-line-mobile">
+          <div class="gd-form-field-mobile" style="padding-top: 15px">
+            <div class="form-label">Size</div>
+            <select formControlName="bagSize" class="form-field-dropdown gd-half-field-mobile">
+              <option *ngFor="let bagSize of bagSizes" [value]="bagSize.size">
+                {{bagSize.display}}
+              </option>
+            </select>
+          </div>
           <div class="gd-form-field-mobile">
             <div class="form-label">Number of Bags</div>
             <input matInput [className]="getDepositForm.get('noOfBags').errors && gdFormSubmitted ? 'form-input-disabled-mobile field-border-error' : 'form-input-disabled-mobile'" formControlName="noOfBags" type="number" placeholder="Number of Bags">
