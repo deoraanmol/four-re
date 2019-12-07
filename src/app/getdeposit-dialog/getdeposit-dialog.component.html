@@ -7,7 +7,15 @@
       <form [formGroup]="getDepositForm" style="padding-left: 10px;">
 
         <div class="form-line">
-          <div class="form-field">
+          <div class="form-field" style="padding-top: 15px">
+            <div class="form-label">Size</div>
+            <select formControlName="bagSize" class="form-field-dropdown gd-full-field">
+              <option *ngFor="let bagSize of bagSizes" [value]="bagSize.size">
+                {{bagSize.display}}
+              </option>
+            </select>
+          </div>
+          <div class="form-field" style="padding-top: 20px;">
             <div class="form-label">Number of Bags</div>
             <input matInput min="1" [className]="getDepositForm.get('noOfBags').errors && gdFormSubmitted ? 'form-value field-border-error' : 'form-value'" formControlName="noOfBags" type="number" placeholder="Number of Bags">
             <div class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors && gdFormSubmitted">
@@ -15,10 +23,6 @@
               <span class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors.min">Number of Bags must be greater than 0</span>
               <span class="field-error-hint" *ngIf="getDepositForm.get('noOfBags').errors.pattern">Number of Bags cannot have a decimal value</span>
             </div>
-          </div>
-          <div class="form-field" style="padding-top: 15px">
-            <div class="form-label">Size</div>
-            <input class="form-value" matInput formControlName="bagSize" [readonly]="true">
           </div>
           <div class="form-line-multiple-fields">
             <div class="form-field custom-short-field" style="padding-right: 20px">

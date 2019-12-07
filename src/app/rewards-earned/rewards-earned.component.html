@@ -20,123 +20,67 @@
           </div>
         </div>
       </div>
-      <mat-tab-group style="padding-left: 10px; padding-top: 10px; padding-right: 10px">
-        <mat-tab label="Pickups" style="width: 50%">
-          <div style="padding-top: 5px">
-            <div *ngIf="pendingReqSpinner == true" style="overflow: hidden; padding-top: 40px">
-              <mat-spinner style="left: 40%"></mat-spinner>
-            </div>
-            <div *ngIf="!pendingReqSpinner && pendingPickups.length > 0">
-              <h3 style="font-weight: 500">Pending Request(s)</h3>
-              <div class="pending-requests-list">
-                <div class="pending-request-box" *ngFor="let pendingPickup of pendingPickups">
-                  <!--              <div class="pending-request-box">-->
-                  <div>
-                    <div style="padding-left: 10px">
-                      <h2><p>&#x20b9; {{pendingPickup.totalValue}}</p></h2>
-                      <!--                    <h2><p>&#x20b9; 100</p></h2>-->
-                      <h2 style="font-size: 16.5px; font-weight: 400;">
-                        <p>{{pendingPickup.requestCreated}}</p>
-                      </h2>
-                      <!--                    <h1 style="font-size: 20px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
-                      <h4><p>{{pendingPickup.paymentType}} ({{pendingPickup.accountId}})</p></h4>
-                      <mat-chip>{{pendingPickup.noOfBags}} {{pendingPickup.bagSize}} Bags</mat-chip>
-                    </div>
-                  </div>
-                  <div style="padding-left: 10px; padding-bottom: 10px; padding-top: 20px;">
-                    <button class="cancel-button footer-btns-mobile" [disabled]="!canCancel(pendingPickup)" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
-                    <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog(pendingPickup)">Enter Agent Code</button>
-                    <!--                  <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog({})">Get Deposit</button>-->
-                  </div>
+      <div style="padding: 10px">
+        <div *ngIf="pendingReqSpinner == true" style="overflow: hidden; padding-top: 40px">
+          <mat-spinner style="left: 40%"></mat-spinner>
+        </div>
+        <div *ngIf="!pendingReqSpinner && pendingPickups.length > 0">
+          <h3 style="font-weight: 500">Pending Request(s)</h3>
+          <div class="pending-requests-list">
+            <div class="pending-request-box" *ngFor="let pendingPickup of pendingPickups">
+              <!--              <div class="pending-request-box">-->
+              <div>
+                <div style="padding-left: 10px">
+                  <h2><p>&#x20b9; {{pendingPickup.totalValue}}</p></h2>
+                  <!--                    <h2><p>&#x20b9; 100</p></h2>-->
+                  <h2 style="font-size: 16.5px; font-weight: 400;">
+                    <p>{{pendingPickup.requestCreated}}</p>
+                  </h2>
+                  <!--                    <h1 style="font-size: 20px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
+                  <h4><p>{{pendingPickup.paymentType}} ({{pendingPickup.accountId}})</p></h4>
+                  <mat-chip>{{pendingPickup.noOfBags}} {{pendingPickup.bagSize}} Bags</mat-chip>
                 </div>
               </div>
-            </div>
-            <div>
-              <div style="padding-bottom: 20px" *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
-                <div style="margin-left: 50%; transform: translateX(-35%);">
-                  <img src="assets/img/mobile-dashboard-pickups-completed-group-61@2x.png" style="height: 80px; width: 100px;" />
-                  <div style="padding-top: 15px">
-                    <button class="submit-button" style="width: 115px;font-size: 13px;" (click)="navToReqPickup()">Request Pickup</button>
-                  </div>
-                </div>
+              <div style="padding-left: 10px; padding-bottom: 10px; padding-top: 20px;">
+                <button class="cancel-button footer-btns-mobile" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
+                <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog(pendingPickup)">Enter Agent Code</button>
+                <!--                  <button class="submit-button footer-btns-mobile" (click)="openGetDepositDialog({})">Get Deposit</button>-->
               </div>
-              <div style="margin-right: 20px; border-radius: 5px;" *ngIf="completedPickups.length > 0">
-                <h3 class="re-user-req-completed-header">Completed Request(s)</h3>
-                <div class="pending-requests-list">
-                  <div class="completed-request-box" *ngFor="let completedPickup of completedPickups">
-                    <!--              <div class="pending-request-box">-->
-                    <div>
-                      <div style="padding-left: 10px; padding-bottom: 10px">
-                        <h2><p>&#x20b9; {{completedPickup.totalValue}}</p></h2>
-                        <!--                    <h2><p>&#x20b9; 100</p></h2>-->
-                        <h2 style="font-size: 16.5px; font-weight: 400;">
-                          <p>{{completedPickup.requestUpdated | date: 'dd MMM yyyy hh:mm a'}}</p>
-                        </h2>
-                        <!--                    <h1 style="font-size: 20px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
-                        <h4><p>{{completedPickup.paymentType}} ({{completedPickup.accountId}})</p></h4>
-                        <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
-                        <mat-chip>{{completedPickup.noOfBags}} {{completedPickup.bagSize}} Bags</mat-chip>
-                      </div>
-                    </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="padding-bottom: 20px" *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
+            <div style="margin-left: 50%; transform: translateX(-35%);">
+              <img src="assets/img/mobile-dashboard-pickups-completed-group-61@2x.png" style="height: 80px; width: 100px;" />
+              <div style="padding-top: 15px">
+                <button class="submit-button" style="width: 115px;font-size: 13px;" (click)="navToReqPickup()">Drop Bags</button>
+              </div>
+            </div>
+          </div>
+          <div style="border-radius: 5px;" *ngIf="completedPickups.length > 0">
+            <h3 class="re-user-req-completed-header">Completed Request(s)</h3>
+            <div class="pending-requests-list">
+              <div class="completed-request-box" *ngFor="let completedPickup of completedPickups">
+                <!--              <div class="pending-request-box">-->
+                <div>
+                  <div style="padding-left: 10px; padding-bottom: 10px">
+                    <h2><p>&#x20b9; {{completedPickup.totalValue}}</p></h2>
+                    <!--                    <h2><p>&#x20b9; 100</p></h2>-->
+                    <h2 style="font-size: 16.5px; font-weight: 400;">
+                      <p>{{completedPickup.requestUpdated | date: 'dd MMM yyyy hh:mm a'}}</p>
+                    </h2>
+                    <!--                    <h1 style="font-size: 20px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
+                    <h4><p>{{completedPickup.paymentType}} ({{completedPickup.accountId}})</p></h4>
+                    <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
+                    <mat-chip>{{completedPickup.noOfBags}} {{completedPickup.bagSize}} Bags</mat-chip>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </mat-tab>
-        <mat-tab label="Profile">
-          <div style="padding-top: 10px">
-            <form [formGroup]="userProfileForm">
-              <div class="form-line-mobile">
-                <div class="form-field" style="width: 285px">
-                  <div class="form-label">Name</div>
-                  <input matInput [className]="userProfileForm.get('name').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="name" placeholder="Enter Name">
-                  <span class="field-error-hint" *ngIf="userProfileForm.get('name').errors && upFormSubmitted">Name is required</span>
-                </div>
-              </div>
-              <div class="form-line-mobile">
-                <div class="form-line-multiple-fields form-field-padding">
-                  <div class="form-field custom-short-field" style="padding-right: 20px;">
-                    <div class="form-label">Society</div>
-                    <select formControlName="society" class="form-field-dropdown half-field" style="margin-top: 14px">
-                      <option *ngFor="let society of societies" [value]="society.name">
-                        {{society.name}}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-field custom-short-field">
-                    <div class="form-label" style="width: 150px !important">Tower & Flat Number</div>
-                    <input [className]="userProfileForm.get('flatNumber').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
-                    <span class="field-error-hint" *ngIf="userProfileForm.get('flatNumber').errors && upFormSubmitted">Flat Number is required</span>
-                  </div>
-                </div>
-                <div class="form-line-multiple-fields">
-                  <div class="form-field custom-short-field" style="padding-right: 20px">
-                    <div class="form-label">Credit To</div>
-                    <select formControlName="creditTo" class="form-field-dropdown half-field" (click)="changePaymentType()" style="margin-top: 14px">
-                      <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
-                        {{paymentType.name}}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-field custom-short-field">
-                    <div class="form-label">PayTM Number</div>
-                    <input [className]="userProfileForm.get('accountId').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
-                    <span class="field-error-hint" *ngIf="userProfileForm.get('accountId').errors && upFormSubmitted">
-                      <span *ngIf="userProfileForm.get('accountId').errors.required; else upInvalidAccMobile">PayTM number is required</span>
-                      <ng-template #upInvalidAccMobile>PayTM number is invalid</ng-template>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div style="padding-top: 45px; margin-left: 10px; height: 40px">
-            <button class="cancel-button" (click)="resetUserProfile()">Reset</button>
-            <button class="submit-button" (click)="updateProfile()">Save</button>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
+        </div>
+      </div>
     </div>
     <div class="re-bp2-headermobilelogin">
       <img src="assets/img/mobile-dashboard-pickups-completed-background-2.png" class="bp2-background" />
@@ -166,7 +110,7 @@
             <span class="bp2-myaccount">My Account</span>
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
             <mat-menu #menuMobile="matMenu" class="re-dropdown-mobile">
-              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Deposits</button>
+              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Refunds</button>
               <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
             </mat-menu>
           </button>
@@ -227,7 +171,7 @@
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="dropdown">
-            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Deposits</button>
+            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Refunds</button>
             <button mat-menu-item (click)="signOutFromRE()">Sign Out</button>
           </mat-menu>
         </div>
@@ -249,22 +193,21 @@
           </div>
         </div>
       </div>
-      <mat-tab-group style="padding-left: 30px; padding-top: 30px" [selectedIndex]="activeTabIdx">
-        <mat-tab label="Pickups">
-          <div style="padding-top: 30px">
-            <div *ngIf="pendingReqSpinner == true" style="overflow: hidden">
-              <mat-spinner style="left: 45%"></mat-spinner>
-            </div>
-            <div *ngIf="!pendingReqSpinner && pendingPickups.length > 0">
-              <h3 style="font-weight: 500">Pending Request(s)</h3>
-              <div class="pending-requests-list">
-                <div class="pending-request-box" *ngFor="let pendingPickup of pendingPickups">
-  <!--              <div class="pending-request-box">-->
-                  <div class="pending-request-money">
+      <div style="padding-top: 30px">
+        <div *ngIf="pendingReqSpinner == true" style="overflow: hidden">
+          <mat-spinner style="left: 45%"></mat-spinner>
+        </div>
+        <div *ngIf="!pendingReqSpinner && pendingPickups.length > 0">
+          <div style="padding: 10px; border-radius: 5px;">
+            <h3 style="font-weight: 500">Pending Request(s)</h3>
+            <div class="pending-requests-list">
+            <div class="pending-request-box" *ngFor="let pendingPickup of pendingPickups">
+              <!--              <div class="pending-request-box">-->
+              <div class="pending-request-money">
                     <span style="padding-left: 30px">
                       <div>
                         <h2><p>&#x20b9; {{pendingPickup.totalValue}}</p></h2>
-  <!--                      <h2><p>&#x20b9; 100</p></h2>-->
+                        <!--                      <h2><p>&#x20b9; 100</p></h2>-->
                       </div>
                       <div>
                         <h2 style="font-size: 22px; font-weight: 400;">
@@ -272,10 +215,10 @@
                         </h2>
                       </div>
                     </span>
-                    <span style="padding-right: 30px">
+                <span style="padding-right: 30px">
                     <div>
                       <h4><p>{{pendingPickup.paymentType}} ({{currentUserService.excludeCountryCode("IND", pendingPickup.accountId)}})</p></h4>
-  <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
+                      <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
                     </div>
                     <div>
                       <mat-chip-list aria-label="Bags" style="float: right">
@@ -283,29 +226,30 @@
                       </mat-chip-list>
                     </div>
                   </span>
-                  </div>
-                  <div style="padding-left: 30px; padding-bottom: 30px; height: 40px">
-                    <button class="cancel-button" [disabled]="!canCancel(pendingPickup)" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
-                    <button class="submit-button" style="width: 170px !important;" (click)="openGetDepositDialog(pendingPickup)">Enter Agent Code</button>
-  <!--                  <button class="submit-button" (click)="openGetDepositDialog({})">Get Deposit</button>-->
-                  </div>
-                </div>
+              </div>
+              <div style="padding-left: 30px; padding-bottom: 30px; height: 40px">
+                <button class="cancel-button" (click)="cancelPendingPickup(pendingPickup)">Cancel</button>
+                <button class="submit-button" style="width: 170px !important;" (click)="openGetDepositDialog(pendingPickup)">Enter Agent Code</button>
+                <!--                  <button class="submit-button" (click)="openGetDepositDialog({})">Get Deposit</button>-->
               </div>
             </div>
-            <div>
-              <div style="padding-bottom: 20px" *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
-                <div style="margin-left: 50%; transform: translateX(-24%);">
-                  <img src="assets/img/mobile-dashboard-pickups-completed-group-61@2x.png" style="height: 100px; width: 145px" />
-                  <div style="padding-top: 15px">
-                    <button class="submit-button" style="width: 160px;" (click)="navToReqPickup()">Request Pickup</button>
-                  </div>
-                </div>
+          </div>
+          </div>
+        </div>
+        <div>
+          <div style="padding-bottom: 20px" *ngIf="!pendingReqSpinner && (!pendingPickups || pendingPickups.length == 0)">
+            <div style="margin-left: 50%; transform: translateX(-24%);">
+              <img src="assets/img/mobile-dashboard-pickups-completed-group-61@2x.png" style="height: 100px; width: 145px" />
+              <div style="padding-top: 15px">
+                <button class="submit-button" style="width: 160px;" (click)="navToReqPickup()">Drop Bags</button>
               </div>
-              <div style="margin-right: 20px; border-radius: 5px;"  *ngIf="completedPickups.length > 0">
-                <h3 class="re-user-req-completed-header">Completed Request(s)</h3>
-                <div class="pending-requests-list">
-                  <div class="completed-request-box" *ngFor="let completedPickup of completedPickups">
-                    <div class="pending-request-money">
+            </div>
+          </div>
+          <div style="padding: 10px; border-radius: 5px;"  *ngIf="completedPickups.length > 0">
+            <h3 class="re-user-req-completed-header">Completed Request(s)</h3>
+            <div class="pending-requests-list">
+              <div class="completed-request-box" *ngFor="let completedPickup of completedPickups">
+                <div class="pending-request-money">
                     <span style="padding-left: 30px">
                       <div>
                         <h2><p>&#x20b9; {{completedPickup.totalValue}}</p></h2>
@@ -318,7 +262,7 @@
                         <!--                      <h1 style="font-size: 25px; font-weight: 400;"><p>Today 04:00 PM - 06:00 PM</p></h1>-->
                       </div>
                     </span>
-                      <span style="padding-right: 30px">
+                  <span style="padding-right: 30px">
                     <div>
                       <h4><p>{{completedPickup.paymentType}} ({{currentUserService.excludeCountryCode("IND", completedPickup.accountId)}})</p></h4>
                       <!--                    <h4><p>Amazon Pay (123)</p></h4>-->
@@ -329,66 +273,12 @@
                       </mat-chip-list>
                     </div>
                   </span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </mat-tab>
-        <mat-tab label="Profile">
-          <div style="padding-top: 30px">
-            <form [formGroup]="userProfileForm">
-              <div class="form-line-multiple-fields">
-                <div class="form-field form-field-padding">
-                  <div class="form-label">Name</div>
-                  <input matInput [className]="userProfileForm.get('name').errors && upFormSubmitted ? 'form-input field-border-error' : 'form-input'" formControlName="name" placeholder="Enter Name">
-                  <span class="field-error-hint" *ngIf="userProfileForm.get('name').errors && upFormSubmitted">Name is required</span>
-                </div>
-                <div class="form-line-multiple-fields form-field-padding" style="margin-top: 0px !important">
-                  <div class="form-field custom-short-field" style="padding-right: 30px">
-                    <div class="form-label">Society</div>
-                    <select formControlName="society" class="form-field-dropdown half-field" style="margin-top: 14px">
-                      <option *ngFor="let society of societies" [value]="society.name">
-                        {{society.name}}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-field custom-short-field">
-                    <div class="form-label" style="width: 150px !important">Tower & Flat Number</div>
-                    <input [className]="userProfileForm.get('flatNumber').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="flatNumber" type="text" placeholder="Ex T-102">
-                    <span class="field-error-hint" *ngIf="userProfileForm.get('flatNumber').errors && upFormSubmitted">Flat Number is required</span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-line-multiple-fields">
-                <div class="form-line-multiple-fields">
-                  <div class="form-field custom-short-field" style="padding-right: 30px">
-                    <div class="form-label">Credit To</div>
-                    <select formControlName="creditTo" class="form-field-dropdown half-field" (click)="changePaymentType()" style="margin-top: 14px">
-                      <option *ngFor="let paymentType of paymentTypes" [value]="paymentType.name">
-                        {{paymentType.name}}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-field custom-short-field">
-                    <div class="form-label">PayTM Number</div>
-                    <input [className]="userProfileForm.get('accountId').errors && upFormSubmitted ? 'form-value field-border-error' : 'form-value'" style="width: 140px;" matInput formControlName="accountId" type="text" placeholder="Enter PayTM number">
-                    <span class="field-error-hint" *ngIf="userProfileForm.get('accountId').errors && upFormSubmitted">
-                      <span *ngIf="userProfileForm.get('accountId').errors.required; else upInvalidAccWeb">PayTM number is required</span>
-                      <ng-template #upInvalidAccWeb>PayTM number is invalid</ng-template>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div style="padding-top: 45px; height: 40px">
-            <button class="cancel-button" (click)="resetUserProfile()">Reset</button>
-            <button class="submit-button" (click)="updateProfile()">Save</button>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
+        </div>
+      </div>
     </div>
   </div>
 </div>

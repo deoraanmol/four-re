@@ -31,7 +31,6 @@ export class RewardsEarnedComponent implements OnInit {
   rewardsEarned: Number = 0;
   activeTab:string = null;
   activeTabIdx: number = 0;
-  rewardsPerBag = 0;
   upFormSubmitted: boolean = false;
   pendingReqSpinner: boolean = false;
   startX: number = 0;
@@ -76,7 +75,7 @@ export class RewardsEarnedComponent implements OnInit {
       : 0;
     this.userHttpService.getAppConfig()
       .subscribe(res => {
-        this.rewardsPerBag = res.rewardsPerBag;
+
       })
   }
 
@@ -159,7 +158,6 @@ export class RewardsEarnedComponent implements OnInit {
         accountId: pendingPickup.accountId,
         requestId: pendingPickup._id,
         userId: pendingPickup.userId,
-        rewardsPerBag: this.rewardsPerBag,
         requestUserName: pendingPickup.requestUserName,
         requestSociety: pendingPickup.requestSociety,
         requestFlatNumber: pendingPickup.requestFlatNumber,

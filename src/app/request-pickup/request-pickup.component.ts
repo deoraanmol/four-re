@@ -137,7 +137,7 @@ export class RequestPickupComponent implements OnInit {
 
           //update new rewards earned
           this.currentUserService.currentUserData['rewardsEarned'] = res.rewardsEarned;
-          console.log("request pickup saved, navigating to rewards: "+this.currentUserService.currentUserData['rewardsEarned']);
+          console.log("drop bags saved, navigating to rewards: "+this.currentUserService.currentUserData['rewardsEarned']);
           this.currentUserService.navToRewardsEarned();
         });
       } else {
@@ -191,7 +191,6 @@ export class RequestPickupComponent implements OnInit {
   }
 
   getAmt() {
-  debugger
     var selectedBagSize = this.requestPickupValidations.controls.bagSize.value;
     var bagSizeObj = this.findBagSize(selectedBagSize);
     if(bagSizeObj) {

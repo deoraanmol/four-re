@@ -33,7 +33,7 @@
             <span class="bp2-myaccount">My Account</span>
             <mat-icon aria-hidden="true" role="img" class="menu-arrow mat-icon notranslate material-icons mat-icon-no-color">arrow_drop_down</mat-icon>
             <mat-menu #menuMobile="matMenu" class="rp-dropdown-mobile">
-              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Deposits</button>
+              <button mat-menu-item (click)="openREScreen('PICKUPS')">My Refunds</button>
               <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
             </mat-menu>
           </button>
@@ -45,11 +45,18 @@
         <div class="rp-header-text">
           Drop Bags
         </div>
-        <div class="rp-header-hint">
-
-        </div>
       </div>
       <form class="pickup-form" [formGroup]="requestPickupValidations">
+        <div class="form-line-mobile">
+          <div class="rp-form-field-mobile">
+            <div class="form-label">Size</div>
+            <select formControlName="bagSize" class="form-field-dropdown rp-full-field">
+              <option *ngFor="let bagSize of bagSizes" [value]="bagSize.size">
+                {{bagSize.display}}
+              </option>
+            </select>
+          </div>
+        </div>
         <div class="form-line-mobile" style="padding-top: 10px">
           <div class="rp-form-field">
             <div class="form-label">Number of Bags</div>
@@ -66,19 +73,6 @@
             <span class="field-error-hint" *ngIf="requestPickupValidations.get('name').errors && formSubmitted">Name is required</span>
           </div>
         </div>
-
-        <div class="form-line-mobile">
-
-          <div class="rp-form-field-mobile">
-            <div class="form-label">Size</div>
-            <select formControlName="bagSize" class="form-field-dropdown rp-full-field">
-              <option *ngFor="let bagSize of bagSizes" [value]="bagSize.size">
-                {{bagSize.display}}
-              </option>
-            </select>
-          </div>
-        </div>
-
         <div class="form-line-mobile">
           <div class="rp-form-field-mobile">
             <div class="form-label">Location Code</div>
@@ -171,7 +165,7 @@
             <mat-icon aria-hidden="true" role="img" class="mat-icon notranslate material-icons mat-icon-no-color menu-arrow">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="dropdown">
-            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Deposits</button>
+            <button mat-menu-item (click)="openREScreen('PICKUPS')">My Refunds</button>
             <button mat-menu-item (click)="signOutFromRP()">Sign Out</button>
           </mat-menu>
         </div>
@@ -182,12 +176,17 @@
         <div class="rp-header-text">
           Drop Bags
         </div>
-        <div class="rp-header-hint">
-
-        </div>
       </div>
       <form class="pickup-form" [formGroup]="requestPickupValidations">
         <div class="rp-form-line-multiple-fields">
+          <div class="rp-form-field">
+            <div class="form-label">Size</div>
+            <select formControlName="bagSize" class="form-field-dropdown rp-full-field">
+              <option *ngFor="let bagSize of bagSizes" [value]="bagSize.size">
+                {{bagSize.display}}
+              </option>
+            </select>
+          </div>
           <div class="rp-form-field">
             <div class="form-label">Number of Bags</div>
             <input min="1" [className]="requestPickupValidations.get('noOfBags').errors && formSubmitted ? 'form-value field-border-error' : 'form-value'" matInput formControlName="noOfBags" type="number" placeholder="Number of Bags">
@@ -196,14 +195,6 @@
               <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors.min">Number of Bags must be greater than 0</span>
               <span class="field-error-hint" *ngIf="requestPickupValidations.get('noOfBags').errors.pattern">Number of Bags cannot have a decimal value</span>
             </span>
-          </div>
-          <div class="rp-form-field">
-            <div class="form-label">Size</div>
-            <select formControlName="bagSize" class="form-field-dropdown rp-full-field">
-              <option *ngFor="let bagSize of bagSizes" [value]="bagSize.size">
-                {{bagSize.display}}
-              </option>
-            </select>
           </div>
         </div>
 
