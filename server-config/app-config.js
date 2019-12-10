@@ -4,13 +4,21 @@ module.exports = {
   ],
   //configure the bag sizes below
   bagTypes: [
-      {size: 'Small', display: 'Small', amountPerBag: 10},
-      {size: 'Medium', display: 'Medium', amountPerBag: 20}
+      {size: 'Small', display: 'Small', amountPerBag: 5},
+      {size: 'Medium', display: 'Medium', amountPerBag: 10}
   ],
   //location codes will be the agent pins (todo - support firebase sms to send codes)
   societies: [
-    {name: 'Ireo Grand Arch', locationCode: 1234},
-    {name: 'Mahindra Lifespaces', locationCode: 4567}
+    {name: 'Grand Arch Tower No. A', locationCode: 1234},
+    {name: 'Grand Arch Tower No. B', locationCode: 2345},
+    {name: 'Grand Arch Tower No. C', locationCode: 3456},
+    {name: 'Grand Arch Tower No. D', locationCode: 4567},
+    {name: 'Grand Arch Tower No. EW', locationCode: 5678},
+    {name: 'Grand Arch Tower No. WW', locationCode: 6789},
+    {name: 'Grand Arch Tower No. F', locationCode: 7890},
+    {name: 'Grand Arch Tower No. G', locationCode: 8901},
+    {name: 'Grand Arch Tower No. H', locationCode: 9012},
+    {name: 'Grand Arch Tower No. J', locationCode: 4321}
   ],
   givenTimeSlots: [16, 18, 20], // 4pm to 8pm, **use 16.5 for 4:30pm**
   givenTimeSlotInterval: 2, //2 hrs interval between any 2 slots
