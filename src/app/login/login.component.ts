@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
               private firebaseAuth: AngularFireAuth,
               private userHttpService: UserHttpService,
               private currentUserService: CurrentUserService) {
-    this.homeSource = this.router.getCurrentNavigation().extras.state.source;
+    if(this.router.getCurrentNavigation().extras.state) {
+      this.homeSource = this.router.getCurrentNavigation().extras.state.source;
+    }
   }
 
 
