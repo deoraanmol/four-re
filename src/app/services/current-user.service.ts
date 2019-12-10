@@ -68,8 +68,9 @@ export class CurrentUserService {
   }
 
   signOutUser(angularFireAuth) {
+    var self = this;
     angularFireAuth.auth.signOut().then(() => {
-      this.navToHome();
+      self.navToHome();
     });
   }
 
